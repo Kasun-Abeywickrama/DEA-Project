@@ -48,6 +48,7 @@ This guide offers detailed instructions for setting up a repository, installing 
 
 ## Making Changes
 
+* **Create your Branch:** If you haven't already created a branch for you in this project, please do so in this section. Use a name like (Development ~ Your_Name) for your branch. And you can create new sub-branches under the branch that you created. Use a descriptive name that reflects the purpose of your changes for that sub-branch.
 * **Code Style:** Follow consistent coding style and conventions used in the existing codebase.
 * **Write Clear Code:** Strive to write clean, well-commented code that is easy to understand and maintain.
 * **Unit Tests:** If applicable, consider adding unit tests for your changes to ensure functionality.
