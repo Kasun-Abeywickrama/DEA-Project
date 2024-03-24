@@ -13,7 +13,7 @@ This guide offers detailed instructions for setting up a repository, installing 
 2. **Clone Repository:** Open a terminal or command prompt and navigate to the directory where you want to clone the repository. Run the following command, replacing `<repository_url>` with the URL of your Git repository (e.g., from GitHub, GitLab):
    
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/Kasun-Abeywickrama/DEA-Project.git
     ```
 
 ### Install Dependencies
@@ -21,7 +21,7 @@ This guide offers detailed instructions for setting up a repository, installing 
 1. **Navigate to Project Directory:** After cloning the repository, navigate to the cloned project directory:
    
     ```bash
-    cd <project_name>
+    cd DEA-Project
     ```
 
 2. **Install Java Libraries:** Install the required Java libraries using a dependency management tool like Maven or Gradle. Instructions may vary depending on your project setup.
