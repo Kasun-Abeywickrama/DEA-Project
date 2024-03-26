@@ -58,3 +58,4 @@
 # # IDE-specific build artifacts (adjust based on your IDE)
 # **/nbactions.xml
 # **/generated-sources/
+/E-Commerce-Website/build/
