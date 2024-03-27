@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
-import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -81,24 +80,19 @@ public class sign_up_servlet extends HttpServlet {
                     getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
                     return;
                 }
-                
-                try{
-                    //Hashing the password
-                    authentication_functions hp = new authentication_functions();
-                    String hashed_password = hp.get_SHA_256_SecurePassword(password, hp.getSalt());
+              
+                //Hashing the password
+                authentication_functions hp = new authentication_functions();
+                String hashed_password = hp.hash_password(password);
                     
-                    //Executing the sql query to store the data
-                    stmt.executeUpdate("INSERT INTO User(username, password) VALUES('"+username+"', '"+hashed_password+"');");
+                //Executing the sql query to store the data
+                stmt.executeUpdate("INSERT INTO User(username, password) VALUES('"+username+"', '"+hashed_password+"');");
 
-                    //Close database connection
-                    conn.close();
+                //Close database connection
+                conn.close();
                     
-                    request.setAttribute("message", "Successfully Signed Up");
-                    getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
-                }
-                catch(NoSuchAlgorithmException e3){
-                    response.getWriter().println(e3);
-                }
+                request.setAttribute("message", "Successfully Signed Up");
+                getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
             }
             catch(SQLException e2){
                 response.getWriter().println(e2);
