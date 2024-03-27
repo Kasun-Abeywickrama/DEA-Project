@@ -10,45 +10,37 @@ This guide offers detailed instructions for setting up a repository, installing 
 
 1. **Install Git:** If Git is not already installed, download and install it from [here](https://git-scm.com/downloads).
    
-2. **Clone Repository:** Open a terminal or command prompt and navigate to the directory where you want to clone the repository. Run the following command, replacing `<repository_url>` with the URL of your Git repository (e.g., from GitHub, GitLab):
+2. **Clone Repository:** Open a terminal or command prompt and navigate to the directory where you want to clone the repository. Run the following command:
    
     ```bash
     git clone https://github.com/Kasun-Abeywickrama/DEA-Project.git
     ```
+   or You can use GitHub Desktop to clone this repository.
+  
+3. **Create your Branch:** If you haven't already created a branch for you in this project, please do so in this section. Use a name like (Development---Your_Name) for your branch. And you can create new sub-branches under the branch that you created. Use a descriptive name that reflects the purpose of your changes for that sub-branch.
 
-### Install Dependencies
+   This command creates a new branch in the repository.
 
-1. **Navigate to Project Directory:** After cloning the repository, navigate to the cloned project directory:
-   
     ```bash
-    cd DEA-Project
+    git branch <branch_name>
     ```
 
-2. **Install Java Libraries:** Install the required Java libraries using a dependency management tool like Maven or Gradle. Instructions may vary depending on your project setup.
+   or You can use GitHub Desktop to create your branch for this repository.
 
-### Configure Server
+4. Switch to your branch.
+    ```bash
+    git checkout <branch_name>
+    ```
+    or You can use GitHub Desktop to switch to your branch in this repository.
 
-1. **Set up GlassFish Server:** Set up GlassFish Server on the new computer by following the official documentation available [here](https://docs.oracle.com/cd/E26576_01/index.htm).
-   
-2. **Deploy Application:** Deploy your application to GlassFish. Refer to the GlassFish documentation or your project's specific deployment instructions for details.
+5. **Create WEB-INF Folder**
+   * Navigate to this path Project_folder\E-Commerce-Website\web.
+   * If there is no WEB-INF folder here, Create an empty folder named WEB-INF.
 
-### Start the Server
-
-1. **Start GlassFish Server:** Start GlassFish Server on the new computer.
-
-### Additional Considerations
-
-1. **Database Setup:** If your application interacts with a database, configure the database connection details on the new computer.
-   
-2. **Environment Variables:** If your application relies on environment variables, ensure they're set appropriately on the new machine.
-   
-3. **Project-Specific Configuration:** Adjust the provided instructions based on any project-specific setup or deployment requirements.
-
-**Note:** Use the provided code snippets with caution and ensure compatibility with your system environment and project requirements.
+6. Open this project folder in Netbeans IDE.
 
 ## Making Changes
 
-* **Create your Branch:** If you haven't already created a branch for you in this project, please do so in this section. Use a name like (Development ~ Your_Name) for your branch. And you can create new sub-branches under the branch that you created. Use a descriptive name that reflects the purpose of your changes for that sub-branch.
 * **Code Style:** Follow consistent coding style and conventions used in the existing codebase.
 * **Write Clear Code:** Strive to write clean, well-commented code that is easy to understand and maintain.
 * **Unit Tests:** If applicable, consider adding unit tests for your changes to ensure functionality.
