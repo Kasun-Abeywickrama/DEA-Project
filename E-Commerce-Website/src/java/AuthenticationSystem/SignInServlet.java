@@ -65,8 +65,8 @@ public class SignInServlet extends HttpServlet {
                 session.setAttribute("user_name", resultSet.getString("username"));
                 session.setAttribute("authenticated", true);
 
-                // Set session timeout to 30 minutes (in seconds)
-                int sessionTimeout = 2 * 60; 
+                // Set session timeout to 1 day (in seconds)
+                int sessionTimeout = 60 * 60 * 24; 
                 session.setMaxInactiveInterval(sessionTimeout);
 
                 response.sendRedirect("welcome.jsp");
