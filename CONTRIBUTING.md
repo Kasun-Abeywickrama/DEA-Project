@@ -17,15 +17,27 @@ This guide offers detailed instructions for setting up a repository, installing 
     ```
    or You can use GitHub Desktop to clone this repository.
   
-3. **Create your Branch:** If you haven't already created a branch for you in this project, please do so in this section. Use a name like (Development---Your_Name) for your branch. And you can create new sub-branches under the branch that you created. Use a descriptive name that reflects the purpose of your changes for that sub-branch.
+3. **Create your Branch:** 
 
-   This command creates a new branch in the repository.
+   To create your branch under the development branch, follow these steps:
+
+   1. Open your terminal.
+   2. Navigate to your repository directory.
+   3. Execute the following command to create your branch:
+
 
     ```bash
-    git branch <branch_name>
+    git checkout -b feature/<suitable_name_for_your_work> development
     ```
 
-   or You can use GitHub Desktop to create your branch for this repository.
+    or You can use GitHub Desktop to create your branch for this repository.
+
+
+   1. **Open GitHub Desktop**.
+   2. **Select Repository**.
+   3. **Switch to Development Branch**.
+   4. **Create New Branch**: `Branch` -> `New Branch` -> Name it `feature/<suitable_name_for_your_work>` -> `Create Branch`.
+   
 
 4. Switch to your branch.
     ```bash
@@ -46,11 +58,13 @@ This guide offers detailed instructions for setting up a repository, installing 
 * **Unit Tests:** If applicable, consider adding unit tests for your changes to ensure functionality.
 * **Commit Messages:** Use descriptive commit messages that explain the purpose of your changes.
 
+## Start Working ...
+
 ## Submitting Changes
 
 1. **Push your branch:** Once your changes are complete and tested, push your branch to your repository.
-2. **Create a Pull Request:** On GitHub, navigate to the repository and create a pull request from your branch to the main branch of the  repository.
-3. **Review Process:** We will review your pull request and provide feedback. Be prepared to address any comments or suggestions before your changes are merged.
+<!-- 2. **Create a Pull Request:** On GitHub, navigate to the repository and create a pull request from your branch to the main branch of the  repository.
+3. **Review Process:** We will review your pull request and provide feedback. Be prepared to address any comments or suggestions before your changes are merged. -->
 
 ## Additional Notes
 
