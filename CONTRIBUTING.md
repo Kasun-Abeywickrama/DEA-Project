@@ -56,14 +56,14 @@ To clone a repository using GitHub Desktop, follow these steps:
 
 9. Open this project folder in Netbeans IDE.
 
+## Start Working ...
+
 ## Making Changes
 
 * **Code Style:** Follow consistent coding style and conventions used in the existing codebase.
 * **Write Clear Code:** Strive to write clean, well-commented code that is easy to understand and maintain.
 * **Unit Tests:** If applicable, consider adding unit tests for your changes to ensure functionality.
 * **Commit Messages:** Use descriptive commit messages that explain the purpose of your changes.
-
-## Start Working ...
 
 ## Submitting Changes
 
