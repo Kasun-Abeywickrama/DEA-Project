@@ -36,7 +36,12 @@ To clone a repository using GitHub Desktop, follow these steps:
 6. **Create your Branch:** 
 
    1. **Switch to Development Branch**.
-   2. **Create New Branch**: `Branch` -> `New Branch` -> Name it `feature/<suitable_name_for_your_work>` -> `Create Branch`.
+
+      you'll see a toolbar at the top of the GitHub Desktop window. Click on the "Current Branch" dropdown menu. Then click on `development`
+
+   2. **Create New Branch**: 
+   
+      `Current Branch` -> `New Branch` -> Name it `feature/<suitable_name_for_your_work>` -> `Create branch based on (select)development` ->`Create Branch`.
    
 
 7. **Switch to your branch.**
