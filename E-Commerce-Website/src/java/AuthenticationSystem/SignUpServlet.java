@@ -7,19 +7,23 @@ package AuthenticationSystem;
 
 import DatabaseConnection.db_connection;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.*;
 
 /**
  *
  * @author Sithuruwan
  */
-@WebServlet(name = "sign_up_servlet", urlPatterns = {"/sign_up_servlet"})
-public class sign_up_servlet extends HttpServlet {
+@WebServlet(name = "SignUpServlet", urlPatterns = {"/SignUpServlet"})
+public class SignUpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,17 +58,17 @@ public class sign_up_servlet extends HttpServlet {
         try
         {
             //Register the JDBC driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             
             //Creating an object of the db_connection class
             db_connection db_conn = new db_connection();
             
             try{
                 //Creating the database connection
-                Connection conn = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
+                Connection con = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
                 
                 //Creating a statement
-                Statement stmt = conn.createStatement();
+                Statement stmt = con.createStatement();
                 
                 //Executing sql query to check if the username is available
                 ResultSet rs = stmt.executeQuery("SELECT username FROM User WHERE username='"+username+"';");
@@ -74,7 +78,7 @@ public class sign_up_servlet extends HttpServlet {
                 while(rs.next()){
                         
                     //Closing db connection
-                    conn.close();
+                    con.close();
 
                     request.setAttribute("message", "The username already taken, Please select another username");
                     getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
@@ -89,7 +93,7 @@ public class sign_up_servlet extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO User(username, password) VALUES('"+username+"', '"+hashed_password+"');");
 
                 //Close database connection
-                conn.close();
+                con.close();
                     
                 request.setAttribute("message", "Successfully Signed Up");
                 getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
@@ -103,5 +107,4 @@ public class sign_up_servlet extends HttpServlet {
         }
 
     }
-
 }

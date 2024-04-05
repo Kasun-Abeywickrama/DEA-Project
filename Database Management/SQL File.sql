@@ -50,6 +50,7 @@ name varchar(100) NOT NULL,
 price float NOT NULL,
 description varchar(1000) NOT NULL,
 image varchar(1000) NOT NULL,
+stock int NOT NULL,
 sub_category_id int NOT NULL,
 PRIMARY KEY(product_id),
 FOREIGN KEY(sub_category_id) REFERENCES Sub_category(sub_category_id)

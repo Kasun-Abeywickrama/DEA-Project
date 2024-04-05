@@ -17,11 +17,11 @@
                 String message = (String)request.getAttribute("message");
                 
                 %>
-                <script>alert("<%=message %>")</script>
+                <script>alert("<%=message %>");</script>
                 <%
             }
         %>
-        <form action="sign_up_servlet" method="POST">
+        <form action="SignUpServlet" method="POST">
             <input type="text" name="username" value="" />
             <input type="password" name="password" value="" />
             <input type="password" name="re_password" value="" />

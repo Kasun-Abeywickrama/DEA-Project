@@ -20,6 +20,4 @@ public class authentication_functions {
         return DigestUtils.sha256Hex(password);
     }
     
-    
-    
 }

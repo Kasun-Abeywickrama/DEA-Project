@@ -20,10 +20,7 @@ public class db_connection {
     
     public String uname = "root";
     
-//    public String password = "20021028";
-    
-    public String password = "root";
-
+    public String password = "20021028";
     
     
 }
