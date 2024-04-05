@@ -6,12 +6,19 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sign Up</title>
+        <!-- Bootstrap -->
+	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+	<link href="css/sign_up_page.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        
+        <!-- Displaying the message received from the servlet -->
         <%
             if(request.getAttribute("message") != null){
                 String message = (String)request.getAttribute("message");
@@ -21,11 +28,44 @@
                 <%
             }
         %>
-        <form action="SignUpServlet" method="POST">
-            <input type="text" name="username" value="" />
-            <input type="password" name="password" value="" />
-            <input type="password" name="re_password" value="" />
-            <input type="submit" value="submit" />
-        </form>
+        
+  	<div class="container-fluid">
+            <div class="container">
+		<div class="vertical-center">
+                    
+                    <center>
+		  	<h1>Sign Up</h1>
+                    </center>  
+                    <br><br>
+                    
+                    <form action="SignUpServlet" method="POST">
+			<center>
+                            <div class="form-group">
+				<input type="text" class="form-control" name="username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+				<input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+				<input type="password" class="form-control" name="re_password" placeholder="Re-Enter Password">
+                            </div>
+				<button type="submit" class="btn btn-primary">Sign Up</button>
+			</center>
+                    </form>
+                    <br>
+                    
+                    <center>
+		  	<p>Already have an account? <a href="sign_in_page.jsp">Sign In</a></p>
+                    </center>
+                    
+  	  	</div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/popper.min.js"></script> 
+	<script src="js/bootstrap-4.4.1.js"></script>
     </body>
 </html>
