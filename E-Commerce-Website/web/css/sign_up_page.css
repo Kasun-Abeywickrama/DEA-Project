@@ -1,0 +1,35 @@
+@charset "utf-8";
+body {
+    background-color: #F6F3EC;
+}
+
+.container-fluid .container h1 {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.container center p a{
+    color: black;
+    text-decoration: underline;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+form .form-group {
+    width: 400px;
+    height: 60px;
+}
+
+form .btn.btn-primary {
+    width: 180px;
+    height: 36px;
+    background-color: #FC6B03;
+    border-color: #FC6B03;
+}
