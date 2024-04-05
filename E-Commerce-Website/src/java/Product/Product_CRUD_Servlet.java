@@ -7,6 +7,7 @@ package Product;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,24 @@ public class Product_CRUD_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                
+       
+//      response.getWriter().print(productId);
+        String p_id = request.getParameter("productId");
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        System.out.println(p_id);
+        
+        // Set response content type
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        
+        
+
+        // Send JSON response
+        PrintWriter out = response.getWriter();
+        Product_CRUD_DB_Class ob = new Product_CRUD_DB_Class();
+        out.print(ob.viewProduct(p_id));
+        out.flush();
     }
 
     @Override
@@ -42,6 +61,12 @@ public class Product_CRUD_Servlet extends HttpServlet {
         } else {
             response.getWriter().println("Insertion failed");
         }
+
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.getWriter().println("Put Working");
 
     }
 
