@@ -3,14 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
-            <!--      From kasun's PC      -->
-            <file>file:/C:/Users/HP/Desktop/Git/Personal/DEA-Project/E-Commerce-Website/src/java/Product/AProductCreateReadUpdateDelete.java</file>
-            <file>file:/C:/Users/HP/Desktop/Git/Personal/DEA-Project/E-Commerce-Website/web/add_product_page.jsp</file>
-            <file>file:/C:/Users/HP/Desktop/Git/Personal/DEA-Project/E-Commerce-Website/src/java/Product/Product_CRUD_DB_Class.java</file>
-            <file>file:/C:/Users/HP/Desktop/Git/Personal/DEA-Project/E-Commerce-Website/src/java/Product/Product_CRUD_Servlet.java</file>
-            <!--   /   From kasun's PC      -->
-            <file>file:/C:/Users/User/Documents/GitHub/DEA-Project/E-Commerce-Website/src/java/AuthenticationSystem/SignInServlet.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/DEA-Project/E-Commerce-Website/web/sign_in_page.jsp</file>
         </group>
     </open-files>
 </project-private>
