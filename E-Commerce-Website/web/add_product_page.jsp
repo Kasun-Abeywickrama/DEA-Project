@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Add Product</h1>  
-        <form action="Product_CRUD_Servlet" method="post">
+        <form action="AProductCreateReadUpdateDelete" method="post">
             <table>
                 <tr>
                     <td>Name:</td>

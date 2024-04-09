@@ -16,11 +16,11 @@ public class db_connection {
     
     //Change your uname and password according to your computer
     
-    public String url = "jdbc:mysql://localhost:3306/furniture_shop?useSSL=false&allowPublicKeyRetrieval=true";
+    public String url = "jdbc:mysql://localhost:3306/furniture_shop?useSSL=false";
     
     public String uname = "root";
     
-    public String password = "root";
+    public String password = "20021028";
     
     
 }
