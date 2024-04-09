@@ -47,7 +47,8 @@ CREATE TABLE Product
 (
 product_id int NOT NULL AUTO_INCREMENT,
 name varchar(100) NOT NULL,
-price float NOT NULL,
+buying_price float NOT NULL,
+selling_price float NOT NULL,
 description varchar(1000) NOT NULL,
 image varchar(1000) NOT NULL,
 stock int NOT NULL,
@@ -85,13 +86,36 @@ FOREIGN KEY(user_id) REFERENCES User(user_id)
 
 CREATE TABLE Orders_Product
 (
-order_id int NOT NULL AUTO_INCREMENT,
+order_id int NOT NULL,
 product_id int NOT NULL,
 quantity int NOT NULL,
-price float NOT NULL,
+buying_price float NOT NULL,
+selling_price float NOT NULL,
 PRIMARY KEY(order_id, product_id),
 FOREIGN KEY(order_id) REFERENCES Orders(order_id),
 FOREIGN KEY(product_id) REFERENCES Product(product_id)
+);
+
+
+CREATE TABLE Product_review
+(
+review_id int NOT NULL AUTO_INCREMENT,
+comment varchar(16000) NOT NULL,
+order_id int NOT NULL,
+product_id int NOT NULL,
+PRIMARY KEY(review_id),
+FOREIGN KEY(order_id) REFERENCES Orders(order_id),
+FOREIGN KEY(product_id) REFERENCES Product(product_id)
+);
+
+
+CREATE TABLE Review_image
+(
+image_id int NOT NULL AUTO_INCREMENT,
+image varchar(16000) NOT NULL,
+review_id int NOT NULL,
+PRIMARY KEY(image_id),
+FOREIGN KEY(review_id) REFERENCES Product_review(review_id)
 );
 
 
@@ -121,10 +145,10 @@ INSERT INTO Label VALUES
 (2,'Material');
 
 INSERT INTO Product VALUES 
-(1,'Leather Sofa',43000,'Premium leather sofa','sofa_img.jpg',12,1),
-(2,'Wooden Dining Table',23000,'Solid wood dining table','table_img.jpg',20,2),
-(3,'Queen Bed',64000,'Sturdy queen-sized bed','bed.jpg',10,4),
-(4,'Dining Chair Set',12000,'Set of 4 upholstered dining chairs','chair.png',30,3);
+(1,'Leather Sofa',33000,43000,'Premium leather sofa','sofa_img.jpg',12,1),
+(2,'Wooden Dining Table',13000,23000,'Solid wood dining table','table_img.jpg',20,2),
+(3,'Queen Bed',50000,64000,'Sturdy queen-sized bed','bed.jpg',10,4),
+(4,'Dining Chair Set',8000,12000,'Set of 4 upholstered dining chairs','chair.png',30,3);
 
 INSERT INTO Product_Label VALUES 
 (1,1,'Brown'),
@@ -143,13 +167,23 @@ INSERT INTO Orders VALUES
 (4,'2024-06-12 09:30:00',36000,'Delivered','Godagama road, Homagama','Kamal Gunerathne','0765800001',1);
 
 INSERT INTO Orders_Product VALUES 
-(1,1,1,43000),
-(1,2,1,23000),
-(2,2,1,23000),
-(2,4,1,12000),
-(3,1,1,43000),
-(3,4,1,12000),
-(4,4,3,36000);
+(1,1,1,33000,43000),
+(1,2,1,13000,23000),
+(2,2,1,13000,23000),
+(2,4,1,8000,12000),
+(3,1,1,33000,43000),
+(3,4,1,8000,12000),
+(4,4,3,8000,12000);
+
+INSERT INTO Product_review VALUES
+(1,'This product is highly appreciated',1,1),
+(2,'This product is quite bad, not good',1,2),
+(3,'This product is highly appreciated',2,4);
+
+INSERT INTO Review_image VALUES
+(1,'image1.png',1),
+(2,'image2.jpeg',1),
+(3,'image3.png',3);
 
 
 
