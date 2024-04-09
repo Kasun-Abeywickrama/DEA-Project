@@ -86,7 +86,7 @@ FOREIGN KEY(user_id) REFERENCES User(user_id)
 
 CREATE TABLE Orders_Product
 (
-order_id int NOT NULL AUTO_INCREMENT,
+order_id int NOT NULL,
 product_id int NOT NULL,
 quantity int NOT NULL,
 buying_price float NOT NULL,
@@ -94,6 +94,28 @@ selling_price float NOT NULL,
 PRIMARY KEY(order_id, product_id),
 FOREIGN KEY(order_id) REFERENCES Orders(order_id),
 FOREIGN KEY(product_id) REFERENCES Product(product_id)
+);
+
+
+CREATE TABLE Product_review
+(
+review_id int NOT NULL AUTO_INCREMENT,
+comment varchar(16000) NOT NULL,
+order_id int NOT NULL,
+product_id int NOT NULL,
+PRIMARY KEY(review_id),
+FOREIGN KEY(order_id) REFERENCES Orders(order_id),
+FOREIGN KEY(product_id) REFERENCES Product(product_id)
+);
+
+
+CREATE TABLE Review_image
+(
+image_id int NOT NULL AUTO_INCREMENT,
+image varchar(16000) NOT NULL,
+review_id int NOT NULL,
+PRIMARY KEY(image_id),
+FOREIGN KEY(review_id) REFERENCES Product_review(review_id)
 );
 
 
@@ -152,6 +174,16 @@ INSERT INTO Orders_Product VALUES
 (3,1,1,33000,43000),
 (3,4,1,8000,12000),
 (4,4,3,8000,12000);
+
+INSERT INTO Product_review VALUES
+(1,'This product is highly appreciated',1,1),
+(2,'This product is quite bad, not good',1,2),
+(3,'This product is highly appreciated',2,4);
+
+INSERT INTO Review_image VALUES
+(1,'image1.png',1),
+(2,'image2.jpeg',1),
+(3,'image3.png',3);
 
 
 
