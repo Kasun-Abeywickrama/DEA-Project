@@ -32,6 +32,7 @@ Download and install MySQL Workbench from the official website: [https://dev.mys
 ### **2.2 Import Database**
 
 1. Locate the file `SQL File.sql` within the `Database Management` folder of the project.
+    <br>You need to know where the file is located before you can do anything with it.
 2. Open MySQL Workbench and connect to your local MySQL server.
 3. Import the `SQL File.sql` into your MySQL server to create the database schema.
 
