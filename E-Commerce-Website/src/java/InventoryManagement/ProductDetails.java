@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package StockManagement;
+package InventoryManagement;
 
 /**
  *
  * @author Sithuruwan
  */
-public class ProductStock {
+public class ProductDetails {
     
-    //This is the java class that is used to represent the stock data of a product.
+    //This is the java class that is used to represent the details of a product.
     private int productId;
     
     private String productName;
@@ -20,14 +20,14 @@ public class ProductStock {
     
     private String productMainCategory;
     
-    private int productStock;
+    private int totalAvailableQuantity;
     
-    public ProductStock(int id, String name, String subCategory, String mainCategory, int stock){
+    public ProductDetails(int id, String name, String subCategory, String mainCategory, int totAvailableQuantity){
         productId = id;
         productName = name;
         productSubCategory = subCategory;
         productMainCategory = mainCategory;
-        productStock = stock;
+        totalAvailableQuantity = totAvailableQuantity;
     }
     
     public int getProductId(){
@@ -46,8 +46,8 @@ public class ProductStock {
         return productMainCategory;
     }
     
-    public int getProductStock(){
-        return productStock;
+    public int getTotalAvailableQuantity(){
+        return totalAvailableQuantity;
     }
     
 }
