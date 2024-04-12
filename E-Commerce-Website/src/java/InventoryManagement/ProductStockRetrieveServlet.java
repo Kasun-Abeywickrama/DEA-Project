@@ -50,7 +50,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
                     Statement stmt = con.createStatement();
 
                     //Execute the SQL query to retrieve the product stock list
-                    ResultSet rs1 = stmt.executeQuery("SELECT * FROM Product_stock WHERE product_id="+productId+" ORDER BY stock_id;");
+                    ResultSet rs1 = stmt.executeQuery("SELECT * FROM Product_stock WHERE product_id="+productId+" ORDER BY stock_id DESC;");
 
                     //Store the results in an arraylist of the ProductStock class
                     ArrayList<ProductStock> productStockList = new ArrayList();
