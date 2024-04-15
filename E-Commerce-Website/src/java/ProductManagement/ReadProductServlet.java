@@ -1,4 +1,3 @@
-
 package ProductManagement;
 
 import java.io.IOException;
@@ -32,24 +31,23 @@ public class ReadProductServlet extends HttpServlet {
                 response.setContentType("application/json");
                 response.getWriter().println(productJson);
             } else {
-//                int id = Integer.parseInt(productId); 
-//                Product product = ProductDAO.getProductById(id);
-//                if (product != null) {
-//                    String productJson = new Gson().toJson(product);
-//                    response.setContentType("application/json");
-//                    response.getWriter().println(productJson);
-//                } else {
-//                    response.setStatus(HttpServletResponse.SC_NOT_FOUND); 
-//                }
+                int id = Integer.parseInt(productId);
+                Product product = ProductDAO.getProductById(id);
+                if (product != null) {
+                    String productJson = new Gson().toJson(product);
+                    response.setContentType("application/json");
+                    response.getWriter().println(productJson);
+                } else {
+                    response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                }
             }
         } catch (NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().println("Invalid product ID format!");
-        } 
-//        catch (SQLException ex) {
-//            ex.printStackTrace();
-//            log("Error getting product", ex); // Consider logging to a file
-//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//        }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            log("Error getting product", ex); // Consider logging to a file
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
     }
 }
