@@ -72,7 +72,7 @@
 
                     var actionCell = document.createElement("td");
                     var viewLink = document.createElement("a");
-                    viewLink.href = "view_product_page.jsp?product_id=" + product.productId;
+                    viewLink.href = "view_product_page.jsp?product_id=" + product.productId+"&sub_category_id="+product.subCategoryId;
                     viewLink.textContent = "View";
                     actionCell.appendChild(viewLink);
                     row.appendChild(actionCell);

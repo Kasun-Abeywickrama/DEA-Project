@@ -17,6 +17,7 @@ public class ProductDAO {
     private static final String GET_ALL_PRODUCTS_SQL = "SELECT * FROM product";
     private static final String GET_PRODUCT_BY_ID_SQL = "SELECT * FROM product WHERE product_id = ?";
     private static final String ADD_PRODUCT_SQL = "INSERT INTO product (name, buying_price, selling_price, description, image, sub_category_id) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE product SET name = ?, buying_price = ?, selling_price = ?, description = ?, image = ?, sub_category_id = ? WHERE product_id = ?";
 
     public static List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
@@ -135,4 +136,50 @@ public class ProductDAO {
         return state;
     }
 
+    
+    
+    
+    public static boolean updateProduct(Product product) throws SQLException {
+
+        DBConnectionManager cob = new DBConnectionManager();
+        Connection connection = cob.getDBConnection();
+        PreparedStatement statement = null;
+        boolean state = false;
+
+        try {
+            statement = connection.prepareStatement(UPDATE_PRODUCT_SQL);
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getBuyingPrice());
+            statement.setDouble(3, product.getSellingPrice());
+            statement.setString(4, product.getDescription());
+            statement.setString(5, product.getImage());
+            statement.setInt(6, product.getSubCategoryId());
+            statement.setInt(7, product.getProductId());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Update successful");
+                state = true;
+            } else {
+                System.out.println("Update failed");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error : " + e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    cob.closeDBConnection();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error : Connection closing error");
+            }
+        }
+        return state;
+
+    }
 }

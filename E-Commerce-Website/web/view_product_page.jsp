@@ -14,6 +14,7 @@
 
 <%
     String productId = request.getParameter("product_id");
+    int subCategoryId = Integer.parseInt(request.getParameter("sub_category_id"));
 %>
 
 <!DOCTYPE html>
@@ -39,6 +40,10 @@
                     <td><input type="text" name="buying_price" id="buyingPrice"></td>
                 </tr>
                 <tr>
+                    <td>Selling Price:</td>
+                    <td><input type="text" name="selling_price" id="sellingPrice"></td>
+                </tr>
+                <tr>
                     <td>Description:</td>
                     <td><textarea name="description" rows="4" cols="30" id="description"></textarea></td>
                 </tr>
@@ -47,37 +52,51 @@
                     <td><input type="text" name="image" id="image"></td>
                 </tr>
                 <tr>
-                    <%
-                        DBConnectionManager dbc = new DBConnectionManager();
-                        Connection connection = null;
-                        PreparedStatement statement = null;
-                        String subCategory = null;
-
-                        try {
-                            connection = dbc.getDBConnection();
-                            statement = connection.prepareStatement("select * from sub_category where sub_category_id = ?");
-                            statement.setInt(1, Integer.parseInt(productId));
-                            ResultSet resultSet = statement.executeQuery();
-                            if (resultSet.next()) {
-                                subCategory = resultSet.getString("name");
-                            }
-                        } catch (SQLException e) {
-                            System.out.println("Error : " + e);
-                        } finally {
-                            try {
-                                if (statement != null) {
-                                    statement.close();
-                                }
-                                if (connection != null) {
-                                    dbc.closeDBConnection();
-                                }
-                            } catch (SQLException e) {
-                                System.out.println("Error : Connection closing error");
-                            }
-                        }
-                    %>
                     <td>Sub-category:</td>
-                    <td><input type="text" name="sub_cat" id="sub_cat" value="<%= subCategory%>"></td>
+                    <td>
+                        <select name="sub_cat">
+
+                            <%
+                                DBConnectionManager dbc = new DBConnectionManager();
+                                Connection connection = null;
+                                PreparedStatement statement = null;
+
+                                try {
+                                    connection = dbc.getDBConnection();
+                                    statement = connection.prepareStatement("select * from sub_category");
+                                    ResultSet resultSet = statement.executeQuery();
+                                    while (resultSet.next()) {
+                                        int subCategoryIdNew = resultSet.getInt("sub_category_id");
+                                        String subCategory = resultSet.getString("name");
+                                        if (subCategoryId == subCategoryIdNew) {
+                                            %>
+                                            <option value="<%= subCategoryIdNew%>" selected><%= subCategory%></option>
+                                            <%
+                                              System.out.println("subCategoryId : "+subCategoryId+"    "+subCategory);
+                                        } else {
+                                            %>
+                                            <option value="<%= subCategoryIdNew%>"><%= subCategory%></option>
+                                            <%
+                                        }
+                                    }
+
+                                } catch (SQLException e) {
+                                    System.out.println("Error : " + e);
+                                } finally {
+                                    try {
+                                        if (statement != null) {
+                                            statement.close();
+                                        }
+                                        if (connection != null) {
+                                            dbc.closeDBConnection();
+                                        }
+                                    } catch (SQLException e) {
+                                        System.out.println("Error : Connection closing error");
+                                    }
+                                }
+                            %>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -97,6 +116,7 @@
                         var responseData = JSON.parse(xhr.responseText);
                         document.getElementById("name").value = responseData.name;
                         document.getElementById("buyingPrice").value = responseData.buyingPrice;
+                        document.getElementById("sellingPrice").value = responseData.sellingPrice;
                         document.getElementById("description").value = responseData.description;
                         document.getElementById("image").value = responseData.image;
                     }
