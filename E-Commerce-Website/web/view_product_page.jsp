@@ -17,127 +17,149 @@
     int subCategoryId = Integer.parseInt(request.getParameter("sub_category_id"));
 %>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View product</title>
-    </head>
-    <body>
+<%@ include file="admin_header.jsp" %>
+<div style="display: flex; align-items: center; justify-content: space-between;" class="mb-3 mt-2">
+    <p style="color: #E97000;"><i>Products &nbsp;>&nbsp; Edit & Delete Product</i></p> 
+    <form action="DeleteProductServlet?product_id=<%= productId%>" method="POST" onsubmit="return deleteProductConfirmation()">          
+        <input type="submit" value="Delete Product" class="btn btn-primary btn-sm"/>
+    </form>
+</div>
+<form id="myForm" action="UpdateProductServlet?product_id=<%= productId%>"  method="POST" enctype="multipart/form-data">
 
-        <h1>Edit Product</h1> 
-        <form action="DeleteProductServlet?product_id=<%= productId%>" method="POST">          
-            <input type="submit" value="Delete" />
-        </form>
-        <form id="myForm" action="UpdateProductServlet?product_id=<%= productId%>"  method="POST" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <td></td>
-                    <td colspan="2">
-                        <%
-                            String imagePath = "images/product_images/" + productId + ".png";
-                            String timestamp = String.valueOf(System.currentTimeMillis());
-                            String imageUrl = imagePath + "?timestamp=" + timestamp;
-                        %>
-                        <img alt="Loading.." src="<%= imageUrl%>" style="width: 100px"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" name="name" id="name"></td>
-                </tr>
-                <tr>
-                    <td>Buying Price:</td>
-                    <td><input type="text" name="buying_price" id="buyingPrice"></td>
-                </tr>
-                <tr>
-                    <td>Selling Price:</td>
-                    <td><input type="text" name="selling_price" id="sellingPrice"></td>
-                </tr>
-                <tr>
-                    <td>Description:</td>
-                    <td><textarea name="description" rows="4" cols="30" id="description"></textarea></td>
-                </tr>
-                <tr>
-                    <td>Image:</td>
-                    <td><input type="file" name="image" accept="image/png"></td>
-                </tr>  
-                <tr>
-                    <td>Sub-category:</td>
-                    <td>
-                        <select name="sub_cat">
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group mb-4">
+                <%
+                    String imagePath = "images/product_images/" + productId + ".png";
+                    String timestamp = String.valueOf(System.currentTimeMillis());
+                    String imageUrl = imagePath + "?timestamp=" + timestamp;
+                %>                    
+                <img id="image" src="<%= imageUrl%>" class="img-thumbnail rounded mx-auto d-block w-25"  alt="Image">
+            </div>
 
-                            <%
-                                DBConnectionManager dbc = new DBConnectionManager();
-                                Connection connection = null;
-                                PreparedStatement statement = null;
+            <div class="form-group mb-4">
+                <label for="name" class="mb-2">Product name</label>
+                <input type="text" class="form-control" name="name" id="name">    
+            </div>
+            <div class="form-group mb-4">
+                <label for="buyingPrice" class="mb-2">Buying Price</label>
+                <input type="text" class="form-control" name="buying_price" id="buyingPrice">
+            </div>
+            <div class="form-group mb-4">
+                <label for="sellingPrice" class="mb-2">Selling Price</label>
+                <input type="text" class="form-control" name="selling_price" id="sellingPrice">
+            </div>
+        </div>
 
-                                try {
-                                    connection = dbc.getDBConnection();
-                                    statement = connection.prepareStatement("select * from sub_category");
-                                    ResultSet resultSet = statement.executeQuery();
-                                    while (resultSet.next()) {
-                                        int subCategoryIdNew = resultSet.getInt("sub_category_id");
-                                        String subCategory = resultSet.getString("name");
-                                        if (subCategoryId == subCategoryIdNew) {
-                            %>
-                            <option value="<%= subCategoryIdNew%>" selected><%= subCategory%></option>
-                            <%
-                                System.out.println("subCategoryId : " + subCategoryId + "    " + subCategory);
-                            } else {
-                            %>
-                            <option value="<%= subCategoryIdNew%>"><%= subCategory%></option>
-                            <%
-                                        }
-                                    }
+        <div class="col-md">    
+            <div class="form-group mb-4">
+                <label for="description" class="mb-2">Description</label>
+                <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+            </div>
+            <div class="form-group mb-4">
+                <label for="image" class="mb-2">Image</label>
+                <input type="file" name="image" accept="image/png" class="form-control" id="image" onchange="previewImage(event)">   
+            </div>
+            
+            <div class="form-group mb-4" style="display: none;" id="imagePreviewWrapper">
+                <img id="imagePreview" src="#" class="img-thumbnail rounded mx-auto d-block w-25"  alt="Image Preview">
+            </div>
+            
 
-                                } catch (SQLException e) {
-                                    System.out.println("Error : " + e);
-                                } finally {
-                                    try {
-                                        if (statement != null) {
-                                            statement.close();
-                                        }
-                                        if (connection != null) {
-                                            dbc.closeDBConnection();
-                                        }
-                                    } catch (SQLException e) {
-                                        System.out.println("Error : Connection closing error");
-                                    }
+            <div class="form-group mb-4">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select class="form-control" name="sub_cat">
+                    <%
+                        DBConnectionManager dbc = new DBConnectionManager();
+                        Connection connection = null;
+                        PreparedStatement statement = null;
+
+                        try {
+                            connection = dbc.getDBConnection();
+                            statement = connection.prepareStatement("select * from sub_category");
+                            ResultSet resultSet = statement.executeQuery();
+                            while (resultSet.next()) {
+                                int subCategoryIdNew = resultSet.getInt("sub_category_id");
+                                String subCategory = resultSet.getString("name");
+                                if (subCategoryId == subCategoryIdNew) {
+                    %>
+                    <option value="<%= subCategoryIdNew%>" selected><%= subCategory%></option>
+                    <%
+                        System.out.println("subCategoryId : " + subCategoryId + "    " + subCategory);
+                    } else {
+                    %>
+                    <option value="<%= subCategoryIdNew%>"><%= subCategory%></option>
+                    <%
                                 }
-                            %>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td colspan="2"><input type="submit" value="Save" /></td>
-                </tr>
-            </table>
-        </form>
+                            }
 
-        <script>
-            function getData(productId) {
+                        } catch (SQLException e) {
+                            System.out.println("Error : " + e);
+                        } finally {
+                            try {
+                                if (statement != null) {
+                                    statement.close();
+                                }
+                                if (connection != null) {
+                                    dbc.closeDBConnection();
+                                }
+                            } catch (SQLException e) {
+                                System.out.println("Error : Connection closing error");
+                            }
+                        }
+                    %>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm float-end mt-2 mb-4 px-5">Save</button>
+        </div>
+    </div>
+</form>
 
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "ReadProductServlet?productId=" + encodeURIComponent(productId), true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var responseData = JSON.parse(xhr.responseText);
-                        document.getElementById("name").value = responseData.name;
-                        document.getElementById("buyingPrice").value = responseData.buyingPrice;
-                        document.getElementById("sellingPrice").value = responseData.sellingPrice;
-                        document.getElementById("description").value = responseData.description;
-                        document.getElementById("image").value = responseData.image;
-                    }
-                };
-                xhr.send();
+<script>
+    function previewImage(event) {
+        const input = event.target;
+            if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+            const imagePreview = document.getElementById('imagePreview');
+            const imagePreviewWrapepr = document.getElementById('imagePreviewWrapper');
+            imagePreview.src = e.target.result;
+            imagePreviewWrapepr.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
-            }
+<script>
+    function getData(productId) {
 
-            getData(<%= productId%>);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "ReadProductServlet?productId=" + encodeURIComponent(productId), true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    var responseData = JSON.parse(xhr.responseText);
+    document.getElementById("name").value = responseData.name;
+    document.getElementById("buyingPrice").value = responseData.buyingPrice;
+    document.getElementById("sellingPrice").value = responseData.sellingPrice;
+    document.getElementById("description").value = responseData.description;
+    document.getElementById("image").value = responseData.image;
+    }
+    };
+    xhr.send();
+    }
 
-        </script>
-    </body>
-</html>
+    getData(<%= productId%>);</script>
+<script>
+    function deleteProductConfirmation() {
+    var result = confirm("Are you sure you want to delete this product?");
+    if (result) {
+    return true;
+    } else {
+    return false;
+    }
+    }
+</script>
+
+<%@ include file="admin_footer.jsp" %>
