@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 /**
@@ -28,6 +27,8 @@ public class ImageManager {
             byte[] data = new byte[is.available()];
             is.read(data);
             fos.write(data);
+            is.close();
+            fos.close();
             status = true;
         } catch (IOException e) {
             Logger.getLogger(CreateProductServlet.class.getName()).log(Level.SEVERE, "Error writing image to disk", e);
@@ -59,6 +60,8 @@ public class ImageManager {
                 byte[] data = new byte[is.available()];
                 is.read(data);
                 fos.write(data);
+                is.close();
+                fos.close();
                 fileUpdateStatus = true;
             } catch (IOException e) {
                 // Handle IO exception
@@ -68,7 +71,6 @@ public class ImageManager {
         return fileUpdateStatus;
     }
 
-    
     public boolean deleteImage(int pId) {
         // Delete the image file from the filesystem
         String imageName = pId + ".png";
