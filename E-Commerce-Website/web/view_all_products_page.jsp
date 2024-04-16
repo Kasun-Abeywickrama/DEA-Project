@@ -23,7 +23,7 @@
     </head>
     <body>
         <div class="container">
-            <h2>Products</h2>
+            <h2>Products</h2> <a href="add_product_page.jsp">Add Product</a>
             <table class="table table-bordered">
                 <thead>
                     <tr>

@@ -29,8 +29,19 @@
         <form action="DeleteProductServlet?product_id=<%= productId%>" method="POST">          
             <input type="submit" value="Delete" />
         </form>
-        <form id="myForm" action="UpdateProductServlet?product_id=<%= productId%>"  method="POST" >
+        <form id="myForm" action="UpdateProductServlet?product_id=<%= productId%>"  method="POST" enctype="multipart/form-data">
             <table>
+                <tr>
+                    <td></td>
+                    <td colspan="2">
+                        <%
+                            String imagePath = "images/product_images/" + productId + ".png";
+                            String timestamp = String.valueOf(System.currentTimeMillis());
+                            String imageUrl = imagePath + "?timestamp=" + timestamp;
+                        %>
+                        <img alt="Loading.." src="<%= imageUrl%>" style="width: 100px"/>
+                    </td>
+                </tr>
                 <tr>
                     <td>Name:</td>
                     <td><input type="text" name="name" id="name"></td>
@@ -49,8 +60,8 @@
                 </tr>
                 <tr>
                     <td>Image:</td>
-                    <td><input type="text" name="image" id="image"></td>
-                </tr>
+                    <td><input type="file" name="image" accept="image/png"></td>
+                </tr>  
                 <tr>
                     <td>Sub-category:</td>
                     <td>
@@ -69,14 +80,14 @@
                                         int subCategoryIdNew = resultSet.getInt("sub_category_id");
                                         String subCategory = resultSet.getString("name");
                                         if (subCategoryId == subCategoryIdNew) {
-                                            %>
-                                            <option value="<%= subCategoryIdNew%>" selected><%= subCategory%></option>
-                                            <%
-                                              System.out.println("subCategoryId : "+subCategoryId+"    "+subCategory);
-                                        } else {
-                                            %>
-                                            <option value="<%= subCategoryIdNew%>"><%= subCategory%></option>
-                                            <%
+                            %>
+                            <option value="<%= subCategoryIdNew%>" selected><%= subCategory%></option>
+                            <%
+                                System.out.println("subCategoryId : " + subCategoryId + "    " + subCategory);
+                            } else {
+                            %>
+                            <option value="<%= subCategoryIdNew%>"><%= subCategory%></option>
+                            <%
                                         }
                                     }
 

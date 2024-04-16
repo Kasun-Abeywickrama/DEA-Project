@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Add Product</h1>  
-        <form action="CreateProductServlet" method="post">
+        <form action="CreateProductServlet" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td>Name:</td>
@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <td>Image:</td>
-                    <td><input type="text" name="image"></td>
+                    <td><input type="file" name="image" accept="image/png"></td>
                 </tr>
                 <tr>
                     <td>Sub-category:</td>

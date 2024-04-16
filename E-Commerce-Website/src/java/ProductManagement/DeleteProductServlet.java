@@ -1,10 +1,7 @@
 package ProductManagement;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,17 +24,26 @@ public class DeleteProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int productId = Integer.parseInt(request.getParameter("product_id"));
+        int pId = Integer.parseInt(request.getParameter("product_id"));
 
         try {
-            boolean status = ProductDAO.deleteProduct(productId);
-            if (status) {
-                response.sendRedirect("view_all_products_page.jsp");
+            ImageManager imo = new ImageManager();
+            boolean imageDeleteStatus = imo.deleteImage(pId);
+
+            if (imageDeleteStatus) {
+                boolean status = ProductDAO.deleteProduct(pId);
+                if (status) {
+                    response.sendRedirect("view_all_products_page.jsp");
+                } else {
+                    response.getWriter().println("Product deleting error. please try again");
+                }
+            } else {
+                response.getWriter().println("Product deleting error. please try again");
             }
+
         } catch (SQLException ex) {
             response.getWriter().println("Product Delete Unsuccessfull!");
         }
-
     }
 
 }

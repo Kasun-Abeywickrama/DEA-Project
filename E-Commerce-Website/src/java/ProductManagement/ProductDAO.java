@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,15 +96,15 @@ public class ProductDAO {
         return product;
     }
 
-    public static boolean addProduct(Product product) throws SQLException {
+    public static int addProduct(Product product) throws SQLException {
 
         DBConnectionManager cob = new DBConnectionManager();
         Connection connection = cob.getDBConnection();
         PreparedStatement statement = null;
-        boolean state = false;
+        int newId = 0;
 
         try {
-            statement = connection.prepareStatement(ADD_PRODUCT_SQL);
+            statement = connection.prepareStatement(ADD_PRODUCT_SQL, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getBuyingPrice());
             statement.setDouble(3, product.getSellingPrice());
@@ -114,8 +115,17 @@ public class ProductDAO {
             int rowsAffected = statement.executeUpdate();
 
             if (rowsAffected > 0) {
+
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    // Get the ID of the newly inserted row
+                    newId = generatedKeys.getInt(1);
+
+                } else {
+                    System.out.println("No auto-generated keys were returned");
+                }
+
                 System.out.println("Product insertion successful");
-                state = true;
             } else {
                 System.out.println("Product insertion failed");
             }
@@ -134,7 +144,7 @@ public class ProductDAO {
                 System.out.println("Error : Connection closing error");
             }
         }
-        return state;
+        return newId;
     }
 
     public static boolean updateProduct(Product product) throws SQLException {
