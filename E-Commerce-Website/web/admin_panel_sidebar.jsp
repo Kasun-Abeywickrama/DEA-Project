@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin_dashboard_sidebar
-    Created on : Apr 16, 2024, 8:41:13 PM
+    Document   : admin_panel_sidebar
+    Created on : Apr 17, 2024, 5:40:40 AM
     Author     : Sithuruwan
 --%>
 
@@ -67,5 +67,4 @@
         </li>
     </ul>
 </div>
-
 
