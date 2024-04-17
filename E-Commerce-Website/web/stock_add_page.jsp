@@ -22,8 +22,7 @@
         <script src="js/javascript_validation.js"></script>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="container">
+        <%@include file="admin_header.jsp" %>
                 
             <%  if(request.getParameter("product_id") != null){
                     
@@ -84,8 +83,8 @@
             <%
                 }
             %>
-            </div>
-        </div>
+            
+        <%@include file="admin_footer.jsp" %>
     
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="js/jquery-3.4.1.min.js"></script>

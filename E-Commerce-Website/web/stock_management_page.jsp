@@ -31,8 +31,7 @@
             };
         </script>
         
-  	<div class="container-fluid">
-            <div class="container">
+  	<%@include file="admin_header.jsp" %>
                
                 <%
                     if(request.getAttribute("product_stock_list") != null 
@@ -144,9 +143,9 @@
                         }
                     }
                 %> 
-            </div>
-  	</div>
-                        
+            
+        <%@include file="admin_footer.jsp" %>
+                
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="js/jquery-3.4.1.min.js"></script>
 
