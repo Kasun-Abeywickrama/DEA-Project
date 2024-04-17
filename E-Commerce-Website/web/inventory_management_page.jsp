@@ -78,8 +78,7 @@
             };
         </script>
         
-  	<div class="container-fluid">
-            <div class="container">
+        <%@include file="admin_header.jsp" %>
                
                 <form id="search_form" onsubmit="searchProduct(event)">
                     <center>
@@ -159,8 +158,8 @@
                         }
                     }
                 %> 
-            </div>
-  	</div>
+                
+        <%@include file="admin_footer.jsp" %>
                         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="js/jquery-3.4.1.min.js"></script>
