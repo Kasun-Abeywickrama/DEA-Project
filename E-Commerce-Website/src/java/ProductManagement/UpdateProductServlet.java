@@ -41,19 +41,22 @@ public class UpdateProductServlet extends HttpServlet {
             String imageName = imagePart.getSubmittedFileName();
 
             int pId = Integer.parseInt(request.getParameter("product_id"));
-            
-            ImageManager imo = new ImageManager();
-            boolean imageStatus = imo.updateImage(pId, imagePart);
+            boolean imageStatus = false;
 
-            if (imageStatus) {
-                //Update image details to the Database
-                Product product = new Product(productId, name, buyingPrice, sellingPrice, description, imageName, subCategoryId);
-                boolean status = ProductDAO.updateProduct(product);
+            String imageVal = request.getParameter("image");
+            if (imageVal == null) {
+                ImageManager imo = new ImageManager();
+                imageStatus = imo.updateImage(pId, imagePart);
+            }
+            //Update image details to the Database
+            Product product = new Product(productId, name, buyingPrice, sellingPrice, description, imageName, subCategoryId);
+            boolean status = ProductDAO.updateProduct(product);
+            if (status) {
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.sendRedirect("view_all_products_page.jsp");
 
             } else {
-                response.getWriter().println("Image deletion unsuccessfull");
+                response.getWriter().println("Product deletion unsuccessfull");
             }
 
         } catch (NumberFormatException e) {
