@@ -167,7 +167,7 @@ public class ProductDAO {
             int rowsAffected = statement.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("Update successful");
+//                System.out.println("Update successful");
                 state = true;
             } else {
                 System.out.println("Update failed");
