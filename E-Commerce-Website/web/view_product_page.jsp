@@ -24,7 +24,7 @@
         <input type="submit" value="Delete Product" class="btn btn-primary btn-sm"/>
     </form>
 </div>
-<form id="myForm" action="UpdateProductServlet?product_id=<%= productId%>"  method="POST" enctype="multipart/form-data">
+    <form id="myForm" name="productForm" action="UpdateProductServlet?product_id=<%= productId%>"  method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 
     <div class="row">
         <div class="col-md">
@@ -85,7 +85,6 @@
                     %>
                     <option value="<%= subCategoryIdNew%>" selected><%= subCategory%></option>
                     <%
-                        System.out.println("subCategoryId : " + subCategoryId + "    " + subCategory);
                     } else {
                     %>
                     <option value="<%= subCategoryIdNew%>"><%= subCategory%></option>
@@ -159,6 +158,48 @@
     } else {
     return false;
     }
+    }
+</script>
+
+<script>
+    function validateForm() {
+    var productName = document.forms["productForm"]["name"].value.trim();
+    var buyingPrice = document.forms["productForm"]["buying_price"].value.trim();
+    var sellingPrice = document.forms["productForm"]["selling_price"].value.trim();
+    var description = document.forms["productForm"]["description"].value.trim();
+    var image = document.forms["productForm"]["image"].value.trim();
+    var subCategory = document.forms["productForm"]["sub_cat"].value;
+    // Validate product name
+    if (productName == "") {
+    alert("Please enter a product name");
+    return false;
+    }
+
+    // Validate buying price
+    if (!/^\d*\.?\d+$/.test(buyingPrice) || buyingPrice == "") {
+    alert("Buying price must be a valid number");
+    return false;
+    }
+
+    // Validate selling price
+    if (!/^\d*\.?\d+$/.test(sellingPrice || sellingPrice == "")) {
+    alert("Selling price must be a valid number");
+    return false;
+    }
+
+    // Validate description
+    if (description == "") {
+    alert("Please enter a description");
+    return false;
+    }
+
+    // Validate sub category
+    if (subCategory == "") {
+    alert("Please select a sub category");
+    return false;
+    }
+
+    return true;
     }
 </script>
 
