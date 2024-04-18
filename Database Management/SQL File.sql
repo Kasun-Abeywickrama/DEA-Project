@@ -182,9 +182,9 @@ INSERT INTO Product_stock VALUES
 
 INSERT INTO Orders VALUES 
 (1,'2024-04-08 15:30:00',66000,'Pending','Pitipana road, Homagama','Kamal Gunerathne','0765800001',1),
-(2,'2024-04-12 07:30:00',35000,'Delivered','Godagama road, Homagama','John Doe','0765800003',3),
+(2,'2024-04-12 07:30:00',35000,'Completed','Godagama road, Homagama','John Doe','0765800003',3),
 (3,'2024-05-12 09:30:00',55000,'Pending','Pitipana road, Homagama','Kathrina Pierece','0765800004',4),
-(4,'2024-06-12 09:30:00',36000,'Delivered','Godagama road, Homagama','Kamal Gunerathne','0765800001',1);
+(4,'2024-06-12 09:30:00',36000,'Completed','Godagama road, Homagama','Kamal Gunerathne','0765800001',1);
 
 INSERT INTO Orders_Product VALUES 
 (1,43000,1,1,1),
