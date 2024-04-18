@@ -20,10 +20,13 @@ public class AdminDashboardProductDetails {
     
     private int totalAvailableQuantity;
     
-    public AdminDashboardProductDetails(int id, String name, int totAvailableQuantity){
+    private int monthSoldQuantity;
+    
+    public AdminDashboardProductDetails(int id, String name, int totAvailableQuantity, int monsoldquantity){
         productId = id;
         productName = name;
         totalAvailableQuantity = totAvailableQuantity;
+        monthSoldQuantity = monsoldquantity;
     }
     
     public int getProductId(){
@@ -36,6 +39,10 @@ public class AdminDashboardProductDetails {
     
     public int getTotalAvailableQuantity(){
         return totalAvailableQuantity;
+    }
+    
+    public int getMonthSoldQuantity(){
+        return monthSoldQuantity;
     }
     
 }

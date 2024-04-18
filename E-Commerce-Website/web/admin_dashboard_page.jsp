@@ -68,11 +68,11 @@
                 <th>Status</th>
             </tr>
             <%
-                if(request.getAttribute("order_list") != null){
+                if(request.getAttribute("status_order_list") != null){
                     
-                    ArrayList<AdminDashboardOrderDetails> order_list = (ArrayList<AdminDashboardOrderDetails>)request.getAttribute("order_list");
+                    ArrayList<AdminDashboardOrderDetails> status_order_list = (ArrayList<AdminDashboardOrderDetails>)request.getAttribute("status_order_list");
                     
-                    for(AdminDashboardOrderDetails i: order_list){
+                    for(AdminDashboardOrderDetails i: status_order_list){
             %>
 
                         <tr>
@@ -87,6 +87,58 @@
                     
                 }
             %>    
+        </table>
+        
+        <table>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Sold Quantity</th>
+               
+            </tr>
+            <%
+                if(request.getAttribute("month_top_ordered_product_list") != null){
+                    
+                    ArrayList<AdminDashboardProductDetails> month_top_ordered_product_list = (ArrayList<AdminDashboardProductDetails>)request.getAttribute("month_top_ordered_product_list");
+                    
+                    for(AdminDashboardProductDetails i: month_top_ordered_product_list){
+            %>
+
+                        <tr>
+                            <td><%=i.getProductId() %></td>
+                            <td><%=i.getProductName() %></td>
+                            <td><%=i.getMonthSoldQuantity() %></td>
+                        </tr>
+            
+            <%
+                    }
+                    
+                }
+            %> 
+            
+            <%
+                if(request.getAttribute("month_total_orders") != null){
+                    
+                    String month_total_orders = (String)request.getAttribute("month_total_orders");
+            %>
+            
+                    hhhh <%=month_total_orders %>
+            
+            <%
+                }
+            %>
+            
+            <%
+                if(request.getAttribute("month_delivered_orders") != null){
+                    
+                    String month_delivered_orders = (String)request.getAttribute("month_delivered_orders");
+            %>
+            
+                    hhhh <%=month_delivered_orders %>
+            
+            <%
+                }
+            %>
         </table>
     </body>
 </html>
