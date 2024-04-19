@@ -182,8 +182,8 @@
                                         }  
                     %>
                                     </table>
-                                    <form action="#" method="POST">
-                                        <button type="submit" class="btn btn-warning my-2 my-sm-0" value="#" name="submit">Manage</button>
+                                    <form action="inventory_management_page.jsp" method="POST">
+                                        <button type="submit" class="btn btn-warning my-2 my-sm-0" value="submit" name="submit">Manage</button>
                                     </form>
                                 </center>
                     <%
