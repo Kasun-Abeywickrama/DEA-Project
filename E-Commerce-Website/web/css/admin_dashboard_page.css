@@ -1,0 +1,72 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 19, 2024, 3:48:00 AM
+    Author     : Sithuruwan
+*/
+
+.table-style {
+    border: 1px solid rgba(0, 0, 0, .25);
+    margin-bottom: 15px;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.table-style th, .table-style td {
+    border: 1px solid rgba(0, 0, 0, .25);
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.table-style th {
+    text-align: center;
+}
+
+#col1, #col2, #col3, #col4 {
+    min-height: 230px;
+}
+
+.btn.btn-warning.my-2.my-sm-0 {
+    color: white;
+    background-color: #FC6B03;
+    border: none;
+}
+
+#total_orders_container, #delivered_orders_container {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    border: 10px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#total_orders_container {
+    background-color:#0F7AAF;
+    border-color: #64A3E2;
+}
+
+#delivered_orders_container {
+    background-color: #4EA83C;
+    border-color: #7FC571;
+}
+
+.heading {
+    font-size: 17px;
+    font-weight: bold;
+    color: #E97000;
+}
+
+
+
