@@ -23,7 +23,6 @@ public class OrderDAO {
     private static final String GET_ORDERS_BY_STATUS_SQL = "SELECT * FROM orders WHERE status = ?";
     private static final String UPDATE_ORDER_STATUS_SQL = "UPDATE orders SET status = ? WHERE order_id = ?";
 
-
     public static List<Order> getOrders() throws SQLException {
         List<Order> orders = new ArrayList<>();
         DBConnectionManager cob = new DBConnectionManager();
@@ -192,5 +191,115 @@ public class OrderDAO {
         return newId;
     }
 
+    public static boolean updateOrder(Order order) throws SQLException {
+        DBConnectionManager cob = new DBConnectionManager();
+        Connection connection = cob.getDBConnection();
+        PreparedStatement statement = null;
+        boolean state = false;
+
+        try {
+            statement = connection.prepareStatement(UPDATE_ORDER_SQL);
+            statement.setString(1, order.getDateTime());
+            statement.setDouble(2, order.getTotalPrice());
+            statement.setString(3, order.getStatus());
+            statement.setString(4, order.getShippingAddress());
+            statement.setString(5, order.getReceiverName());
+            statement.setString(6, order.getReceiverPhoneNumber());
+            statement.setInt(7, order.getUserId());
+            statement.setInt(8, order.getOrderId());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                state = true;
+            } else {
+                System.out.println("Order update failed");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error updating order: " + e);
+            throw e; // Re-throw the exception for proper handling
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    cob.closeDBConnection();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing connection: " + e);
+            }
+        }
+        return state;
+    }
+
+    public static boolean updateOrderStatus(String status, int orderId) throws SQLException {
+        DBConnectionManager cob = new DBConnectionManager();
+        Connection connection = cob.getDBConnection();
+        PreparedStatement statement = null;
+        boolean state = false;
+
+        try {
+            statement = connection.prepareStatement(UPDATE_ORDER_STATUS_SQL);
+            statement.setString(1, status);
+            statement.setDouble(2, orderId);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                state = true;
+            } else {
+                System.out.println("Order status update failed");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error updating order: " + e);
+            throw e; // Re-throw the exception for proper handling
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    cob.closeDBConnection();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing connection: " + e);
+            }
+        }
+        return state;
+    }
+
+    public static boolean deleteOrder(int orderId) throws SQLException {
+        DBConnectionManager cob = new DBConnectionManager();
+        Connection connection = cob.getDBConnection();
+        PreparedStatement statement = null;
+        boolean state = false;
+
+        try {
+            statement = connection.prepareStatement(DELETE_ORDER_SQL);
+            statement.setInt(1, orderId);
+            statement.executeUpdate();
+            System.out.println("Order deletion successful");
+            state = true;
+
+        } catch (SQLException e) {
+            System.out.println("Error deleting order: " + e);
+            throw e; // Re-throw the exception for proper handling
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    cob.closeDBConnection();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing connection: " + e);
+            }
+        }
+        return state;
+    }
 
 }
