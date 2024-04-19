@@ -23,7 +23,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul>
-                    <li title="Dashboard"><a href="#"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></li>
+                    <li title="Dashboard"><a href="admin_dashboard_page.jsp"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></li>
                     <li title="Orders"><a href="#"><i class='bx bx-list-check'></i><span>Orders</span></a></li>
                     <li title="Products"><a href="view_all_products_page.jsp"><i class='bx bxs-package'></i><span>Products</span></a></li>
                     <li title="Purchase"><a href="#"><i class='bx bx-purchase-tag-alt'></i><span>Purchase</span></a></li>
