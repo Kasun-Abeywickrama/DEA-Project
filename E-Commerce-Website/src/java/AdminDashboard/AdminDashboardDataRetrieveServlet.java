@@ -112,7 +112,7 @@ public class AdminDashboardDataRetrieveServlet extends HttpServlet {
                                                 +"AND MONTH(Orders.date_time) = MONTH(CURRENT_DATE()) "
                                                 +"GROUP BY Product.product_id, Product.name "
                                                 +"ORDER BY total_quantity_sold DESC "
-                                                +"LIMIT 10;");
+                                                +"LIMIT 5;");
             
             while(rs5.next()){
                 
