@@ -62,8 +62,8 @@ Download MySQL Workbench from the official website: [https://dev.mysql.com/downl
    <br>Because you need to know where the file is located before you can do anything with it.
 2. Open MySQL Workbench and connect to your local MySQL server.<br>
    Open MySQL Workbench -> click on the connection tile in the My SQL connections section -> give credentials -> hit the ok button
-4. Import the `SQL File.sql` into your MySQL server to create the database schema.<br>
-   file -> Open SQL script -> Execute the query by clicking the yellow lightning button. 
+4. Import the `SQL File.sql` into your MySQL server.<br>
+   file -> Open SQL script -> select `SQL File.sql` -> Execute the query by clicking the yellow lightning button. 
 
 ### **3.3 Update Connection Details**
 
