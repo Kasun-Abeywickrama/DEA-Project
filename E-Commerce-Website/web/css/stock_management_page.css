@@ -10,37 +10,29 @@ and open the template in the editor.
 
 @charset "utf-8";
 
-body {
-    background-color: #F6F3EC;
-}
-
-.stock_table, .stock_table th, .stock_table td{
-    border: 1px solid;
-    border-color: black;
-    border-collapse: collapse;
-    padding: 15px;
+#stock_table, #stock_table th, #stock_table td{
     text-align: center;
 }
 
-#edit_button_td, #remove_button_td{
-    border: none;
+#stock_table {
+    margin-bottom: 20px;
 }
 
 .details_table {
-    border: 1px solid;
+    border: 1px solid rgba(0, 0, 0, .15);
 }
 
 .details_table, .details_table th, .details_table td {
-    padding: 6px;
+    padding: 8px;
 }
 
-.container-fluid .container {
-    margin-top: 75px;
-    margin-bottom: 75px;
-}
-
-.btn.btn-warning.my-2.my-sm-0 {
+.btn btn-primary btn-sm {
     color: white;
     background-color: #FC6B03;
     border: none;
+}
+
+#btn1, #btn2, #btn3 {
+    height: 35px;
+    font-size: 15px;
 }
