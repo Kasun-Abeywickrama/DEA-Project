@@ -5,10 +5,9 @@
  */
 package InventoryManagement;
 
-import DatabaseConnection.db_connection;
+import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,62 +32,54 @@ public class ProductStockRemoveServlet extends HttpServlet {
         //Remove a stock    
         int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
+        DBConnectionManager dbcon = new DBConnectionManager();
+                
         try{
-                
-            Class.forName("com.mysql.cj.jdbc.Driver");
-                
-            db_connection db_conn = new db_connection();
-                
-            try{
                     
-                Connection con = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
+            Connection connection = dbcon.getDBConnection();
                     
-                Statement stmt = con.createStatement();
+            Statement stmt = connection.createStatement();
                     
-                ResultSet rs1 = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id = '"+stock_id+"';");
+            ResultSet rs1 = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id = "+stock_id+";");
                     
-                if(rs1.next()){
+            if(rs1.next()){
                         
-                    rs1.close();
+                rs1.close();
                     
-                    ResultSet rs2 = stmt.executeQuery("SELECT * FROM Orders_Product WHERE stock_id="+stock_id+";");
+                ResultSet rs2 = stmt.executeQuery("SELECT * FROM Orders_Product WHERE stock_id="+stock_id+";");
                     
-                    if(!(rs2.next())){
+                if(!(rs2.next())){
                         
-                        rs2.close();
-                        stmt.executeUpdate("DELETE FROM Product_stock WHERE stock_id="+stock_id+";");
+                    rs2.close();
+                    stmt.executeUpdate("DELETE FROM Product_stock WHERE stock_id="+stock_id+";");
                         
-                        stmt.close();
-                        con.close();
+                    stmt.close();
+                    dbcon.closeDBConnection();
                         
-                        request.setAttribute("alert_message", "Stock removed successfully");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                    }
-                    else{
-                        rs2.close();
-                        stmt.close();
-                        con.close();
-                        
-                        request.setAttribute("alert_message", "Unable to remove the stock, Already purchased in several orders");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                    } 
+                    request.setAttribute("alert_message", "Stock removed successfully");
+                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
                 }
                 else{
-                    rs1.close();
+                    rs2.close();
                     stmt.close();
-                    con.close();
+                    dbcon.closeDBConnection();
                         
-                    request.setAttribute("alert_message", "Stock does not exist");
+                    request.setAttribute("alert_message", "Unable to remove the stock, Already purchased in several orders");
                     request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                }  
+                } 
             }
-            catch(SQLException e2){
-                response.getWriter().println(e2);
-            }
+            else{
+                rs1.close();
+                stmt.close();
+                dbcon.closeDBConnection();
+                        
+                request.setAttribute("alert_message", "Stock does not exist");
+                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+            }  
         }
-        catch(ClassNotFoundException e1){
-            response.getWriter().println(e1);
-        }  
+        catch(SQLException e){
+            response.getWriter().println(e);
+        }
     } 
     
 }
