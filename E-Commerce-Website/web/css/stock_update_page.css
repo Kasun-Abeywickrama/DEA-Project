@@ -14,19 +14,13 @@ table {
     border: 1px solid rgba(0, 0, 0, .15);
 }
 
-.stock_details_update table, .stock_details_update th, .stock_details_update td {
+.stock_details_update_table table, .stock_details_update_table th, .stock_details_update_table td , .quantity_update_table table, .quantity_update_table th, .quantity_update_table td {
     padding: 5px;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-.quantity_update_table table, .quantity_update_table th, .quantity_update_table td {
-    padding: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.stock_details_update , .quantity_update_table {
+.stock_details_update_table , .quantity_update_table {
     margin-bottom: 20px;
 }
 

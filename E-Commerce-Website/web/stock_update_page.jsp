@@ -53,7 +53,7 @@
                             <div class="col-lg-6">
                                 <form name="stock_details_update_form" action="ProductStockUpdateServlet" method="POST" onsubmit="return stock_update_details_validate()">
                                     <center>
-                                        <table class="stock_details_update">
+                                        <table class="stock_details_update_table">
                                             <tr>
                                                 <td id="h3_heading_details_td">
                                                     <center>
