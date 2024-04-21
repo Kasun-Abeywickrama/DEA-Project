@@ -1,84 +1,97 @@
-# Contributing Guidelines
+# **Contributing Guidelines**
 
 Thank you for considering contributing to the E-Commerce Furniture Store Website project. Your help is greatly appreciated in making this project better for everyone!
 
-## Repository Setup Guide
+## Contributing Guidelines
+
+## **1. Repository Setup Guide**
 
 This guide offers detailed instructions for setting up a repository, installing dependencies, configuring a server, and starting the server for a Java application.
 
-### Clone the Repository
+### **1.1 Clone the Repository**
 
 To clone a repository using GitHub Desktop, follow these steps:
 
-1. **Download and Install GitHub Desktop:**
-   - Visit the GitHub Desktop website: [GitHub Desktop](https://desktop.github.com/)
-   - Download the appropriate version for your operating system (Windows or macOS).
-   - Install GitHub Desktop by following the installation instructions provided.
+* Download and Install GitHub Desktop: [https://desktop.github.com/](https://desktop.github.com/)
+* Open GitHub Desktop
+* Sign in to GitHub (if you don't have an account, create one for free)
+* Clone the Repository:
+    * In GitHub Desktop, go to "File" -> "Clone Repository"
+    * Enter the repository URL: [https://github.com/Kasun-Abeywickrama/DEA-Project.git](https://github.com/Kasun-Abeywickrama/DEA-Project.git)
+    * Choose a local path for the repository on your computer
+    * Click "Clone"
+* Open the Cloned Repository:
+    * Once cloned, you'll see the repository in GitHub Desktop. Click on it to open its contents.
 
-2. **Open GitHub Desktop:**
-   - Once installed, open GitHub Desktop from your applications or programs menu.
+## **2. Database Setup**
 
-3. **Sign in to GitHub:**
-   - If you haven't already signed in, you'll need to sign in using your GitHub credentials. If you don't have a GitHub account, you can create one for free.
+### **2.1 Install MySQL Workbench**
 
-4. **Clone the Repository:**
-   - In GitHub Desktop, click on the "File" menu in the top-left corner.
-   - Select "Clone Repository" from the dropdown menu.
-   - You will be prompted to enter the URL of the repository you want to clone. Enter: `https://github.com/Kasun-Abeywickrama/DEA-Project.git`
-   - Choose the local path where you want to clone the repository on your computer.
-   - Click "Clone" to initiate the cloning process.
+Download and install MySQL Workbench from the official website: [https://dev.mysql.com/downloads/workbench/](https://dev.mysql.com/downloads/workbench/)
 
-5. **Open the Cloned Repository:**
-   - Once the cloning process is complete, you'll see the repository listed in GitHub Desktop.
-   - Click on the repository to open it and view its contents.
+### **2.2 Import Database**
 
-  
-6. **Create your Branch:** 
+1. Locate the file `SQL File.sql` within the `Database Management` folder of the project.
+    <br>You need to know where the file is located before you can do anything with it.
+2. Open MySQL Workbench and connect to your local MySQL server.
+3. Import the `SQL File.sql` into your MySQL server to create the database schema.
 
-   1. **Switch to Development Branch**.
+### **2.3 Update Connection Details**
 
-      you'll see a toolbar at the top of the GitHub Desktop window. Click on the "Current Branch" dropdown menu. Then click on `development`
+1. Navigate to the `db_connection` file within the `DatabaseConnection` package of the project.
+2. Update the database connection details in this file with your specific credentials (hostname, username, password).
 
-   2. **Create New Branch**: 
-   
-      `Current Branch` -> `New Branch` -> Name it `feature/<suitable_name_for_your_work>` -> `Create branch based on (select)development` ->`Create Branch`.
-   
+### **2.4 Start the Database Server**
 
-7. **Switch to your branch.**
+Ensure your MySQL server is running and accessible.
 
-   1. **View Branches:**
-      - Once you've selected the repository, you'll see a toolbar at the top of the GitHub Desktop window. Click on the "Current Branch" dropdown menu. It will display the currently checked out branch.
+## **3. Create your Branch**
 
-   2. **Choose Your Branch:**
-      - From the dropdown menu, select the branch you want to switch to. If your branch isn't listed, you might need to fetch it first by clicking the "Fetch origin" button.
+### **3.1 Switch to Development Branch**
 
-   3. **Switch Branch:**
-      - After selecting the desired branch from the dropdown menu, GitHub Desktop will automatically switch to that branch locally.
+In GitHub Desktop, locate the "Current Branch" dropdown menu and select the `development` branch.
 
-8. **Create WEB-INF Folder**
-   * Navigate to this path Project_folder\E-Commerce-Website\web.
-   * If there is no WEB-INF folder here, Create an empty folder named WEB-INF.
+### **3.2 Create New Branch**
 
-9. Open this project folder in Netbeans IDE.
+1. Click on "Current Branch" -> "New Branch".
+2. Name your branch following the format `feature/<suitable_name_for_your_work>`.
+3. Choose "development" as the base branch and click "Create Branch".
 
-## Start Working ...
+### **3.3 Switch to your branch**
 
-## Making Changes
+Select your newly created branch from the "Current Branch" dropdown menu.
 
-* **Code Style:** Follow consistent coding style and conventions used in the existing codebase.
-* **Write Clear Code:** Strive to write clean, well-commented code that is easy to understand and maintain.
-* **Unit Tests:** If applicable, consider adding unit tests for your changes to ensure functionality.
-* **Commit Messages:** Use descriptive commit messages that explain the purpose of your changes.
+### **3.4 View Branches**
 
-## Submitting Changes
+The "Current Branch" dropdown menu displays the currently checked out branch.
 
-1. **Push your branch:** Once your changes are complete and tested, push your branch to your repository.
-<!-- 2. **Create a Pull Request:** On GitHub, navigate to the repository and create a pull request from your branch to the main branch of the  repository.
-3. **Review Process:** We will review your pull request and provide feedback. Be prepared to address any comments or suggestions before your changes are merged. -->
+### **3.5 Choose Your Branch**
 
-## Additional Notes
+Select the desired branch from the dropdown menu to switch to it locally.
 
-* **Communication:** Feel free to communicate through pull request comments or discussions for any questions or clarifications.
-* **License:** Ensure your code contributions adhere to the project's license (refer to LICENSE.md file).
+## **4. Create WEB-INF Folder**
+
+1. Navigate to the project folder path: `Project_folder\E-Commerce-Website\web`.
+2. If the `WEB-INF` folder doesn't exist, create a new empty folder named `WEB-INF`.
+
+## **5. Open this project folder in Netbeans IDE.**
+
+## **6. Start Working ...**
+
+## **7. Making Changes**
+
+* Code Style: Follow consistent coding style and conventions used in the existing codebase.
+* Write Clear Code: Strive to write clean, well-commented code that is easy to understand and maintain.
+* Unit Tests: If applicable, consider adding unit tests for your changes to ensure functionality.
+* Commit Messages: Use descriptive commit messages that explain the purpose of your changes.
+
+## **8. Submitting Changes**
+
+* Push your branch: Once your changes are complete and tested, push your branch to your repository.
+
+<!-- ## **9. Additional Notes**
+
+* Communication: Feel free to communicate through pull request comments or discussions for any questions or clarifications.
+* License: Ensure your code contributions adhere to the project's license (refer to LICENSE.md file). -->
 
 We appreciate your contributions! By following these guidelines, you can help us maintain a high-quality codebase for this project.

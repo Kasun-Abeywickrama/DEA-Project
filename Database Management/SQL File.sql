@@ -51,7 +51,6 @@ buying_price float NOT NULL,
 selling_price float NOT NULL,
 description varchar(1000) NOT NULL,
 image varchar(1000) NOT NULL,
-stock int NOT NULL,
 sub_category_id int NOT NULL,
 PRIMARY KEY(product_id),
 FOREIGN KEY(sub_category_id) REFERENCES Sub_category(sub_category_id)
@@ -66,6 +65,20 @@ label_value varchar(200) NOT NULL,
 PRIMARY KEY(product_id, label_id),
 FOREIGN KEY(product_id) REFERENCES Product(product_id),
 FOREIGN KEY(label_id) REFERENCES Label(label_id)
+);
+
+
+CREATE TABLE Product_stock
+(
+stock_id int NOT NULL AUTO_INCREMENT,
+supplier_name varchar(200) NOT NULL,
+date_time DateTime NOT NULL,
+buying_price float NOT NULL,
+supplied_quantity int NOT NULL,
+available_quantity int NOT NULL,
+product_id int NOT NULL,
+PRIMARY KEY(stock_id),
+FOREIGN KEY(product_id) REFERENCES Product(product_id)
 );
 
 
@@ -86,14 +99,14 @@ FOREIGN KEY(user_id) REFERENCES User(user_id)
 
 CREATE TABLE Orders_Product
 (
-order_id int NOT NULL,
-product_id int NOT NULL,
-quantity int NOT NULL,
-buying_price float NOT NULL,
+orders_product_id int NOT NULL AUTO_INCREMENT,
 selling_price float NOT NULL,
-PRIMARY KEY(order_id, product_id),
+quantity int NOT NULL,
+order_id int NOT NULL,
+stock_id int NOT NULL,
+PRIMARY KEY(orders_product_id),
 FOREIGN KEY(order_id) REFERENCES Orders(order_id),
-FOREIGN KEY(product_id) REFERENCES Product(product_id)
+FOREIGN KEY(stock_id) REFERENCES Product_stock(stock_id)
 );
 
 
@@ -145,10 +158,10 @@ INSERT INTO Label VALUES
 (2,'Material');
 
 INSERT INTO Product VALUES 
-(1,'Leather Sofa',33000,43000,'Premium leather sofa','sofa_img.jpg',12,1),
-(2,'Wooden Dining Table',13000,23000,'Solid wood dining table','table_img.jpg',20,2),
-(3,'Queen Bed',50000,64000,'Sturdy queen-sized bed','bed.jpg',10,4),
-(4,'Dining Chair Set',8000,12000,'Set of 4 upholstered dining chairs','chair.png',30,3);
+(1,'Leather Sofa',33000,43000,'Premium leather sofa','sofa_img.jpg',1),
+(2,'Wooden Dining Table',13000,23000,'Solid wood dining table','table_img.jpg',2),
+(3,'Queen Bed',50000,64000,'Sturdy queen-sized bed','bed.jpg',4),
+(4,'Dining Chair Set',8000,12000,'Set of 4 upholstered dining chairs','chair.png',3);
 
 INSERT INTO Product_Label VALUES 
 (1,1,'Brown'),
@@ -160,20 +173,28 @@ INSERT INTO Product_Label VALUES
 (4,1,'Green'),
 (4,2,'Wood');
 
+INSERT INTO Product_stock VALUES
+(1,'Nimal Senadeera','2024-04-08 15:30:00',40000,20,18,1),
+(2,'Kamal Siripala','2024-04-12 15:30:00',20000,10,10,2),
+(3,'Sahan Nilgama','2025-04-08 15:30:00',50000,5,5,1),
+(4,'Sahan Nilgama','2025-04-08 15:30:00',50000,10,10,4);
+
+
 INSERT INTO Orders VALUES 
 (1,'2024-04-08 15:30:00',66000,'Pending','Pitipana road, Homagama','Kamal Gunerathne','0765800001',1),
-(2,'2024-04-12 07:30:00',35000,'Delivered','Godagama road, Homagama','John Doe','0765800003',3),
+(2,'2024-04-12 07:30:00',35000,'Completed','Godagama road, Homagama','John Doe','0765800003',3),
 (3,'2024-05-12 09:30:00',55000,'Pending','Pitipana road, Homagama','Kathrina Pierece','0765800004',4),
-(4,'2024-06-12 09:30:00',36000,'Delivered','Godagama road, Homagama','Kamal Gunerathne','0765800001',1);
+(4,'2024-06-12 09:30:00',36000,'Completed','Godagama road, Homagama','Kamal Gunerathne','0765800001',1);
 
 INSERT INTO Orders_Product VALUES 
-(1,1,1,33000,43000),
-(1,2,1,13000,23000),
-(2,2,1,13000,23000),
-(2,4,1,8000,12000),
-(3,1,1,33000,43000),
-(3,4,1,8000,12000),
-(4,4,3,8000,12000);
+(1,43000,1,1,1),
+(2,23000,1,1,2),
+(3,23000,1,2,2),
+(4,12000,1,2,4),
+(5,43000,1,3,1),
+(6,12000,1,3,4),
+(7,12000,3,4,4);
+
 
 INSERT INTO Product_review VALUES
 (1,'This product is highly appreciated',1,1),

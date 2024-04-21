@@ -1,11 +1,11 @@
 <%-- 
     Document   : stock_management_page
-    Created on : Mar 31, 2024, 1:30:00 AM
+    Created on : Apr 10, 2024, 5:25:41 AM
     Author     : Sithuruwan
 --%>
 
+<%@page import="InventoryManagement.ProductStock"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="StockManagement.ProductStock"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -14,131 +14,115 @@
         <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Stock Management</title>
+        <title>Product Stock Management</title>
         
         <!-- Bootstrap -->
 	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 	<link href="css/stock_management_page.css" rel="stylesheet" type="text/css">
-        
-        <!-- Sending a GET request when the page is loading -->
-        <!-- Updating the body of the document according to the response -->
-        <script>
-            window.onload = function(){
-                
-                var xhr = new XMLHttpRequest();
-              
-                xhr.open("GET", "StockRetrieveServlet", true);
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        document.body.innerHTML = xhr.responseText;
-                    }
-                };
-                
-                xhr.send();
-            };
-        </script>
     </head>
     <body>
-        
-        <!-- Displaying the alert message -->
-        <%
-            if(request.getAttribute("alert_message") != null){
-        
-                String alert_message = (String)request.getAttribute("alert_message");
-        %>        
-                <script>alert("<%=alert_message %>");</script>
-        <%  
-            }
-        %>
-        
-        <!-- Function to be executed when something searched -->
         <script>
-            
-            function searchStock(event) {
- 
-                event.preventDefault();
+            function confirm_remove_stock (){
                 
-                var searchString = document.getElementById("search_input").value;
-                
-                var xhr = new XMLHttpRequest();
-                
-                xhr.open("POST", "StockRetrieveServlet");
-                
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-              
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        document.body.innerHTML = xhr.responseText;
-                        document.getElementById("search_input").value = searchString;
-                    }
-                };
-                
-                xhr.send("submit=search&search_string="+searchString);
+                if(confirm("Are you sure ?")){
+                    return true;
+                }
+                return false;
             };
         </script>
         
-  	<div class="container-fluid">
-            <div class="container">
+  	<%@include file="admin_header.jsp" %>
                
-                <form id="search_form" onsubmit="searchStock(event)">
-                    <center>
-                        <table class="search_table">
-                            <tr>
-                                <td>
-                                    <input class="form-control mr-sm-2" type="search" id="search_input" placeholder="Search Product" aria-label="Search">
-                                </td>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </center>      
-                </form>
-                
-                <br><br>
                 <%
-                    if(request.getAttribute("stock_list") != null){
-
+                    if(request.getAttribute("product_stock_list") != null 
+                        && request.getAttribute("product_id") != null 
+                        && request.getAttribute("product_name") != null 
+                        && request.getAttribute("total_available_quantity") != null){
+                        
+                        String product_id = (String)request.getAttribute("product_id");
+                        String product_name = (String)request.getAttribute("product_name");
+                        String total_available_quantity = (String)request.getAttribute("total_available_quantity");
+                        
+                %>
+                        <center>
+                            <table class="details_table">
+                                <tr>
+                                    <th>Product ID :</th> 
+                                    <td><%=product_id %></td>
+                                </tr>
+                                <tr>
+                                    <th>Product Name :</th>
+                                    <td><%=product_name %></td>
+                                </tr>
+                                <tr>
+                                    <th>Total Available Quantity :</th>
+                                    <td><%=total_available_quantity %></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <center>
+                                            <form action="stock_add_page.jsp" method="POST">
+                                                <input type="hidden" name="product_id" value="<%=product_id %>">
+                                                <button type="submit" class="btn btn-warning my-2 my-sm-0" value="add_stock" name="submit">Add Stock</button>
+                                            </form>
+                                        </center>
+                                    </td>
+                                </tr>
+                            </table>
+                        </center>
+                        <br><br>
+                
+                <%
                         @SuppressWarnings("unchecked")
-                        ArrayList<ProductStock> stock_list = (ArrayList<ProductStock>)request.getAttribute("stock_list");
-
-                        if(stock_list.size() != 0){        
+                        ArrayList<ProductStock> product_stock_list = (ArrayList<ProductStock>)request.getAttribute("product_stock_list");
+                        
+                        if(product_stock_list.size() != 0){        
                 %>
                             <center>
-                                <table class="details_table">
+                                <table class="stock_table">
                                     <tr>
-                                        <th>Product ID</th>
-                                        <th>Product Name</th>
-                                        <th>Main Category</th>
-                                        <th>Sub Category</th>
-                                        <th>Stock Level</th>
+                                        <th>Stock ID</th>
+                                        <th>Supplier Name</th>
+                                        <th>Last Updated</th>
+                                        <th>Buying Price</th>
+                                        <th>Supplied Quantity</th>
+                                        <th>Available Quantity</th>
                                     </tr>
                 
                 <%
-                                    for(ProductStock i:  stock_list){
+                                    for(ProductStock i:  product_stock_list){
                 %>
                                         <tr>
                                             <td>
-                                                <%=i.getProductId() %>
+                                                <%=i.getStockId() %>
                                             </td>
                                             <td>
-                                                <%=i.getProductName() %>
+                                                <%=i.getSupplierName() %>
                                             </td>
                                             <td>
-                                                <%=i.getProductMainCategory() %>
+                                                <%=i.getdateTime() %>
                                             </td>
                                             <td>
-                                                <%=i.getProductSubCategory() %>
+                                                <%=i.getBuyingPrice() %>
                                             </td>
                                             <td>
-                                                <%=i.getProductStock() %>
+                                                <%=i.getSuppliedQuantity() %>
                                             </td>
                                             <td>
-                                                <form action="StockRetrieveServlet" method="POST">
+                                                <%=i.getAvailableQuantity() %>
+                                            </td>
+                                            <td id="edit_button_td">
+                                                <form action="ProductStockRetrieveServlet" method="POST">
                                                     <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
-                                                    <button type="submit" class="btn btn-warning my-2 my-sm-0" value="Edit Stock" name="submit">Edit Stock</button>
+                                                    <input type="hidden" name="stock_id" value="<%=i.getStockId() %>">
+                                                    <button type="submit" class="btn btn-warning my-2 my-sm-0" value="stock_details" name="submit">Update</button>
+                                                </form>
+                                            </td>
+                                            <td id="remove_button_td">
+                                                <form id="remove_stock_form" action="ProductStockRemoveServlet" method="POST" onsubmit="return confirm_remove_stock(event)">
+                                                    <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
+                                                    <input type="hidden" name="stock_id" value="<%=i.getStockId() %>">
+                                                    <button type="submit" class="btn btn-warning my-2 my-sm-0" value="remove_stock" name="submit">Remove</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -153,15 +137,15 @@
                 %>          
                             <br><br><br>
                             <center>
-                                <h6>No Available Products</h6>
+                                <h6>No Available Stocks</h6>
                             </center>
                 <%
                         }
                     }
                 %> 
-            </div>
-  	</div>
-                        
+            
+        <%@include file="admin_footer.jsp" %>
+                
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="js/jquery-3.4.1.min.js"></script>
 
