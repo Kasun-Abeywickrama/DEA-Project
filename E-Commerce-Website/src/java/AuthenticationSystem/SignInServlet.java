@@ -1,5 +1,6 @@
 package AuthenticationSystem;
 
+import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,19 +36,14 @@ public class SignInServlet extends HttpServlet {
 
         ResultSet resultSet = null;
         PreparedStatement statement = null;
-        Connection conn = null;
+        DBConnectionManager cob = new DBConnectionManager();
+        Connection conn = cob.getDBConnection();
 
         try {
-            // Loading MySQL JDBC driver class
-            Class.forName("com.mysql.jdbc.Driver");
 
             // Hashing the password for comparison
             authentication_functions authFunctions = new authentication_functions();
             String hashedPassword = authFunctions.hash_password(password);
-
-            // Establishing a database connection
-            db_connection dbConn = new db_connection();
-            conn = DriverManager.getConnection(dbConn.url, dbConn.uname, dbConn.password);
 
             // Creating a SQL query to check user credentials
             String query = "SELECT user_id, username FROM user WHERE username = ? AND password = ?";
@@ -66,7 +62,7 @@ public class SignInServlet extends HttpServlet {
                 session.setAttribute("authenticated", true);
 
                 // Set session timeout to 1 day (in seconds)
-                int sessionTimeout = 60 * 60 * 24; 
+                int sessionTimeout = 60 * 60 * 24;
                 session.setMaxInactiveInterval(sessionTimeout);
 
                 response.sendRedirect("welcome.jsp");
@@ -75,7 +71,7 @@ public class SignInServlet extends HttpServlet {
 //                response.getWriter().println("");
                 response.sendRedirect("sign_in_page.jsp?error_state=Unsuccessful login attempt. Please check your email and password! &user_name=" + username);
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             // Informing about authentication error
             response.getWriter().println("Internal server error occurred.");
         } finally {
@@ -88,7 +84,7 @@ public class SignInServlet extends HttpServlet {
                     statement.close();
                 }
                 if (conn != null) {
-                    conn.close();
+                    cob.closeDBConnection();
                 }
             } catch (SQLException e) {
                 // Informing about resource closing error
