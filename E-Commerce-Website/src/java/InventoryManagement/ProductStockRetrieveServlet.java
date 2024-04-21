@@ -33,7 +33,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
         //Sending the stock list of the product to the JSP page
         if("stock_list".equals(request.getParameter("submit"))){
             
-            String productId = request.getParameter("product_id");
+            int productId = Integer.parseInt(request.getParameter("product_id"));
 
             DBConnectionManager dbcon = new DBConnectionManager();
 
@@ -54,7 +54,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
                 //Add the data to the array list
                 while(rs1.next()){
 
-                    ProductStock ps = new ProductStock(Integer.parseInt(productId), rs1.getInt("stock_id"), rs1.getString("supplier_name"), rs1.getString("date_time"), rs1.getFloat("buying_price"), rs1.getInt("supplied_quantity"), rs1.getInt("available_quantity"));
+                    ProductStock ps = new ProductStock(productId, rs1.getInt("stock_id"), rs1.getString("supplier_name"), rs1.getString("date_time"), rs1.getFloat("buying_price"), rs1.getInt("supplied_quantity"), rs1.getInt("available_quantity"));
                     productStockList.add(ps);
 
                 }
@@ -81,7 +81,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
                     stmt.close();
                     dbcon.closeDBConnection();
 
-                    request.setAttribute("product_id", productId);
+                    request.setAttribute("product_id", Integer.toString(productId));
                     request.setAttribute("product_stock_list", productStockList);
                     request.getRequestDispatcher("/stock_management_page.jsp").forward(request,response);
                 }
@@ -103,7 +103,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
         //Sending the details of a single stock to the JSP page
         if("stock_details".equals(request.getParameter("submit"))){
             
-            String stock_id = request.getParameter("stock_id");
+            int stock_id = Integer.parseInt(request.getParameter("stock_id"));
         
             DBConnectionManager dbcon = new DBConnectionManager();
 
