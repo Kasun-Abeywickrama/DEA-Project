@@ -10,17 +10,8 @@ and open the template in the editor.
 
 @charset "utf-8";
 
-body {
-    background-color: #F6F3EC;
-}
-
 table {
-    border: 1px solid #000000;
-}
-
-.container-fluid .container {
-    margin-top: 75px;
-    margin-bottom: 75px;
+    border: 1px solid rgba(0, 0, 0, .15);
 }
 
 .stock_details_update table, .stock_details_update th, .stock_details_update td {
@@ -35,6 +26,10 @@ table {
     padding-right: 15px;
 }
 
+.stock_details_update , .quantity_update_table {
+    margin-bottom: 20px;
+}
+
 #h3_heading_details_td, #h3_heading_quantity_td {
     padding-top: 15px;
 }
@@ -44,7 +39,7 @@ table {
 }
 
 table, th, td {
-    padding: 6px;
+    padding: 8px;
 }
 
 form .form-group {
@@ -56,12 +51,20 @@ form .form-group {
     font-weight: bold;
 }
 
-.btn.btn-warning.my-2.my-sm-0 {
+.btn btn-primary btn-sm {
     color: white;
     background-color: #FC6B03;
     border: none;
+}
+
+#btn1, #btn2, #btn3 {
     width: 400px;
     height: 36px;
+    font-size: 17px;
+}
+
+#btn2, #btn3 {
+    margin-top: 12px;
 }
 
 h3 {
