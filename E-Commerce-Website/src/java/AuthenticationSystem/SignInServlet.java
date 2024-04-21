@@ -2,19 +2,14 @@ package AuthenticationSystem;
 
 import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DatabaseConnection.db_connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.PreparedStatement;
 import javax.servlet.http.HttpSession;
 
@@ -65,7 +60,7 @@ public class SignInServlet extends HttpServlet {
                 int sessionTimeout = 60 * 60 * 24;
                 session.setMaxInactiveInterval(sessionTimeout);
 
-                response.sendRedirect("welcome.jsp");
+                response.sendRedirect("landing_page.jsp");
             } else {
                 // Authentication failed
 //                response.getWriter().println("");
