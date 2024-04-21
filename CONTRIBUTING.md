@@ -27,14 +27,19 @@ To clone a repository using GitHub Desktop, follow these steps:
 
 ### **2.1 Install MySQL Workbench**
 
-Download and install MySQL Workbench from the official website: [https://dev.mysql.com/downloads/workbench/](https://dev.mysql.com/downloads/workbench/)
+Please follow the instructions provided on this website to install the software.
+[https://www.freecodecamp.org/news/how-to-install-mysql-workbench-on-windows/](https://www.freecodecamp.org/news/how-to-install-mysql-workbench-on-windows/)
+
+Download MySQL Workbench from the official website: [https://dev.mysql.com/downloads/workbench/](https://dev.mysql.com/downloads/workbench/)
 
 ### **2.2 Import Database**
 
-1. Locate the file `SQL File.sql` within the `Database Management` folder of the project.
-    <br>You need to know where the file is located before you can do anything with it.
-2. Open MySQL Workbench and connect to your local MySQL server.
-3. Import the `SQL File.sql` into your MySQL server to create the database schema.
+1. Use your PC's file explorer to locate the `SQL File.sql` in the `Database Management` folder within the project folder.
+   <br>Because you need to know where the file is located before you can do anything with it.
+2. Open MySQL Workbench and connect to your local MySQL server.<br>
+   Open MySQL Workbench -> click on the connection tile in the My SQL connections section -> give credentials -> hit the ok button
+4. Import the `SQL File.sql` into your MySQL server to create the database schema.<br>
+   file -> Open SQL script -> Execute the query by clicking the yellow lightning button. 
 
 ### **2.3 Update Connection Details**
 
