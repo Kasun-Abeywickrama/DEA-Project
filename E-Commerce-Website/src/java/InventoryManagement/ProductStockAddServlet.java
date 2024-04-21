@@ -5,11 +5,9 @@
  */
 package InventoryManagement;
 
-import DatabaseConnection.db_connection;
+import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -48,47 +46,39 @@ public class ProductStockAddServlet extends HttpServlet {
             
         String newdt = dtformat.format(dt);
             
+        DBConnectionManager dbcon = new DBConnectionManager();
+                
         try{
-                
-            Class.forName("com.mysql.cj.jdbc.Driver");
-                
-            db_connection db_conn = new db_connection();
-                
-            try{
                     
-                Connection con = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
+            Connection connection = dbcon.getDBConnection();
                     
-                Statement stmt = con.createStatement();
+            Statement stmt = connection.createStatement();
                     
-                ResultSet rs = stmt.executeQuery("SELECT * FROM Product WHERE product_id = '"+product_id+"';");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Product WHERE product_id = "+product_id+";");
                     
-                if(rs.next()){
+            if(rs.next()){
                         
-                    stmt.executeUpdate("INSERT INTO Product_stock(supplier_name, date_time, buying_price, supplied_quantity, available_quantity, product_id) VALUES('"+supplier_name+"', '"+newdt+"', "+buying_price+", "+quantity+", "+quantity+", "+product_id+");");
+                stmt.executeUpdate("INSERT INTO Product_stock(supplier_name, date_time, buying_price, supplied_quantity, available_quantity, product_id) VALUES('"+supplier_name+"', '"+newdt+"', "+buying_price+", "+quantity+", "+quantity+", "+product_id+");");
                         
-                    rs.close();
-                    stmt.close();
-                    con.close();
+                rs.close();
+                stmt.close();
+                dbcon.closeDBConnection();
                         
-                    request.setAttribute("alert_message", "Stock added successfully");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);   
-                }
-                else{
-                    rs.close();
-                    stmt.close();
-                    con.close();
-                        
-                    request.setAttribute("alert_message", "Product does not exist");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                }  
+                request.setAttribute("alert_message", "Stock added successfully");
+                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);   
             }
-            catch(SQLException e2){
-                response.getWriter().println(e2);
-            }
+            else{
+                rs.close();
+                stmt.close();
+                dbcon.closeDBConnection();
+                        
+                request.setAttribute("alert_message", "Product does not exist");
+                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+            }  
         }
-        catch(ClassNotFoundException e1){
-            response.getWriter().println(e1);
-        }  
+        catch(SQLException e){
+            response.getWriter().println(e);
+        } 
     } 
     
 }
