@@ -12,7 +12,7 @@
 
 .offcanvas{
     background-color: #0D182F; 
-    position: fixed !important;
+    position: relative !important;
     width: 200px !important;
     visibility: visible !important;
     transform: translateX(0) !important;
