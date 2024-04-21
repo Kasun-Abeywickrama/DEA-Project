@@ -5,10 +5,9 @@
  */
 package InventoryManagement;
 
-import DatabaseConnection.db_connection;
+import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,11 +33,11 @@ public class ProductStockUpdateServlet extends HttpServlet {
         //Update the stock details
         if("update_details".equals(request.getParameter("submit"))){
             
-            String stock_id = request.getParameter("stock_id");
+            int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
             String supplier_name = request.getParameter("supplier_name");
             
-            String buying_price = request.getParameter("buying_price");
+            float buying_price = Float.parseFloat(request.getParameter("buying_price"));
             
             LocalDateTime dt = LocalDateTime.now();
             
@@ -46,78 +45,70 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             String newdt = dtformat.format(dt);
             
+            DBConnectionManager dbcon = new DBConnectionManager();
+                
             try{
-                
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                
-                db_connection db_conn = new db_connection();
-                
-                try{
                     
-                    Connection con = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
+                Connection connection = dbcon.getDBConnection();
                     
-                    Statement stmt = con.createStatement();
+                Statement stmt = connection.createStatement();
                     
-                    ResultSet rs1 = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id = '"+stock_id+"';");
+                ResultSet rs1 = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id = "+stock_id+";");
                     
-                    if(rs1.next()){
+                if(rs1.next()){
                         
-                        String bp = rs1.getString("buying_price");
+                    float bp = rs1.getFloat("buying_price");
                         
-                        rs1.close();
+                    rs1.close();
                         
-                        ResultSet rs2 = stmt.executeQuery("SELECT * FROM Orders_Product WHERE stock_id="+stock_id+";");
+                    ResultSet rs2 = stmt.executeQuery("SELECT * FROM Orders_Product WHERE stock_id="+stock_id+";");
                         
-                        if(rs2.next()){
+                    if(rs2.next()){
                             
-                            if(bp.equals(buying_price)){
+                        if(bp == buying_price){
                                 
-                                stmt.executeUpdate("UPDATE Product_stock SET supplier_name='"+supplier_name+"', buying_price='"+buying_price+"', date_time='"+newdt+"' WHERE stock_id="+stock_id+";");
-                        
-                                rs2.close();
-                                stmt.close();
-                                con.close();
-
-                                request.setAttribute("alert_message", "Stock details updated successfully");
-                                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
-                            }
-                            else{
-                                
-                                rs2.close();
-                                stmt.close();
-                                con.close();
-                                
-                                request.setAttribute("alert_message", "Unable to update the details of the stock, Already purchased in several orders");
-                                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
-                            }
-                        }
-                        else{
-                            stmt.executeUpdate("UPDATE Product_stock SET supplier_name='"+supplier_name+"', buying_price='"+buying_price+"', date_time='"+newdt+"' WHERE stock_id="+stock_id+";");
+                            stmt.executeUpdate("UPDATE Product_stock SET supplier_name='"+supplier_name+"', buying_price="+buying_price+", date_time='"+newdt+"' WHERE stock_id="+stock_id+";");
                         
                             rs2.close();
                             stmt.close();
-                            con.close();
+                            dbcon.closeDBConnection();
 
                             request.setAttribute("alert_message", "Stock details updated successfully");
                             request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
-                        }     
+                        }
+                        else{
+                                
+                            rs2.close();
+                            stmt.close();
+                            dbcon.closeDBConnection();
+                                
+                            request.setAttribute("alert_message", "Unable to update the details of the stock, Already purchased in several orders");
+                            request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
+                        }
                     }
                     else{
-                        rs1.close();
-                        stmt.close();
-                        con.close();
+                        stmt.executeUpdate("UPDATE Product_stock SET supplier_name='"+supplier_name+"', buying_price="+buying_price+", date_time='"+newdt+"' WHERE stock_id="+stock_id+";");
                         
-                        request.setAttribute("alert_message", "Stock does not exist");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                    }  
+                        rs2.close();
+                        stmt.close();
+                        dbcon.closeDBConnection();
+
+                        request.setAttribute("alert_message", "Stock details updated successfully");
+                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
+                    }     
                 }
-                catch(SQLException e2){
-                    response.getWriter().println(e2);
-                }
+                else{
+                    rs1.close();
+                    stmt.close();
+                    dbcon.closeDBConnection();
+                        
+                    request.setAttribute("alert_message", "Stock does not exist");
+                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                }  
             }
-            catch(ClassNotFoundException e1){
-                response.getWriter().println(e1);
-            }  
+            catch(SQLException e2){
+                response.getWriter().println(e2);
+            }    
         }
         
             
@@ -126,7 +117,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             int add_quantity = Integer.parseInt(request.getParameter("add_quantity"));
             
-            String stock_id = request.getParameter("stock_id");
+            int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
             LocalDateTime dt = LocalDateTime.now();
             
@@ -134,47 +125,39 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             String newdt = dtformat.format(dt);
             
+            DBConnectionManager dbcon = new DBConnectionManager();
+                    
             try{
-                    
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                    
-                db_connection db_conn = new db_connection();
-                    
-                try{
                         
-                    Connection con = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
+                Connection connection = dbcon.getDBConnection();
                 
-                    Statement stmt = con.createStatement();
+                Statement stmt = connection.createStatement();
                     
-                    ResultSet rs = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id = '"+stock_id+"';");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id = "+stock_id+";");
                     
-                    if(rs.next()){
+                if(rs.next()){
                         
-                        stmt.executeUpdate("UPDATE Product_stock SET supplied_quantity = supplied_quantity+"+add_quantity+", available_quantity = available_quantity+"+add_quantity+", date_time = '"+newdt+"' WHERE stock_id = "+stock_id+" ;");
+                    stmt.executeUpdate("UPDATE Product_stock SET supplied_quantity = supplied_quantity+"+add_quantity+", available_quantity = available_quantity+"+add_quantity+", date_time = '"+newdt+"' WHERE stock_id = "+stock_id+" ;");
                         
-                        rs.close();
-                        stmt.close();
-                        con.close();
+                    rs.close();
+                    stmt.close();
+                    dbcon.closeDBConnection();
                         
-                        request.setAttribute("alert_message", "Stock quantity updated successfully");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
-                    }
-                    else{
-                        rs.close();
-                        stmt.close();
-                        con.close();
-
-                        request.setAttribute("alert_message", "Stock does not exist");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                    } 
+                    request.setAttribute("alert_message", "Stock quantity updated successfully");
+                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
                 }
-                catch(SQLException e3){
-                    response.getWriter().println(e3);
-                }   
+                else{
+                    rs.close();
+                    stmt.close();
+                    dbcon.closeDBConnection();
+
+                    request.setAttribute("alert_message", "Stock does not exist");
+                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                } 
             }
-            catch(ClassNotFoundException e2){
-                response.getWriter().println(e2);
-            }
+            catch(SQLException e){
+                response.getWriter().println(e);
+            }   
         }
         
         
@@ -183,7 +166,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             int remove_quantity = Integer.parseInt(request.getParameter("remove_quantity"));
             
-            String stock_id = request.getParameter("stock_id");
+            int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
             LocalDateTime dt = LocalDateTime.now();
             
@@ -191,57 +174,49 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             String newdt = dtformat.format(dt);
             
+            DBConnectionManager dbcon = new DBConnectionManager();
+                    
             try{
-                    
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                    
-                db_connection db_conn = new db_connection();
-                    
-                try{
                         
-                    Connection con = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
+                Connection connection = dbcon.getDBConnection();
                 
-                    Statement stmt = con.createStatement();
+                Statement stmt = connection.createStatement();
                         
-                    ResultSet rs = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id="+stock_id+" ;");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id="+stock_id+" ;");
                         
-                    if(rs.next()){
-                        if(remove_quantity > rs.getInt("available_quantity")){
+                if(rs.next()){
+                    if(remove_quantity > rs.getInt("available_quantity")){
                             
-                            rs.close();
-                            stmt.close();
-                            con.close();
-                                
-                            request.setAttribute("alert_message", "Not enough quantity to remove");
-                            request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                        }
-                        else{
-                            stmt.executeUpdate("UPDATE Product_stock SET supplied_quantity = supplied_quantity-"+remove_quantity+", available_quantity = available_quantity-"+remove_quantity+", date_time = '"+newdt+"' WHERE stock_id = "+stock_id+" ;");
-                        
-                            rs.close();
-                            stmt.close();
-                            con.close();
-                    
-                            request.setAttribute("alert_message", "Stock quantity updated successfuly");
-                            request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                        }
-                    }
-                    else{
                         rs.close();
                         stmt.close();
-                        con.close();
-
-                        request.setAttribute("alert_message", "Stock does not exist");
+                        dbcon.closeDBConnection();
+                                
+                        request.setAttribute("alert_message", "Not enough quantity to remove");
                         request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                    }  
+                    }
+                    else{
+                        stmt.executeUpdate("UPDATE Product_stock SET supplied_quantity = supplied_quantity-"+remove_quantity+", available_quantity = available_quantity-"+remove_quantity+", date_time = '"+newdt+"' WHERE stock_id = "+stock_id+" ;");
+                        
+                        rs.close();
+                        stmt.close();
+                        dbcon.closeDBConnection();
+                    
+                        request.setAttribute("alert_message", "Stock quantity updated successfuly");
+                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    }
                 }
-                catch(SQLException e3){
-                    response.getWriter().println(e3);
-                }   
+                else{
+                    rs.close();
+                    stmt.close();
+                    dbcon.closeDBConnection();
+
+                    request.setAttribute("alert_message", "Stock does not exist");
+                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                }  
             }
-            catch(ClassNotFoundException e2){
-                response.getWriter().println(e2);
-            }
+            catch(SQLException e){
+                response.getWriter().println(e);
+            }   
         }
     }
     
