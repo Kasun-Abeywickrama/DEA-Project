@@ -15,6 +15,8 @@
         <!-- Bootstrap -->
 	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 	<link href="css/sign_up_page.css" rel="stylesheet" type="text/css">
+        
+        <script src="js/javascript_validation.js"></script>
     </head>
     <body>
         
@@ -38,16 +40,16 @@
                     </center>  
                     <br><br>
                     
-                    <form action="SignUpServlet" method="POST">
+                    <form action="SignUpServlet" method="POST" onsubmit="return sign_up_validate()" name="sign_up_form">
 			<center>
                             <div class="form-group">
-				<input type="text" class="form-control" name="username" placeholder="Username">
+                                <input type="text" class="form-control" name="username" placeholder="Username" style="height: 45px;">
                             </div>
                             <div class="form-group">
-				<input type="password" class="form-control" name="password" placeholder="Password">
+				<input type="password" class="form-control" name="password" placeholder="Password" style="height: 45px;">
                             </div>
                             <div class="form-group">
-				<input type="password" class="form-control" name="re_password" placeholder="Re-Enter Password">
+				<input type="password" class="form-control" name="re_password" placeholder="Re-Enter Password" style="height: 45px;">
                             </div>
 				<button type="submit" class="btn btn-primary">Sign Up</button>
 			</center>
