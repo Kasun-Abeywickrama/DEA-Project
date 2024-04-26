@@ -5,24 +5,18 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%@include file="admin_header_part_01.jsp" %>
+    
         <title>Add Stocks</title>
-        
-        <!-- Bootstrap -->
-	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    
 	<link href="css/stock_add_page.css" rel="stylesheet" type="text/css">
         
         <!-- Javascript validation -->
         <script src="js/javascript_validation.js"></script>
-    </head>
-    <body>
-        <%@include file="admin_header.jsp" %>
+    
+    <%@include file="admin_header_part_02.jsp" %>    
                 
             <%  if(request.getParameter("product_id") != null){
                     
@@ -48,6 +42,7 @@
                                         <div class="form-group"> 
                                             <input type="text" class="form-control" name="supplier_name">
                                         </div>
+                                        <br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,6 +53,7 @@
                                         <div class="form-group"> 
                                             <input type="text" class="form-control" name="buying_price">
                                         </div>
+                                        <br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,13 +64,14 @@
                                         <div class="form-group"> 
                                             <input type="text" class="form-control" name="quantity">
                                         </div>
+                                        <br>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td id="add_button_td">
                                         <br>
                                         <input type="hidden" name="product_id" value="<%=product_id %>"> 
-                                        <button class="btn btn-warning my-2 my-sm-0" type="submit" name="submit" value="stock_add">Add Stock</button>
+                                        <button class="btn btn-primary btn-sm" id="btn1" type="submit" name="submit" value="stock_add">Add Stock</button>
                                     </td>
                                 </tr>
                             </table>
@@ -84,13 +81,5 @@
                 }
             %>
             
-        <%@include file="admin_footer.jsp" %>
+    <%@include file="admin_footer.jsp" %>
     
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	<script src="js/jquery-3.4.1.min.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/popper.min.js"></script> 
-        <script src="js/bootstrap-4.4.1.js"></script>
-    </body>
-</html>
