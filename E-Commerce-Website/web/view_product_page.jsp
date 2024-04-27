@@ -17,7 +17,9 @@
     int subCategoryId = Integer.parseInt(request.getParameter("sub_category_id"));
 %>
 
-<%@ include file="admin_header.jsp" %>
+<%@ include file="admin_header_part_01.jsp" %>
+<%@ include file="admin_header_part_02.jsp" %>
+
 <div style="display: flex; align-items: center; justify-content: space-between;" class="mb-3 mt-2">
     <p style="color: #E97000;"><i>Products &nbsp;>&nbsp; Edit & Delete Product</i></p> 
     <form action="DeleteProductServlet?product_id=<%= productId%>" method="POST" onsubmit="return deleteProductConfirmation()">          

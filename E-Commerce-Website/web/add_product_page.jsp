@@ -11,7 +11,8 @@
 <%@page import="DatabaseConnection.DBConnectionManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ include file="admin_header.jsp" %>
+<%@ include file="admin_header_part_01.jsp" %>
+<%@ include file="admin_header_part_02.jsp" %>
 
 <p style="color: #E97000;"><i>Products &nbsp;>&nbsp; Add Product</i></p>  
 <form action="CreateProductServlet" method="post" name="productForm" enctype="multipart/form-data" onsubmit="return validateForm()">

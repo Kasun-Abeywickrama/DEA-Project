@@ -11,7 +11,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.SQLException"%>
 
-<%@ include file="admin_header.jsp" %>
+<%@ include file="admin_header_part_01.jsp" %>
+<%@ include file="admin_header_part_02.jsp" %>
 
 <div style="display: flex; align-items: center; justify-content: space-between;" class="mb-3 mt-2">
     <p style="color: #E97000;"><i>Products &nbsp;>&nbsp; All Products</i></p>  
