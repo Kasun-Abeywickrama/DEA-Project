@@ -110,3 +110,31 @@
     
 }
 
+#plus_minus_1, #plus_minus_2 {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    border: none;
+    background-color: transparent;
+    color: rgb(253, 130, 7);
+    border-color: transparent;
+    outline: none;
+}
+
+#non_plus_minus {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+#remove-btn {
+    width: 30px;
+    border: none;
+    font-size:20px;
+    color: #FC6B55;
+    background-color: transparent;
+    outline: none;
+}
