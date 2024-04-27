@@ -38,6 +38,9 @@ public class SecurityFilterForAdminPanel implements Filter {
             "stock_add_page.jsp",
             "stock_update_page.jsp",
             "admin_dashboard_page.jsp",
+            "category_management_page.jsp",
+            "Main-Category.jsp",
+            "Sub-Category.jsp",
             "",
             "ProductDetailsRetrieveServlet",
             "ReadProductServlet",
@@ -52,6 +55,13 @@ public class SecurityFilterForAdminPanel implements Filter {
             "ProductStockRetrieveServlet",
             "ProductStockUpdateServlet",
             "AdminDashboardDataRetrieveServlet",
+            "CategoryAddServlet",
+            "CategoryAddServlet2",
+            "CategoryRemoveServlet",
+            "CategoryRemoveServlet2",
+            "CategoryUpdateServlet",
+            "CategoryUpdateServlet2",
+            "MainCategoryDetailsRetrieveServlet",
             "",
         };
         
