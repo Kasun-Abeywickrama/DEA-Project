@@ -7,17 +7,12 @@
 <%@page import="InventoryManagement.ProductDetails"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%@include file="admin_header_part_01.jsp" %>
+
         <title>Inventory Management</title>
         
-        <!-- Bootstrap -->
-	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 	<link href="css/inventory_management_page.css" rel="stylesheet" type="text/css">
         
         <!-- Sending a GET request when the page is loading -->
@@ -38,8 +33,8 @@
                 xhr.send();
             };
         </script>
-    </head>
-    <body>
+    
+    <%@include file="admin_header_part_02.jsp" %>
         
         <!-- Displaying the alert message -->
         <%
@@ -77,8 +72,6 @@
                 xhr.send("search_string="+searchString);
             };
         </script>
-        
-        <%@include file="admin_header.jsp" %>
                
                 <form id="search_form" onsubmit="searchProduct(event)">
                     <center>
@@ -89,7 +82,7 @@
                                 </td>
                                 <td>&nbsp;</td>
                                 <td>
-                                    <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+                                    <button class="btn btn-primary btn-sm" id="btn1" type="submit">Search</button>
                                 </td>
                             </tr>
                         </table>
@@ -106,13 +99,14 @@
                         if(product_details_list.size() != 0){        
                 %>
                             <center>
-                                <table class="details_table">
+                                <table class="table table-bordered" id="details_table">
                                     <tr>
                                         <th>Product ID</th>
                                         <th>Product Name</th>
                                         <th>Main Category</th>
                                         <th>Sub Category</th>
                                         <th>Total Available Quantity</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                 
                 <%
@@ -137,7 +131,7 @@
                                             <td>
                                                 <form action="ProductStockRetrieveServlet" method="POST">
                                                     <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
-                                                    <button type="submit" class="btn btn-warning my-2 my-sm-0" value="stock_list" name="submit">Manage</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" id="btn2" value="stock_list" name="submit">Manage</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -159,13 +153,6 @@
                     }
                 %> 
                 
-        <%@include file="admin_footer.jsp" %>
+    <%@include file="admin_footer.jsp" %>
                         
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	<script src="js/jquery-3.4.1.min.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/popper.min.js"></script> 
-        <script src="js/bootstrap-4.4.1.js"></script>
-    </body>
-</html>
+        

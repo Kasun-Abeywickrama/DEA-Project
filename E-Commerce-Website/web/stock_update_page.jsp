@@ -6,24 +6,18 @@
 
 <%@page import="InventoryManagement.ProductStock"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%@include file="admin_header_part_01.jsp" %>
+    
         <title>Update Stocks</title>
         
-        <!-- Bootstrap -->
-	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 	<link href="css/stock_update_page.css" rel="stylesheet" type="text/css">
         
         <!-- Javascript validation -->
         <script src="js/javascript_validation.js"></script>
-    </head>
-    <body>
-        <%@include file="admin_header.jsp" %>
+    
+    <%@include file="admin_header_part_02.jsp" %>
                 
                 <%
                     if(request.getAttribute("stock_details") != null 
@@ -59,7 +53,7 @@
                             <div class="col-lg-6">
                                 <form name="stock_details_update_form" action="ProductStockUpdateServlet" method="POST" onsubmit="return stock_update_details_validate()">
                                     <center>
-                                        <table class="stock_details_update">
+                                        <table class="stock_details_update_table">
                                             <tr>
                                                 <td id="h3_heading_details_td">
                                                     <center>
@@ -76,6 +70,7 @@
                                                     <div class="form-group"> 
                                                         <input type="text" class="form-control" name="supplier_name" value="<%=ps.getSupplierName() %>">
                                                     </div>
+                                                    <br>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -86,13 +81,14 @@
                                                     <div class="form-group"> 
                                                         <input type="text" class="form-control" name="buying_price" value="<%=ps.getBuyingPrice() %>">
                                                     </div>
+                                                    <br>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td id="update_button_td">
                                                     <br>
                                                     <input type="hidden" name="stock_id" value="<%=ps.getStockId() %>">
-                                                    <button class="btn btn-warning my-2 my-sm-0" type="submit" name="submit" value="update_details">Update</button>
+                                                    <button class="btn btn-primary btn-sm" id="btn1" type="submit" name="submit" value="update_details">Update</button>
                                                 </td>
                                             </tr>
                                         </table>
@@ -127,7 +123,7 @@
                                                         <input type="text" class="form-control" name="add_quantity" placeholder="Add Quantity">
                                                     </div>
                                                     <input type="hidden" name="stock_id" value="<%=ps.getStockId() %>">
-                                                    <button class="btn btn-warning my-2 my-sm-0" type="submit" name="submit" value="add_quantity">Add</button>
+                                                    <button class="btn btn-primary btn-sm" id="btn2" type="submit" name="submit" value="add_quantity">Add</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -139,7 +135,7 @@
                                                         <input type="text" class="form-control" name="remove_quantity" placeholder="Remove Quantity">
                                                     </div>
                                                     <input type="hidden" name="stock_id" value="<%=ps.getStockId() %>">
-                                                    <button class="btn btn-warning my-2 my-sm-0" type="submit" name="submit" value="remove_quantity">Remove</button>
+                                                    <button class="btn btn-primary btn-sm" id="btn3" type="submit" name="submit" value="remove_quantity">Remove</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -152,14 +148,7 @@
                     }
                 %>
                 
-        <%@include file="admin_footer.jsp" %>
+    <%@include file="admin_footer.jsp" %>
     
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	<script src="js/jquery-3.4.1.min.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/popper.min.js"></script> 
-        <script src="js/bootstrap-4.4.1.js"></script>
-    </body>
-</html>
+        
 
