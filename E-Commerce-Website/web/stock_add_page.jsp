@@ -16,7 +16,9 @@
         <!-- Javascript validation -->
         <script src="js/javascript_validation.js"></script>
     
-    <%@include file="admin_header_part_02.jsp" %>    
+    <%@include file="admin_header_part_02.jsp" %> 
+    
+        <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Add New Product Stock </i></p>
                 
             <%  if(request.getParameter("product_id") != null && request.getParameter("product_name") != null){
                     

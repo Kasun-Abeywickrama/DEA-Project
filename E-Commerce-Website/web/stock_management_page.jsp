@@ -16,6 +16,8 @@
 	<link href="css/stock_management_page.css" rel="stylesheet" type="text/css">
     
     <%@include file="admin_header_part_02.jsp" %>
+    
+        <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Product Stocks </i></p>
         
         <script>
             function confirm_remove_stock (){

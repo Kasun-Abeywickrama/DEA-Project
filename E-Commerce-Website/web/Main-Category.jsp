@@ -8,8 +8,14 @@
     <%@include file="admin_header_part_02.jsp" %>    
             
             <!-- MAIN CATEGORY -->
-            
-          
+        <% if(request.getParameter("getMainCategoryID") != null) { %>
+            <p style="color: #E97000;"><i>Categories &nbsp;>&nbsp; Edit Main Category</i></p>
+        <% } %>
+                        
+        <% if(request.getParameter("getMainCategoryID") == null) { %>
+            <p style="color: #E97000;"><i>Categories &nbsp;>&nbsp; Add New Main Category</i></p>
+        <% } %>
+        
         <%
             if(request.getParameter("getMainCategoryID") != null && request.getParameter("name") != null) {
                 String mainCategoryIdStr = request.getParameter("getMainCategoryID");

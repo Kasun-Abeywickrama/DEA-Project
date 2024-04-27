@@ -30,6 +30,8 @@
         </script>
         
     <%@include file="admin_header_part_02.jsp" %>
+    
+        <p style="color: #E97000;"><i>Categories &nbsp;>&nbsp; Product Categories </i></p><br>
         
         <!-- Displaying the alert message -->
         <%
