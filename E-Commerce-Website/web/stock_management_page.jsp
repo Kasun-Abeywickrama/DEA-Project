@@ -57,6 +57,7 @@
                                         <center>
                                             <form action="stock_add_page.jsp" method="POST">
                                                 <input type="hidden" name="product_id" value="<%=product_id %>">
+                                                <input type="hidden" name="product_name" value="<%=product_name %>">
                                                 <button type="submit" class="btn btn-primary btn-sm" id="btn1" value="add_stock" name="submit">Add Stock</button>
                                             </form>
                                         </center>
