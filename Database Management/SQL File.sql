@@ -13,6 +13,7 @@ first_name varchar(50),
 last_name varchar(50),
 phone_number varchar(20),
 address varchar(200),
+role boolean,
 PRIMARY KEY(user_id)
 );
 
@@ -134,10 +135,10 @@ FOREIGN KEY(review_id) REFERENCES Product_review(review_id)
 
 
 INSERT INTO User VALUES 
-(1,'kamal123','a5757ab46ba6bce31ebfef29894a435ce1fdc7c8bf03f6b83f3c85bc7931fa74','kamal@gmail.com','Kamal','Gunerathne','0765800001','Colombo, 12'),
-(2,'nimal456','a5757ab46ba6bce31ebfef29894a435ce1fdc7c8bf03f6b83f3c85bc7931fa74','nimal@gmail.com','Nimal','Gamage','0765800002','Pitipana road, Homagama'),
-(3,'johndoe','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','jogn@gmail.com','John','Doe','0765800003','Godagama, Homagama'),
-(4,'kathrina6789','f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b','kathi@gmail.com','Kathrina','Pierce','0765800004','Poruwadanda, Horana');
+(1,'kamal123','a5757ab46ba6bce31ebfef29894a435ce1fdc7c8bf03f6b83f3c85bc7931fa74','kamal@gmail.com','Kamal','Gunerathne','0765800001','Colombo, 12',0),
+(2,'nimal456','a5757ab46ba6bce31ebfef29894a435ce1fdc7c8bf03f6b83f3c85bc7931fa74','nimal@gmail.com','Nimal','Gamage','0765800002','Pitipana road, Homagama',1),
+(3,'johndoe','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','jogn@gmail.com','John','Doe','0765800003','Godagama, Homagama',0),
+(4,'kathrina6789','f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b','kathi@gmail.com','Kathrina','Pierce','0765800004','Poruwadanda, Horana',1);
 
 INSERT INTO Main_category VALUES 
 (1,'Living Room'),
