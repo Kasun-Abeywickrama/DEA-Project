@@ -1,0 +1,161 @@
+.container-fluid{
+    padding: 0 !important;
+}
+
+.wrapper{
+    height: 100vh;
+}
+
+.fade{
+    opacity: 0 !important;
+}
+
+.offcanvas{
+    background-color: #0D182F; 
+    position: relative !important;
+    width: 200px !important;
+    visibility: visible !important;
+    transform: translateX(0) !important;
+    max-width: 58px;
+    transition: all 0.8s ease;
+}
+
+.show{
+    transition: all 2s ease;
+    max-width: 100% !important;
+}
+
+.close-btn{
+    position: absolute;
+    right: -17px;
+    top: 15px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: #E97000;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn > i{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.offcanvas-body{
+    padding: 0;
+    margin-top: 40px;
+}
+
+.offcanvas-body > ul{
+    padding: 0;
+    margin: 0;
+    /* background-color: blueviolet; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #E97000;
+    overflow: hidden;
+}
+
+.offcanvas-body > ul > li{
+    list-style: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    
+} 
+
+.offcanvas-body > ul > li > a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #E97000;
+    padding: 7px 0;
+    height: 100%;
+    transition: all 0.3s ease;
+} 
+
+.offcanvas-body > ul > li > a:hover{
+    color: #0D182F;
+    background-color: #E97000;
+    margin-left: -4px;
+    transition: all 0.3s ease;
+} 
+
+.offcanvas-body > ul > li > a > i{
+    margin: 0 15px;
+    font-size: 30px;
+} 
+
+.offcanvas-body > ul > li > a > span{
+    font-size: 15px;
+} 
+
+.log-out-btn{
+    margin-top: auto;
+}
+
+
+.top-section{
+    height: 60px;
+    /* background-color: yellowgreen; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    line-height: 60px;
+    width: fit-content;
+    font-size: x-large;
+    padding-left: 20px;
+}
+
+.acc{
+    display: flex;
+    align-items: center;
+    font-size: 45px;
+}
+
+.content{
+    /* background-color: blueviolet; */
+    height: calc(100vh - 60px);
+    padding-left: 30px;
+    overflow-y: scroll;
+}
+
+
+.form-control {
+    border-color: #F9AC6B; 
+}
+
+/* Change border color of focused input fields */
+.form-control:focus {
+    border-color: #F68321; 
+    box-shadow: 0 0 0 0.2rem rgba(233, 112, 0, 0.25); 
+}
+
+/* Change submit button color */
+.btn-primary {
+    background-color: #E97000; 
+    border-color: #E97000; 
+}
+
+/* Change submit button hover color */
+.btn-primary:hover {
+    background-color: #E97000; 
+    border-color: #E97000; 
+}
+
+.btn-outline-primary{
+    background-color: white; 
+    border-color: #E97000; 
+    color: #E97000; 
+}
+
+.btn-outline-primary:hover {
+    background-color: #E97000; 
+    border-color: #E97000; 
+}

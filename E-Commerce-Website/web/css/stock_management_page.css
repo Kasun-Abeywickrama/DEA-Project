@@ -4,30 +4,35 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Apr 6, 2024, 1:53:42 AM
+    Created on : Apr 10, 2024, 5:26:46 AM
     Author     : Sithuruwan
 */
 
 @charset "utf-8";
 
-body {
-    background-color: #F6F3EC;
-}
-
-.details_table, .details_table th, .details_table td{
-    border: 1px solid;
-    border-color: black;
-    border-collapse: collapse;
-    padding: 20px;
+#stock_table, #stock_table th, #stock_table td{
     text-align: center;
 }
 
-.container-fluid .container {
-    margin-top: 75px;
+#stock_table {
+    margin-bottom: 20px;
 }
 
-.btn.btn-warning.my-2.my-sm-0 {
+.details_table {
+    border: 1px solid rgba(0, 0, 0, .15);
+}
+
+.details_table, .details_table th, .details_table td {
+    padding: 8px;
+}
+
+.btn btn-primary btn-sm {
     color: white;
     background-color: #FC6B03;
     border: none;
+}
+
+#btn1, #btn2, #btn3 {
+    height: 35px;
+    font-size: 15px;
 }

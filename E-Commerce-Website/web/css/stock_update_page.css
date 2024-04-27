@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 11, 2024, 12:05:08 AM
+    Author     : Sithuruwan
+*/
+
+@charset "utf-8";
+
+table {
+    border: 1px solid rgba(0, 0, 0, .15);
+}
+
+.stock_details_update_table table, .stock_details_update_table th, .stock_details_update_table td , .quantity_update_table table, .quantity_update_table th, .quantity_update_table td {
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.stock_details_update_table , .quantity_update_table {
+    margin-bottom: 20px;
+}
+
+#h3_heading_details_td, #h3_heading_quantity_td {
+    padding-top: 15px;
+}
+
+#quantity_remove_td, #update_button_td {
+    padding-bottom: 20px;
+}
+
+table, th, td {
+    padding: 8px;
+}
+
+form .form-group {
+    width: 400px;
+    height: 36px;
+}
+
+.heading {
+    font-weight: bold;
+}
+
+.btn btn-primary btn-sm {
+    color: white;
+    background-color: #FC6B03;
+    border: none;
+}
+
+#btn1, #btn2, #btn3 {
+    width: 400px;
+    height: 36px;
+    font-size: 17px;
+}
+
+#btn2, #btn3 {
+    margin-top: 12px;
+}
+
+h3 {
+    font-weight: bold;
+    color: #FC6B03;
+}
