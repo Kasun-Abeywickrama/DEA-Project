@@ -65,10 +65,10 @@
     list-style: none;
     margin-bottom: 10px;
     cursor: pointer;
-    
+
 } 
 
-.offcanvas-body > ul > li > a{
+.side-bar-lnks{
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -78,21 +78,31 @@
     transition: all 0.3s ease;
 } 
 
-.offcanvas-body > ul > li > a:hover{
+.side-bar-lnks:hover{
     color: #0D182F;
     background-color: #E97000;
     margin-left: -4px;
     transition: all 0.3s ease;
 } 
 
-.offcanvas-body > ul > li > a > i{
+.side-bar-lnks > i{
     margin: 0 15px;
     font-size: 30px;
 } 
 
-.offcanvas-body > ul > li > a > span{
+.side-bar-lnks > span{
     font-size: 15px;
 } 
+
+.logout-form{
+    transition: all 0.3s ease;
+}
+
+.logout-form:hover{
+    color: #0D182F;
+    background-color: #E97000;
+    transition: all 0.3s ease;
+}
 
 .log-out-btn{
     margin-top: auto;
