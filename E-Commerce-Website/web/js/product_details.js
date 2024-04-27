@@ -1,4 +1,4 @@
-let counter = 0;
+var counter = 0;
 
 function increment() {
   counter++;
@@ -12,16 +12,16 @@ function get() {
   return counter;
 }
 
-const inc = document.getElementById("increment");
-const input = document.getElementById("input");
-const dec = document.getElementById("decrement");
+var inc = document.getElementById("increment");
+var input = document.getElementById("input");
+var dec = document.getElementById("decrement");
 
-inc.addEventListener("click", () => {
+inc.addEventListener("click", function() {
   increment();
   input.value = get();
 });
 
-dec.addEventListener("click", () => {
+dec.addEventListener("click", function() {
   if (input.value > 0) {
     decrement();
   }
