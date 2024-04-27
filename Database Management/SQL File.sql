@@ -13,7 +13,7 @@ first_name varchar(50),
 last_name varchar(50),
 phone_number varchar(20),
 address varchar(200),
-role boolean,
+role boolean DEFAULT 0,
 PRIMARY KEY(user_id)
 );
 
