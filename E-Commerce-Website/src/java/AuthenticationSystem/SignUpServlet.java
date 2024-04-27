@@ -5,10 +5,9 @@
  */
 package AuthenticationSystem;
 
-import DatabaseConnection.db_connection;
+import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,79 +31,45 @@ public class SignUpServlet extends HttpServlet {
         //Getting the user inputs
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String re_password = request.getParameter("re_password");
         
-        //Checking if the fields are empty, and sending a message
-        if("".equals(username) || "".equals(password) || "".equals(re_password)){
-            request.setAttribute("message", "Please enter all the relevant details");
-            getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
-            return;
-        }
-        
-        //Checking if the password has more than 8 characters, and sending a message
-        if(password.length() <8){
-            request.setAttribute("message", "The Password must have at least 8 characters");
-            getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
-            return;
-        }
-        
-        //Checking if the two passwords are same, otherwise sending a message
-        if(!password.equals(re_password)){
-            request.setAttribute("message", "The provided passwords does not match");
-            getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
-            return;
-        }
-        
-        try
-        {
-            //Register the JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        DBConnectionManager dbcon = new DBConnectionManager();
             
-            //Creating an object of the db_connection class
-            db_connection db_conn = new db_connection();
-            
-            try{
-                //Creating the database connection
-                Connection con = DriverManager.getConnection(db_conn.url, db_conn.uname, db_conn.password);
+        try{
+            //Creating the database connection
+            Connection connection = dbcon.getDBConnection();
                 
-                //Creating a statement
-                Statement stmt = con.createStatement();
+            //Creating a statement
+            Statement stmt = connection.createStatement();
                 
-                //Executing sql query to check if the username is available
-                ResultSet rs = stmt.executeQuery("SELECT username FROM User WHERE username='"+username+"';");
+            //Executing sql query to check if the username is available
+            ResultSet rs = stmt.executeQuery("SELECT username FROM User WHERE username='"+username+"';");
                 
-                //if the username is already taken, sending a message
-                //Otherwise, storing the data and sending a message
-                while(rs.next()){
+            //if the username is already taken, sending a message
+            //Otherwise, storing the data and sending a message
+            while(rs.next()){
                         
-                    //Closing db connection
-                    con.close();
+                //Closing db connection
+                dbcon.closeDBConnection();
 
-                    request.setAttribute("message", "The username already taken, Please select another username");
-                    getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
-                    return;
-                }
+                request.setAttribute("message", "The username already taken, Please select another username");
+                request.getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
+                return;
+            }
               
-                //Hashing the password
-                authentication_functions hp = new authentication_functions();
-                String hashed_password = hp.hash_password(password);
+            //Hashing the password
+            authentication_functions hp = new authentication_functions();
+            String hashed_password = hp.hash_password(password);
                     
-                //Executing the sql query to store the data
-                stmt.executeUpdate("INSERT INTO User(username, password) VALUES('"+username+"', '"+hashed_password+"');");
+            //Executing the sql query to store the data
+            stmt.executeUpdate("INSERT INTO User(username, password) VALUES('"+username+"', '"+hashed_password+"');");
 
-                //Close database connection
-                con.close();
+            //Close database connection
+            dbcon.closeDBConnection();
                     
-                request.setAttribute("message", "Successfully Signed Up");
-                getServletContext().getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
-            }
-            catch(SQLException e2){
-                response.getWriter().println(e2);
-            }
+            response.sendRedirect("sign_in_page.jsp?error_state=Successfully Signed Up&user_name="+username);
         }
-        catch(ClassNotFoundException e1){
-            response.getWriter().println(e1);
+        catch(SQLException e){
+            response.getWriter().println(e);
         }
-
     }
 }

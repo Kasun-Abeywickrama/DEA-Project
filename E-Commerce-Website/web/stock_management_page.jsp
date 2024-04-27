@@ -7,20 +7,16 @@
 <%@page import="InventoryManagement.ProductStock"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%@include file="admin_header_part_01.jsp" %>
+    
         <title>Product Stock Management</title>
         
-        <!-- Bootstrap -->
-	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 	<link href="css/stock_management_page.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
+    
+    <%@include file="admin_header_part_02.jsp" %>
+        
         <script>
             function confirm_remove_stock (){
                 
@@ -30,9 +26,6 @@
                 return false;
             };
         </script>
-        
-  	<div class="container-fluid">
-            <div class="container">
                
                 <%
                     if(request.getAttribute("product_stock_list") != null 
@@ -64,7 +57,8 @@
                                         <center>
                                             <form action="stock_add_page.jsp" method="POST">
                                                 <input type="hidden" name="product_id" value="<%=product_id %>">
-                                                <button type="submit" class="btn btn-warning my-2 my-sm-0" value="add_stock" name="submit">Add Stock</button>
+                                                <input type="hidden" name="product_name" value="<%=product_name %>">
+                                                <button type="submit" class="btn btn-primary btn-sm" id="btn1" value="add_stock" name="submit">Add Stock</button>
                                             </form>
                                         </center>
                                     </td>
@@ -80,7 +74,7 @@
                         if(product_stock_list.size() != 0){        
                 %>
                             <center>
-                                <table class="stock_table">
+                                <table class="table table-bordered" id="stock_table">
                                     <tr>
                                         <th>Stock ID</th>
                                         <th>Supplier Name</th>
@@ -88,6 +82,8 @@
                                         <th>Buying Price</th>
                                         <th>Supplied Quantity</th>
                                         <th>Available Quantity</th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                 
                 <%
@@ -116,14 +112,14 @@
                                                 <form action="ProductStockRetrieveServlet" method="POST">
                                                     <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
                                                     <input type="hidden" name="stock_id" value="<%=i.getStockId() %>">
-                                                    <button type="submit" class="btn btn-warning my-2 my-sm-0" value="stock_details" name="submit">Update</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" id="btn2" value="stock_details" name="submit">Update</button>
                                                 </form>
                                             </td>
                                             <td id="remove_button_td">
                                                 <form id="remove_stock_form" action="ProductStockRemoveServlet" method="POST" onsubmit="return confirm_remove_stock(event)">
                                                     <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
                                                     <input type="hidden" name="stock_id" value="<%=i.getStockId() %>">
-                                                    <button type="submit" class="btn btn-warning my-2 my-sm-0" value="remove_stock" name="submit">Remove</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" id="btn3" value="remove_stock" name="submit">Remove</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -144,14 +140,6 @@
                         }
                     }
                 %> 
-            </div>
-  	</div>
-                        
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	<script src="js/jquery-3.4.1.min.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/popper.min.js"></script> 
-        <script src="js/bootstrap-4.4.1.js"></script>
-    </body>
-</html>
+            
+    <%@include file="admin_footer.jsp" %>
+                

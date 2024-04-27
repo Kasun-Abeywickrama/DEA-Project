@@ -4,6 +4,28 @@
  * and open the template in the editor.
  */
 
+//sign up page validation
+function sign_up_validate(){
+    
+    if(document.sign_up_form.username.value === "" || document.sign_up_form.password.value === "" || document.sign_up_form.re_password.value === ""){
+        alert("Please enter all the relevant details");
+        return false;
+    }
+    
+    if(document.sign_up_form.password.value.length < 8){
+        alert("The Password must have at least 8 characters");
+        return false;
+    }
+    
+    if(document.sign_up_form.password.value !== document.sign_up_form.re_password.value){
+        alert("The provided passwords does not match");
+        return false;
+    }
+    
+    return true;
+}
+
+
 //stock_update_page form validation
 function stock_update_add_quantity_validate(){
     

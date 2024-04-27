@@ -10,23 +10,18 @@ and open the template in the editor.
 
 @charset "utf-8";
 
-body {
-    background-color: #F6F3EC;
-}
-
 table {
-    border: 1px solid #000000;
-}
-
-.container-fluid .container {
-    margin-top: 75px;
-    margin-bottom: 75px;
+    border: 1px solid rgba(0, 0, 0, .15);
 }
 
 .stock_add table, .stock_add th, .stock_add td {
     padding: 5px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.stock_add {
+    margin-bottom: 20px;
 }
 
 #add_button_td {
@@ -42,15 +37,27 @@ form .form-group {
     height: 36px;
 }
 
-.btn.btn-warning.my-2.my-sm-0 {
+.btn btn-primary btn-sm {
     color: white;
     background-color: #FC6B03;
     border: none;
+}
+
+#btn1 {
     width: 400px;
     height: 36px;
+    font-size: 17px;
 }
 
 h3 {
     font-weight: bold;
     color: #FC6B03;
+}
+
+.details-table, .details-table th, .details-table td {
+    padding: 8px;
+}
+
+.heading {
+    font-weight: bold;
 }
