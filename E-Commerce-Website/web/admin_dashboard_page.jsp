@@ -8,17 +8,12 @@
 <%@page import="AdminDashboard.AdminDashboardProductDetails"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%@include file="admin_header_part_01.jsp" %>
+    
         <title>Admin Dashboard</title>
         
-        <!-- Bootstrap -->
-	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 	<link href="css/admin_dashboard_page.css" rel="stylesheet" type="text/css">
         
         <script>
@@ -37,10 +32,8 @@
                 xhr.send();
             };
         </script>
-    </head>
     
-    <body>
-        <%@include file="admin_header.jsp" %>
+    <%@include file="admin_header_part_02.jsp" %>
                 
             <div class="row">   
                 <div class="col-lg-6" id="col1">
@@ -97,7 +90,7 @@
                             if(month_top_ordered_product_list.size() != 0){             
                     %>
                                 <center>
-                                    <table class="table-style">
+                                    <table class="table table-bordered" id="tb1">
                                         <tr>
                                             <th>Product ID</th>
                                             <th>Product Name</th>
@@ -148,7 +141,7 @@
                             if(low_stock_product_list.size() != 0){             
                     %>
                                 <center>
-                                    <table class="table-style">
+                                    <table class="table table-bordered" id="tb2">
                                         <tr>
                                             <th>Product ID</th>
                                             <th>Product Name</th>
@@ -163,17 +156,17 @@
                                                 <% 
                                                     if(i.getTotalAvailableQuantity() < 3){
                                                 %>
-                                                        <td style="text-align: center" bgcolor="#FF474D"><%=i.getTotalAvailableQuantity() %></td>
+                                                        <td style="text-align: center; background-color: #FF474D;"><%=i.getTotalAvailableQuantity() %></td>
                                                 <%
                                                     }
                                                     else if(i.getTotalAvailableQuantity() <5){
                                                 %>
-                                                        <td style="text-align: center" bgcolor="#EFD52D"><%=i.getTotalAvailableQuantity() %></td>
+                                                        <td style="text-align: center; background-color: #EFD52D;"><%=i.getTotalAvailableQuantity() %></td>
                                                 <%
                                                     }
                                                     else{
                                                 %>
-                                                        <td style="text-align: center" bgcolor="#69D850"><%=i.getTotalAvailableQuantity() %></td>
+                                                        <td style="text-align: center; background-color: #69D850;"><%=i.getTotalAvailableQuantity() %></td>
                                                 <%
                                                     }
                                                 %>
@@ -183,7 +176,7 @@
                     %>
                                     </table>
                                     <form action="inventory_management_page.jsp" method="POST">
-                                        <button type="submit" class="btn btn-warning my-2 my-sm-0" value="submit" name="submit">Manage</button>
+                                    <button type="submit" class="btn btn-primary btn-sm" id="btn1" value="submit" name="submit">Manage</button>
                                     </form>
                                 </center>
                     <%
@@ -214,7 +207,7 @@
                             if(status_order_list.size() != 0){             
                     %>
                                 <center>
-                                    <table class="table-style">
+                                    <table class="table table-bordered" id="tb3">
                                         <tr>
                                             <th>Order ID</th>
                                             <th>Order Date</th>
@@ -231,17 +224,17 @@
                                                 <%
                                                     if("Pending".equals(i.getOrderStatus())){
                                                 %>
-                                                        <td style="text-align: center" bgcolor="#FF474D"><%=i.getOrderStatus() %></td>
+                                                        <td style="text-align: center; background-color: #FF474D;"><%=i.getOrderStatus() %></td>
                                                 <%
                                                     }
                                                     else if("Dispatched".equals(i.getOrderStatus())){
                                                 %>
-                                                        <td style="text-align: center" bgcolor="#EFD52D"><%=i.getOrderStatus() %></td>
+                                                        <td style="text-align: center; background-color: #EFD52D;"><%=i.getOrderStatus() %></td>
                                                 <%
                                                     }
                                                     else{
                                                 %>
-                                                        <td style="text-align: center" bgcolor="#69D850"><%=i.getOrderStatus() %></td>
+                                                        <td style="text-align: center; background-color: #69D850;"><%=i.getOrderStatus() %></td>
                                                 <%
                                                     }
                                                 %>
@@ -250,8 +243,8 @@
                                         }  
                     %>
                                     </table>
-                                    <form action="#" method="POST">
-                                        <button type="submit" class="btn btn-warning my-2 my-sm-0" value="#" name="submit">Manage</button>
+                                    <form action="orders_page.jsp" method="POST">
+                                        <button type="submit" class="btn btn-primary btn-sm" id="btn2" value="#" name="submit">Manage</button>
                                     </form>
                                 </center>
                     <%
@@ -269,13 +262,5 @@
                 </div>
             </div>
             
-        <%@include file="admin_footer.jsp" %>
+    <%@include file="admin_footer.jsp" %>
     
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	<script src="js/jquery-3.4.1.min.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/popper.min.js"></script> 
-        <script src="js/bootstrap-4.4.1.js"></script>
-    </body>
-</html>
