@@ -33,9 +33,6 @@
         position: relative;
     }
 
-    .c-n-lable{
-        bottom: 20px;
-    }
 
     .c-lable{ 
         position: absolute; 
@@ -49,6 +46,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        bottom: 20px;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
     }
 
 
@@ -83,7 +84,7 @@
     <div class="row mb-3 cat-row"> 
         <div class="col-md-3 px-2 mb-3">
             <img src="images/category_images/5.png" class="img-fluid" alt="...">
-            <span class="c-n-lable c-lable">Living <i class='bx bxs-chevron-right'></i></span>
+            <span class="c-lable">Living <i class='bx bxs-chevron-right'></i></span>
         </div>
     </div>
 </div>
@@ -100,7 +101,7 @@
             categoryRow.innerHTML += `
             <div class="col-md-3 px-2 mb-3">
             <img src="images/category_images/`+mainCategory.mainCategoryId+`.png" class="img-fluid" alt="...">
-            <span class="c-n-lable c-lable">`+mainCategory.mainCategoryName+` <i class='bx bxs-chevron-right'></i></span>
+            <a href="ReadProductsByCategoriesServlet?main_category_id=`+mainCategory.mainCategoryId+`&main_category_name=`+mainCategory.mainCategoryName+`" class="c-n-lable c-lable">`+mainCategory.mainCategoryName+` <i class='bx bxs-chevron-right'></i></a>
         </div>
         `;
         });
