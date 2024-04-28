@@ -14,10 +14,13 @@ import java.util.ArrayList;
 public class ReadProductsByCategoriesFunctions {
 
     public ArrayList getProductsByCategories(int subCategoryId, int mainCategoryId) {
+        // Establish a database connection
         DBConnectionManager cob = new DBConnectionManager();
         Connection connection = cob.getDBConnection();
         PreparedStatement statement = null;
         ArrayList<String> productList = new ArrayList<>();
+
+        // SQL query to select products based on sub-category and main category
         final String sql = "SELECT p.product_id, p.name AS product_name, p.buying_price, p.selling_price, p.description, p.image, s.name AS sub_category_name, m.name AS main_category_name FROM Product p JOIN Sub_category s ON p.sub_category_id = s.sub_category_id JOIN Main_category m ON s.main_category_id = m.main_category_id WHERE s.sub_category_id = ? AND m.main_category_id = ?";
 
         try {
@@ -27,6 +30,7 @@ public class ReadProductsByCategoriesFunctions {
 
             ResultSet resultSet = statement.executeQuery();
 
+            // Iterate through the result set and add product details to the list
             while (resultSet.next()) {
                 String productDetails = resultSet.getInt("product_id") + ", "
                         + resultSet.getString("product_name") + ", "
@@ -51,6 +55,7 @@ public class ReadProductsByCategoriesFunctions {
                 System.out.println("Error : Connection closing error");
             }
         }
+        // Return the list of products
         return productList;
     }
 }

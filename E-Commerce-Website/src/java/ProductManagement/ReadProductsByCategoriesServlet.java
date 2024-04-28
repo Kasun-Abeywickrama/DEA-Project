@@ -26,7 +26,7 @@ public class ReadProductsByCategoriesServlet extends HttpServlet {
 
         int mainCategoryId = Integer.parseInt(request.getParameter("main_category_id"));
 
-
+        // Establish a database connection
         DBConnectionManager cob = new DBConnectionManager();
         Connection connection = cob.getDBConnection();
         PreparedStatement statement = null;
@@ -39,10 +39,11 @@ public class ReadProductsByCategoriesServlet extends HttpServlet {
 
             ResultSet resultSet = statement.executeQuery();
 
+            // Iterate through the result set and add sub-category details to the list
             while (resultSet.next()) {
                 String subCategoryDetails = resultSet.getString("sub_category_id") + ", "
                         + resultSet.getString("sub_category_name");
-                       
+
                 subCategoryList.add(subCategoryDetails);
             }
 
@@ -61,8 +62,10 @@ public class ReadProductsByCategoriesServlet extends HttpServlet {
             }
         }
 
+        // Set the sub-category list as an attribute in the request
         request.setAttribute("sub_category_list", subCategoryList);
 
+        // Forward the request to category_products_page.jsp for further processing
         request.getRequestDispatcher("category_products_page.jsp").forward(request, response);
 
     }

@@ -16,6 +16,7 @@
 
 <%@ include file="header_part_01.jsp"%>
 <style>
+    /* Styles for the "Add to Cart" button */
     .btn-outline-primary{
         border: 1px solid gray;
         color: black;
@@ -24,7 +25,7 @@
         border: 1px solid #FC6B03;
         background-color: #FC6B03;
     }
-    
+
     .btn-outline-primary:focus{
         border: 1px solid #FC6B03;
         background-color: #FC6B03;
@@ -34,6 +35,7 @@
 
 <h4 class="text-center mt-5 mb-4"><%=mainCategoryName%></h4>
 <%
+    // Retrieve sub-category list from request attribute
     ArrayList<String> subCategoryList = (ArrayList<String>) request.getAttribute("sub_category_list");
 
     for (String subCategory : subCategoryList) {
@@ -43,8 +45,11 @@
 <hr class="mb-5">
 <div class="row">
     <%
+        // Create an instance of ReadProductsByCategoriesFunctions class
         ReadProductsByCategoriesFunctions rbco = new ReadProductsByCategoriesFunctions();
+        // Get products for this sub-category and main category
         ArrayList<String> productList = rbco.getProductsByCategories(Integer.parseInt(subCategoryDetails[0]), Integer.parseInt(mainCategoryId));
+        // Loop through each product in the list
         for (String product : productList) {
             String[] productDetails = product.split(", ");
     %>
