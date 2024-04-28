@@ -47,6 +47,16 @@
     </head>
 
     <body>
+        <%
+            if(request.getAttribute("message") != null){
+        
+                String alert_message = (String)request.getAttribute("message");
+        %>        
+                <script>alert("<%=alert_message %>");</script>
+        <%  
+            }
+        %>
+        
         <section>
             <div class="box">
                 <div class="d-p">
@@ -228,7 +238,7 @@
                                     </table>
                                 </div>
                                     <%  if(can_checkout == 1){ %>
-                                            <form action="temp" method="POST">
+                                            <form action="Delivery_details.jsp" method="POST">
                                                 <center><button>Place Order</button></center>
                                             </form>
                                     <%

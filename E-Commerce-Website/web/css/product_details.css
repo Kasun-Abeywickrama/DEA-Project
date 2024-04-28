@@ -57,3 +57,7 @@ button{
     border: none;
     background-color: #FC6B03;
 }
+
+#con {
+    max-width: 550px;
+}
