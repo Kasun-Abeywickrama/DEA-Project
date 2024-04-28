@@ -16,6 +16,8 @@
 	<link href="css/stock_management_page.css" rel="stylesheet" type="text/css">
     
     <%@include file="admin_header_part_02.jsp" %>
+    
+        <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Product Stocks </i></p>
         
         <script>
             function confirm_remove_stock (){
@@ -57,6 +59,7 @@
                                         <center>
                                             <form action="stock_add_page.jsp" method="POST">
                                                 <input type="hidden" name="product_id" value="<%=product_id %>">
+                                                <input type="hidden" name="product_name" value="<%=product_name %>">
                                                 <button type="submit" class="btn btn-primary btn-sm" id="btn1" value="add_stock" name="submit">Add Stock</button>
                                             </form>
                                         </center>
