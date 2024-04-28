@@ -2,7 +2,6 @@ package ProductManagement;
 
 import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author HP
+ * @author dewmi
  */
 @WebServlet(name = "ReadProductsByCategoriesServlet", urlPatterns = {"/ReadProductsByCategoriesServlet"})
 public class ReadProductsByCategoriesServlet extends HttpServlet {

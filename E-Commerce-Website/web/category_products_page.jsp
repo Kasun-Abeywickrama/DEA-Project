@@ -1,7 +1,7 @@
 <%-- 
     Document   : category_products_page
     Created on : Apr 29, 2024, 12:02:40 AM
-    Author     : HP
+    Author     : dewmi
 --%>
 
 <%@page import="ProductManagement.ReadProductsByCategoriesFunctions"%>

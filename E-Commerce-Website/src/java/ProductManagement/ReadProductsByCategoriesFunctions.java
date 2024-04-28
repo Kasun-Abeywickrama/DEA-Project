@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author HP
+ * @author dewmi
  */
 public class ReadProductsByCategoriesFunctions {
 
