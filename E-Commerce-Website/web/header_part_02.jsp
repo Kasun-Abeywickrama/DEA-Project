@@ -30,7 +30,10 @@
                             class="col-md-4 d-flex align-items-center justify-content-end"
                             >
                             <div class="me-4">Cart</div>
-                            <div class="">Hi, Dewmini</div>
+                            <div class="me-3">Hi, Dewmini</div>
+                            <div class="">
+                                <button class="btn btn-sm d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class='bx bx-menu fs-4'></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -73,7 +76,26 @@
         </div>
     </header>
 
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">EliteElegance</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="mb-4">
+                <form action="ReadUserServlet" style="height: 50px">
+                    <input type="submit" value="My Account" class="w-100 h-100 offcanvas-buttons" />
+                </form>
+            </div>
+            <div class="mb-4">
+                <form action="LogoutServlet" method="POST" style="height: 50px">
+                    <input type="submit" value="Log out" class="w-100 h-100 offcanvas-buttons" />
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="container content">
 
-    <script src="js/header.js"></script>
+        <script src="js/header.js"></script>
 
