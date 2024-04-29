@@ -61,7 +61,7 @@ public class SignInServlet extends HttpServlet {
                 int sessionTimeout = 60 * 60 * 24;
                 session.setMaxInactiveInterval(sessionTimeout);
 
-                response.sendRedirect("landing_page.jsp");
+                response.sendRedirect("landing-page.jsp");
             } else {
                 // Authentication failed
 //                response.getWriter().println("");
