@@ -16,13 +16,31 @@
         <!-- Javascript validation -->
         <script src="js/javascript_validation.js"></script>
     
-    <%@include file="admin_header_part_02.jsp" %>    
+    <%@include file="admin_header_part_02.jsp" %> 
+    
+        <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Add New Product Stock </i></p>
                 
-            <%  if(request.getParameter("product_id") != null){
+            <%  if(request.getParameter("product_id") != null && request.getParameter("product_name") != null){
                     
                     String product_id = request.getParameter("product_id");
+                    String product_name = request.getParameter("product_name");
             %>
                 
+                    <center>
+                        <table class="details-table">
+                            <tr>
+                                <td class="heading">Product ID : </td>
+                                <td><%=product_id %></td>
+                            </tr>
+                            <tr>
+                                <td class="heading">Product Name : </td>
+                                <td><%=product_name %></td>
+                            </tr>
+                        </table>
+                    </center>
+                    <br><br>
+            
+            
                     <form name="stock_add_form" action="ProductStockAddServlet" method="POST" onsubmit="return stock_add_validate()">
                         <center>
                             <table class="stock_add">

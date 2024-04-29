@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ .box{
+    width: 1400px;
+    margin: auto;
+}
+@media(max-width:1440px){
+    .box{
+        width: calc(100% - 40px);
+    }
+}
+ @media(max-width: 992px){
+    .box{
+        display: block;
+    }
+     .content{
+        display: block;
+    } 
+    .con-de,
+    .c-s{
+        margin-top: 20px;
+        width: calc(100% - 40px);
+    }
+    
+}  
+
+.d-p{
+    width: 100%;
+    height: 80px;
+    /* background-color: red; */
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+.d-p button{
+    width: 250px;
+    height: 50px;
+    margin-left: 40px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 400;
+    background-color: transparent;
+    color: black;
+    border-radius: 5px;
+    border: 1px solid rgb(163, 159, 159);
+    cursor: pointer;
+}
+.d-p button:hover{
+    background-color: #F6F3EC;
+}
+.content{
+    width: 100%;
+    display: flex;
+    
+}
+.con-de{
+    padding: 10px;
+    /* display: flex; */
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    /* width: calc(100% / 2); */
+    /* height:430px; */
+    background-color: #F6F3EC;
+    font-family: sans-serif;
+}
+.con-de h3{
+    font-size: 20px;
+    padding-top: 20px;
+    
+}
+.con-de table{
+    margin: 10px;
+}
+.con-de p{
+    font-size: 14px;
+}
+.c-s{
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 40px;
+    /* width: calc(100% / 2); */
+    /* height: 400px; */
+    background-color: #F6F3EC;
+    
+    
+    
+}
+.c-s-t{
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.c-s button{
+    width: 200px;
+    height: 50px;
+    background-color: rgb(253, 130, 7);
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+
+    
+}
+
+#plus_minus_1, #plus_minus_2 {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    border: none;
+    background-color: transparent;
+    color: rgb(253, 130, 7);
+    border-color: transparent;
+    outline: none;
+}
+
+#non_plus_minus {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+#remove-btn {
+    width: 30px;
+    border: none;
+    font-size:20px;
+    color: #FC6B55;
+    background-color: transparent;
+    outline: none;
+}

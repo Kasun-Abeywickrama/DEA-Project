@@ -41,7 +41,7 @@ public class SignInServlet extends HttpServlet {
             String hashedPassword = authFunctions.hash_password(password);
 
             // Creating a SQL query to check user credentials
-            String query = "SELECT user_id, username FROM user WHERE username = ? AND password = ?";
+            String query = "SELECT user_id, username, role FROM user WHERE username = ? AND password = ?";
             statement = conn.prepareStatement(query);
             statement.setString(1, username);
             statement.setString(2, hashedPassword);
@@ -54,13 +54,14 @@ public class SignInServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user_id", resultSet.getString("user_id"));
                 session.setAttribute("user_name", resultSet.getString("username"));
+                session.setAttribute("role", resultSet.getString("role"));
                 session.setAttribute("authenticated", true);
 
                 // Set session timeout to 1 day (in seconds)
                 int sessionTimeout = 60 * 60 * 24;
                 session.setMaxInactiveInterval(sessionTimeout);
 
-                response.sendRedirect("landing_page.jsp");
+                response.sendRedirect("landing-page.jsp");
             } else {
                 // Authentication failed
 //                response.getWriter().println("");
