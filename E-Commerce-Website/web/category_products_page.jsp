@@ -33,6 +33,7 @@
 </style>
 <%@ include file="header_part_02.jsp"%>
 
+<div class="container">
 <h4 class="text-center mt-5 mb-4"><%=mainCategoryName%></h4>
 <%
     // Retrieve sub-category list from request attribute
@@ -71,4 +72,5 @@
 <%
     }
 %>
+</div>
 <%@ include file="footer.jsp"%>
