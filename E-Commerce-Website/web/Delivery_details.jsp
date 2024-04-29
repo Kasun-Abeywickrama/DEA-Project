@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Address</title>
+        <title>Delivery Details</title>
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
     <script>
@@ -28,7 +28,7 @@
     <body class="bg-[#FAF9F6]">
         
         
-    
+        <br>
   <div class="form bg-white p-4 m-4 w-1/3 mx-auto border rounded-xl" id="2nd_form">
     <form action="OrderProcessingServlet" method="POST" >
         <ul class="p-4">
@@ -79,14 +79,14 @@
             <li class="grid py-2"><input type="text" name="tel"  placeholder="Input mobile number" class="border-none"></li>
         </ul>
         <ul class="p-4">
-            <li class="grid grid-col-3"><input type="submit" value="Place Order" class="col-3 justify-self-end bg-[#FC6B03] px-4 py-2 rounded-md text-white font-semibold"></li>
+            <li class="grid grid-col-3"><input type="submit" value="Confirm" class="col-3 justify-self-end bg-[#FC6B03] px-4 py-2 rounded-md text-white font-semibold"></li>
         </ul>
 
         
     </form>
 
   </div>
-
+        <br>
   <script>
     const citiesByProvince = {
        Western: ["Colombo", "Kaluthara", "Gampaha"],
