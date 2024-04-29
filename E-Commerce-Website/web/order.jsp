@@ -128,9 +128,11 @@ h4.Mobile.Number {
     background-color: #FC6B03;
     width: 86px;
     height: 36px;
-    margin-left: 174px;
-    margin-top: -39px;
+    margin-left: 227px;
+    margin-top: 212px;
     border-radius: 10px;
+    border: none;
+    cursor: pointer;
 }
 h2.okk {
     font-size: 20px;
@@ -165,17 +167,6 @@ h2.okk {
        <div class="order-successful-1">
         <img src="images\icons/confirm 1.png" alt="confirm">
         <h3 class="order-successful">order-successful</h3><br>
-        <h4 class="order-id">Order Id:  001222345566</h4><br>
-        <h4 class="item-name">item-name: William Standard Dinning Table with chairs</h4><br>
-        <h4 class="Quantity">Quantity: 1</h4><br>
-        <h4 class="sub tatal">Sub Total: Rs.2,000,00</h4><br>
-        <h4 class="Discount">Discount: 0</h4><br>
-        <h4 class="Total">Total: Rs.102,000,00</h4><br>
-        <h4 class="payment-method">payment Method: Cash on dilivery</h4><br>
-        <h4 class="Address">Address: 23,Gall Road,Colombo</Address></h4><br>
-        <h4 class="Mobile Number">Mobile Number: 0777777896</h4><br>
-        <div class="ok">
-        <h2 class="okk">OK</h2></div>
-    </div>
+         <button class="ok">OK</button>
 </body>
 </html>
