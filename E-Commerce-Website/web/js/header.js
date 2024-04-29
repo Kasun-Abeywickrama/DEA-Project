@@ -8,7 +8,7 @@ function setMainCategoriesToHeader(mainCategories) {
 
         var menuLink = document.createElement("a");
         menuLink.classList.add("dropdown-item");
-        menuLink.href = "#";
+        menuLink.href = "ReadProductsByCategoriesServlet?main_category_id=" + mainCategory.mainCategoryId + "&main_category_name=" + mainCategory.mainCategoryName;
         menuLink.textContent = mainCategory.mainCategoryName;
 
         menuItem.appendChild(menuLink);
