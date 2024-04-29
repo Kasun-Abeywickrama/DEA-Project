@@ -13,6 +13,7 @@
     .padding-0{
         padding: 0;
     }
+    
     .text-box{
         background-color: #D9D9D9;
         width: 250px;
@@ -25,6 +26,7 @@
 
     .col-1{
         background-color: #f6f3ec;
+        
     }
     .n-top-margin{
         margin-top: -50px;
@@ -62,11 +64,13 @@
         right: 30px;
         transition: 0.3s ease;
     }
+    
+    
 </style>
 
 <div class="row ">
 
-    <div class="col-md-2 d-flex align-items-center justify-content-center col-1">
+    <div class=" col-md-2 d-flex align-items-canter justify-content-center col-1">
         <div class="text-box">
             <p class="text-start fs-4 fw-bold">We Help You Make Modern Interior</p>
             <p class="text-start">We Help You Make Modern Interior We Help You Make Modern InteriorWe Help You Make Modern InteriorWe Help You Make Modern Interior</p>
@@ -83,7 +87,7 @@
     <h2 class="text-center mt-5 pt-5 mb-4 fw-bold">Our Products</h2>
     <div class="row mb-3 cat-row"> 
         <div class="col-md-3 px-2 mb-3">
-            <img src="images/category_images/5.png" class="img-fluid" alt="...">
+            <img src="images/category_images/5.png" class="img-thumbnail" alt="...">
             <span class="c-lable">Living <i class='bx bxs-chevron-right'></i></span>
         </div>
     </div>
@@ -100,7 +104,7 @@
         mainCategories.forEach(function (mainCategory) {
             categoryRow.innerHTML += `
             <div class="col-md-3 px-2 mb-3">
-            <img src="images/category_images/`+mainCategory.mainCategoryId+`.png" class="img-fluid" alt="...">
+            <img src="images/category_images/`+mainCategory.mainCategoryId+`.png" class="img-thumbnail" alt="...">
             <a href="ReadProductsByCategoriesServlet?main_category_id=`+mainCategory.mainCategoryId+`&main_category_name=`+mainCategory.mainCategoryName+`" class="c-n-lable c-lable">`+mainCategory.mainCategoryName+` <i class='bx bxs-chevron-right'></i></a>
         </div>
         `;
