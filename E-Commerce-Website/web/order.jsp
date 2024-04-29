@@ -73,7 +73,6 @@ h3.text3 {
 .order-successful-1 {
     background-color: white;
     width: 542px;
-    height: 434px;
     margin-top: 67px;
     margin-left: 405px;
 }
@@ -166,7 +165,10 @@ h2.okk {
       
        <div class="order-successful-1">
         <img src="images\icons/confirm 1.png" alt="confirm">
-        <h3 class="order-successful">order-successful</h3><br>
-         <button class="ok">OK</button>
+        <h3 class="order-successful">Order Successful</h3><br>
+        <form action="checkout_page.jsp">
+            <button class="ok" style="color: white; font-weight: bold">OK</button>
+        </form>
+       </div>
 </body>
 </html>

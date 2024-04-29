@@ -159,7 +159,6 @@ public class OrderProcessingServlet extends HttpServlet {
                         stmt4.executeUpdate("DELETE FROM Orders_Product WHERE order_id = "+order_id+";");
                         stmt4.executeUpdate("DELETE FROM Orders WHERE order_id = "+order_id+";");
 
-                        request.setAttribute("message", "Order Unsuccessfull Due to Product Unavailability");
                     }
                     else{
 
@@ -175,7 +174,8 @@ public class OrderProcessingServlet extends HttpServlet {
 
                         stmt4.executeUpdate("UPDATE Orders SET total_price="+total_price+" WHERE order_id="+order_id+";");
 
-                        request.setAttribute("message", "Order Successfully Placed");
+                        response.sendRedirect("order.jsp");
+                        return;
                     }
 
                     stmt1.close();
@@ -191,7 +191,7 @@ public class OrderProcessingServlet extends HttpServlet {
             } 
         }
         
-        request.getRequestDispatcher("/checkout_page.jsp").forward(request, response);
+        response.sendRedirect("checkout_page.jsp");
     }
 
 }

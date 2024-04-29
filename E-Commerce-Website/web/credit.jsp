@@ -182,7 +182,7 @@ input.cvc {
             <img src="images\icons/Rectangle 39.jpg " alt="Rectangle">
             <img src="images\icons/Rectangle 40.png" alt="American">
          </div>
-           <form method="psot">
+           
       <h3 class="card-Number">Card Number*</h3>
       <input type="text" name="cnum" placeholder="Card Number">
         <br>
@@ -194,9 +194,19 @@ input.cvc {
        <h3 class="CVV">CVC*</h2>
           <input type="text" name="cvc" placeholder="CVC" class="cvc"> 
         <br>
-        <button class="pay">Pay Now</button>
         
-        </form>
+        <% if(request.getParameter("fname") != null && request.getParameter("address") != null && request.getParameter("tel") != null){ %>
+            
+            <form action="OrderProcessingServlet" method="post">
+                <input type="hidden" name="fname" value="<%=request.getParameter("fname") %>">
+                <input type="hidden" name="address" value="<%=request.getParameter("address") %>">
+                <input type="hidden" name="tel" value="<%=request.getParameter("tel") %>">
+                <button class="pay" style="color: white; font-weight: bold">Pay Now</button>
+            </form>
+        
+        <% } %>
+        
+        
            </div>  
 </body>
 

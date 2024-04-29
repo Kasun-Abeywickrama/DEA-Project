@@ -128,8 +128,18 @@ button.coder {
        </div>
        
        <div class="pay-in-cash">
-        <h4 class="paragraph">You can pay in cash to our Courier when<br>  You receive the goods atyour doorstep</h4>
-        <button class="coder">Confirm Order</button>
+        <h4 class="paragraph">You can pay in cash to our Courier when<br>  You receive the goods at your doorstep</h4>
+        
+        <% if(request.getParameter("fname") != null && request.getParameter("address") != null && request.getParameter("tel") != null){ %>
+            
+            <form action="OrderProcessingServlet" method="post">
+                <input type="hidden" name="fname" value="<%=request.getParameter("fname") %>">
+                <input type="hidden" name="address" value="<%=request.getParameter("address") %>">
+                <input type="hidden" name="tel" value="<%=request.getParameter("tel") %>">
+                <button class="coder" style="color: white; font-weight: bold">Confirm Order</button>
+            </form>
+        
+        <% } %>
 
        </div>
     

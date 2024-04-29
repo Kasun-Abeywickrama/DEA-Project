@@ -41,16 +41,6 @@
         </script>
 
     <%@include  file="header_part_02.jsp" %>
-    
-        <%
-            if(request.getAttribute("message") != null){
-        
-                String alert_message = (String)request.getAttribute("message");
-        %>        
-                <script>alert("<%=alert_message %>");</script>
-        <%  
-            }
-        %>
         
         <section>
             <div class="box">
