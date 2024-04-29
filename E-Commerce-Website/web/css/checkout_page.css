@@ -3,10 +3,6 @@
     padding: 0;
 }
 
- .box{
-    width: 1400px;
-    margin: auto;
-}
 @media(max-width:1440px){
     .box{
         width: calc(100% - 40px);

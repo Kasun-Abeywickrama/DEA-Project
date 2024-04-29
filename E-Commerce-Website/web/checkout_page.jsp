@@ -8,17 +8,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@include  file="header_part_01.jsp" %>
 
         <title>Shopping Cart</title>
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="css/checkout_page.css">
-        <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 
         <script>
             window.onload = function(){
@@ -44,9 +40,8 @@
             }
         </script>
 
-    </head>
-
-    <body>
+    <%@include  file="header_part_02.jsp" %>
+    
         <%
             if(request.getAttribute("message") != null){
         
@@ -97,14 +92,28 @@
                                                         <img src="<%=img_path %>" width="193" height="153" alt=""/>
                                                     </td>
                                                     <td width="396">
-                                                        <form action="ShoppingCartServlet" method="post">
-                                                            <h3>
-                                                                <a href="" style="color: black"><%=i.getProductName() %></a>
-                                                                <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
-                                                                <button id="remove-btn" type="submit" name="submit" value="remove_item"><i class='bx bx-trash'></i></button>
-                                                            </h3>
-                                                        </form>
-                                                        <p><%=i.getSubCategoryName() %>	  </p><br>
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <form action="ProductViewServlet" method="post">
+                                                                        <h3>
+                                                                            <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
+                                                                            <button name="submit" value="get_details" style="outline: none; border: none; background-color: transparent"><%=i.getProductName() %></button>
+                                                                        </h3>
+                                                                    </form>
+                                                                </td>
+                                                                <td>
+                                                                    <form action="ShoppingCartServlet" method="post">
+                                                                        <h3>
+                                                                            &nbsp;
+                                                                            <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
+                                                                            <button id="remove-btn" type="submit" name="submit" value="remove_item"><i class='bx bx-trash'></i></button>
+                                                                        </h3>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <p>&nbsp;&nbsp; <%=i.getSubCategoryName() %>	  </p><br>
                                                         <table width="393" border="0" cellspacing="0" cellpadding="0">
                                                             <tbody>
                                                                 <tr>
@@ -239,7 +248,7 @@
                                 </div>
                                     <%  if(can_checkout == 1){ %>
                                             <form action="Delivery_details.jsp" method="POST">
-                                                <center><button>Place Order</button></center>
+                                                <center><button>Checkout</button></center>
                                             </form>
                                     <%
                                         }
@@ -257,8 +266,8 @@
                 </div> 
             </div>   
         </section>
-    </body>
-</html>
+    
+    <%@include  file="footer.jsp" %>
 
 
 

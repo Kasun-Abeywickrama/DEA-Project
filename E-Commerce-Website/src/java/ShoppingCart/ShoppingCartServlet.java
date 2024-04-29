@@ -130,7 +130,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            request.getRequestDispatcher("/checkout_page.jsp").forward(request, response);
+            response.sendRedirect("checkout_page.jsp");
         }
         
         
@@ -166,7 +166,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            request.getRequestDispatcher("/checkout_page.jsp").forward(request, response);   
+            response.sendRedirect("checkout_page.jsp");
         }
         
         
@@ -194,7 +194,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            request.getRequestDispatcher("/checkout_page.jsp").forward(request, response); 
+            response.sendRedirect("checkout_page.jsp");
         }
         
     }
