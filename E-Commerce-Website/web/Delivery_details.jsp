@@ -30,10 +30,10 @@
         
         <br>
   <div class="form bg-white p-4 m-4 w-1/3 mx-auto border rounded-xl" id="2nd_form">
-    <form action="OrderProcessingServlet" method="POST" >
+    <form action="SelectPaymentMethod.jsp" method="POST" >
         <ul class="p-4">
             <li><h5>Full Name *</h5></li>
-            <li class="grid "><input type="text" name="fname"  placeholder="Input full name" class="border-none"></li>
+            <li class="grid "><input type="text" name="fname"  placeholder="Input full name" class="border-none" required="required"></li>
         </ul>
         <ul class="p-4">
             <li><h5>Province *</h5></li>
@@ -71,12 +71,12 @@
 
         <ul class="px-4">
             <li><h5>Address *</h5></li>
-            <li class="grid py-2"><input type="text" name="address"  placeholder="Input full Address" class="border-none"></li>
+            <li class="grid py-2"><input type="text" name="address"  placeholder="Input full Address" class="border-none" required="required"></li>
         </ul>
 
         <ul class="p-4">
             <li><h5>Mobile Number *</h5></li>
-            <li class="grid py-2"><input type="text" name="tel"  placeholder="Input mobile number" class="border-none"></li>
+            <li class="grid py-2"><input type="text" name="tel"  placeholder="Input mobile number" class="border-none" required="required"></li>
         </ul>
         <ul class="p-4">
             <li class="grid grid-col-3"><input type="submit" value="Confirm" class="col-3 justify-self-end bg-[#FC6B03] px-4 py-2 rounded-md text-white font-semibold"></li>

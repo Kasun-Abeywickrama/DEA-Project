@@ -153,7 +153,7 @@ button.cash {
 
 <body>
     
-  
+    
      <div class="main " >
     <div class="">
         <div class="container-row-1 ">
@@ -175,22 +175,32 @@ button.cash {
 
 <div class="container-fluid page-wrapper ">
        
-           
+        <% if(request.getParameter("fname") != null && request.getParameter("address") != null && request.getParameter("tel") != null){ %>
                 
-            <div class="container card-name"><button class="credit">Credit/Debit Card</button></div>
-            
+            <form action="credit.jsp" method="post">
+                <input type="hidden" name="fname" value="<%=request.getParameter("fname") %>">
+                <input type="hidden" name="address" value="<%=request.getParameter("address") %>">
+                <input type="hidden" name="tel" value="<%=request.getParameter("tel") %>">
+                <div class="container card-name"><button class="credit" style="color:white; font-weight: bold">Credit/Debit Card</button></div>
+            </form> 
       
             
             
+            <form action="cashondilivery.jsp" method="post">
+                <input type="hidden" name="fname" value="<%=request.getParameter("fname") %>">
+                <input type="hidden" name="address" value="<%=request.getParameter("address") %>">
+                <input type="hidden" name="tel" value="<%=request.getParameter("tel") %>">  
+                <div class="container cash on dilivery-name"><button class="cash" style="color:black; font-weight: bold">Cash on delivery</button></div>
+            </form>
                 
-           <div class="container cash on dilivery-name"><button class="cash">Cash on delivery</button></div>
+        <% } %>
                
-            </div>
+</div>
         
-       
+        
 
      </div>
-     
+    
 </body>
 </html>
 
