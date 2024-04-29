@@ -5,99 +5,8 @@
 --%>
 
 
-    
-    
-<html lang="en">
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <style>
-
-    .footer-bar{
-        background-color: #f6f3ec;
-        padding: 10px;
-        height: fit-content;
-        width: 100%;
-        margin: 0;
-    }
-    
-    .logo1 {
-        display: flex;
-        justify-content:center;
-        align-item: center;
-        margin:10px;
-    }
-    .logo1 > .div1 {
-        font-family: "Josefin Sans", sans-serif;
-        font-size: 23px;
-        color: #603400;
-    }
-    .logo1 > .div2 {
-        font-size: 13px;
-        color: #603400;
-    }
-    
-    .contact1{
-        padding: 2px;
-        display: flex;
-        justify-content:center;
-        align-item: center;
-        font-size: 13px;
-   }
-    
-    .lin1 {
-        padding: 2px;
-        display: flex;
-        justify-content:center;
-        align-item: center;
-        font-size: 13px;
-    }
-    
-    .contact-info1{
-        margin:10px;
-        height:fit-content;
-    }
-    
-    .li-info1{
-        margin:10px
-    }
-    
-    .smedia {
-        display: flex;
-        justify-content:center;
-        align-item: center;
-        margin:10px
-    }
-    
-    
-    .m1 {
-        margin: 2px 5px 2px 5px;
-        
-    }
-    
-    .m2 {
-        margin: 1px 5px 1px 5px;
-        
-    }
-    
-    .m3 {
-        margin: 0 5px 0 5px;
-        
-    }
-  
-    
-    
-    
-    
-
-</style>
-</head>
-
-<body>
     <footer>
         
         <div class="container-fluid footer-bar">
@@ -127,9 +36,9 @@
             </div>
         </div>
     </footer>
-    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
+
 
 
