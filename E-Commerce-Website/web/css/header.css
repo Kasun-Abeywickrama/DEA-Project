@@ -47,3 +47,14 @@
     color: white !important;
     border-radius: 5px;
 }
+
+
+.offcanvas-buttons{
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+}
+
+.offcanvas-buttons:hover{
+    background-color: #FC6B03;
+}
