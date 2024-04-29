@@ -86,5 +86,6 @@
                 <script src="js/product_details.js"></script>
         <%    
             }
-        %>         
+        %>      
+        <br><br>
     <%@include  file="footer.jsp" %>

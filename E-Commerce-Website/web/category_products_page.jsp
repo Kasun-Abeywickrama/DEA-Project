@@ -61,7 +61,7 @@
 
         <form action="ProductViewServlet" method="post" class="w-100 px-1 mt-3">
             <input type="hidden" name="product_id" value="<%= productDetails[0]%>">
-            <input type="submit" name="submit" value="Add to Cart" class="btn btn-outline-primary btn-sm w-100 font-weight-bold">
+            <button class="btn btn-outline-primary btn-sm w-100 font-weight-bold" name="submit" value="get_details">More Details</button>
         </form>
     </div>
     <%
