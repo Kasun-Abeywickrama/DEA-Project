@@ -6,6 +6,7 @@
 
 <%@page import="ShoppingCart.ShoppingCartDetails"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -236,20 +237,44 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                    <%  if(can_checkout == 1){ %>
-                                            <form action="Delivery_details.jsp" method="POST">
-                                                <center><button>Checkout</button></center>
-                                            </form>
+                                    <%  
+                                        HttpSession ses = request.getSession(false);
+                                        
+                                        if(ses != null){
+                                            
+                                            if(ses.getAttribute("user_id") != null){
+                                                
+                                                if(can_checkout == 1){ 
+                                    %>
+                                                    <form action="Delivery_details.jsp" method="POST">
+                                                        <center><button>Checkout</button></center>
+                                                    </form>
                                     <%
+                                                }
+                                                else{
+                                    %>
+                                                    <form action="temp" method="POST" onsubmit="return cartAlert(event)">
+                                                        <center><button>Place Order</button></center>
+                                                    </form>
+                                    <%
+                                                }
+                                            }
+                                            else{
+                                    %>
+                                                <form action="sign_in_page.jsp" method="POST">
+                                                    <center><button>Place Order</button></center>
+                                                </form>
+                                    <%
+                                            }    
                                         }
                                         else{
                                     %>
-                                            <form action="temp" method="POST" onsubmit="return cartAlert(event)">
+                                            <form action="sign_in_page.jsp" method="POST">
                                                 <center><button>Place Order</button></center>
                                             </form>
                                     <%
                                         }
-                                    %>
+                                    %>       
                             </div>
                         </div>
                     </div>

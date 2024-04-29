@@ -188,7 +188,15 @@ public class OrderProcessingServlet extends HttpServlet {
                 catch(SQLException e){
                     response.getWriter().println(e);
                 } 
-            } 
+            }
+            else{
+                response.sendRedirect("sign_in_page.jsp");
+                return;
+            }
+        }
+        else{
+            response.sendRedirect("sign_in_page.jsp");
+            return;
         }
         
         response.sendRedirect("checkout_page.jsp");
