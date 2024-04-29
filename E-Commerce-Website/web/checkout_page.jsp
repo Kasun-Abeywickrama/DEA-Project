@@ -6,19 +6,16 @@
 
 <%@page import="ShoppingCart.ShoppingCartDetails"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@include  file="header_part_01.jsp" %>
 
         <title>Shopping Cart</title>
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="css/checkout_page.css">
-        <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 
         <script>
             window.onload = function(){
@@ -44,18 +41,7 @@
             }
         </script>
 
-    </head>
-
-    <body>
-        <%
-            if(request.getAttribute("message") != null){
-        
-                String alert_message = (String)request.getAttribute("message");
-        %>        
-                <script>alert("<%=alert_message %>");</script>
-        <%  
-            }
-        %>
+    <%@include  file="header_part_02.jsp" %>
         
         <section>
             <div class="box">
@@ -97,14 +83,28 @@
                                                         <img src="<%=img_path %>" width="193" height="153" alt=""/>
                                                     </td>
                                                     <td width="396">
-                                                        <form action="ShoppingCartServlet" method="post">
-                                                            <h3>
-                                                                <a href="" style="color: black"><%=i.getProductName() %></a>
-                                                                <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
-                                                                <button id="remove-btn" type="submit" name="submit" value="remove_item"><i class='bx bx-trash'></i></button>
-                                                            </h3>
-                                                        </form>
-                                                        <p><%=i.getSubCategoryName() %>	  </p><br>
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <form action="ProductViewServlet" method="post">
+                                                                        <h3>
+                                                                            <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
+                                                                            <button name="submit" value="get_details" style="outline: none; border: none; background-color: transparent"><%=i.getProductName() %></button>
+                                                                        </h3>
+                                                                    </form>
+                                                                </td>
+                                                                <td>
+                                                                    <form action="ShoppingCartServlet" method="post">
+                                                                        <h3>
+                                                                            &nbsp;
+                                                                            <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
+                                                                            <button id="remove-btn" type="submit" name="submit" value="remove_item"><i class='bx bx-trash'></i></button>
+                                                                        </h3>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <p>&nbsp;&nbsp; <%=i.getSubCategoryName() %>	  </p><br>
                                                         <table width="393" border="0" cellspacing="0" cellpadding="0">
                                                             <tbody>
                                                                 <tr>
@@ -237,28 +237,52 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                    <%  if(can_checkout == 1){ %>
-                                            <form action="Delivery_details.jsp" method="POST">
-                                                <center><button>Place Order</button></center>
-                                            </form>
+                                    <%  
+                                        HttpSession ses = request.getSession(false);
+                                        
+                                        if(ses != null){
+                                            
+                                            if(ses.getAttribute("user_id") != null){
+                                                
+                                                if(can_checkout == 1){ 
+                                    %>
+                                                    <form action="Delivery_details.jsp" method="POST">
+                                                        <center><button>Checkout</button></center>
+                                                    </form>
                                     <%
+                                                }
+                                                else{
+                                    %>
+                                                    <form action="temp" method="POST" onsubmit="return cartAlert(event)">
+                                                        <center><button>Place Order</button></center>
+                                                    </form>
+                                    <%
+                                                }
+                                            }
+                                            else{
+                                    %>
+                                                <form action="sign_in_page.jsp" method="POST">
+                                                    <center><button>Place Order</button></center>
+                                                </form>
+                                    <%
+                                            }    
                                         }
                                         else{
                                     %>
-                                            <form action="temp" method="POST" onsubmit="return cartAlert(event)">
+                                            <form action="sign_in_page.jsp" method="POST">
                                                 <center><button>Place Order</button></center>
                                             </form>
                                     <%
                                         }
-                                    %>
+                                    %>       
                             </div>
                         </div>
                     </div>
                 </div> 
             </div>   
         </section>
-    </body>
-</html>
+    
+    <%@include  file="footer.jsp" %>
 
 
 
