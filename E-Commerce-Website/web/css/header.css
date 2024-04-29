@@ -1,6 +1,14 @@
 .logo {
     height: 80px;
 }
+
+.logo-active{
+    text-decoration: none;
+    color: #603400;
+
+
+}
+
 .logo > .sp1 {
     font-family: "Josefin Sans", sans-serif;
     font-size: 28px;
@@ -12,6 +20,7 @@
     color: #603400;
 }
 
+ 
 .top-bar {
     background-color: #f6f3ec;
 }

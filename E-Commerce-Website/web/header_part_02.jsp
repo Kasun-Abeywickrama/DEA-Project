@@ -9,22 +9,18 @@
 </head>
 <body>
     <header>
-        <div class="container top-bar">
+        <div class="container-fluid top-bar">
             <div class="row py-2">
-                <div
-                    class="col-md-3 logo d-flex flex-column align-items-center justify-content-center"
-                    >
-                    <span class="sp1">EliteElegance</span>
-                    <span class="sp2">F U R N I T U R E</span>
-                </div>
+                    <div class="col-md-3 logo d-flex flex-column align-items-center justify-content-center">
+                        <a class="logo-active" href="landing-page.jsp" style="font-family: Josefin Sans, sans-serif; font-size: 28px "><span class="sp1">EliteElegance</span></a>
+                        <a class="logo-active" href="landing-page.jsp" style="font-size: 18px"><span class="sp2">F U R N I T U R E</span></a>
+
+                        
+                    </div>
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-8">
-                            <input
-                                type="text "
-                                class="form-control search-input"
-                                placeholder="Search"
-                                />
+                            <input type="text" class="form-control search-input" placeholder="Search" />
                         </div>
                         <div
                             class="col-md-4 d-flex align-items-center justify-content-end"
@@ -54,7 +50,7 @@
                                             </ul>   
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Contact us</a>
+                                            <a class= "nav-link" aria-current="page" href="#">Contact us</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" aria-current="page" href="#">About us</a>
@@ -73,7 +69,7 @@
         </div>
     </header>
 
-    <div class="container content">
+    <div class="container-fluid content">
 
-    <script src="js/header.js"></script>
+        <script src="js/header.js"></script>
 
