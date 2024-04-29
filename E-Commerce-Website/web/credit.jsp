@@ -86,17 +86,18 @@ h4.Card.Number {
     color: #c5c5c5c7;
 }
 h3.Name-on-card {
-    margin-top: -17px;
+    float: left;
+    margin-top: 13px;
     margin-left: 30px;
+    width: 100%;
 }
-
 h4.Name {
     margin-left: 30px;
     margin-top: -6px;
     color: #c5c5c5c7;
 }
 h3.Expiration.Date {
-    margin-top: -19px;
+    margin-top: 71px;
     margin-left: 30px;
     font-family: serif;
 }
@@ -107,7 +108,7 @@ h4.mm {
 }
 h3.CVV {
     margin-left: 320px;
-    margin-top: -77px;
+    margin-top: -41px;
 }
 h4.cvv {
     margin-left: 323px;
@@ -126,6 +127,30 @@ h2.pay-now {
     color: white;
     font-family: Istok -webkit-body;
     font-size: 19px;
+}
+
+input[type="text"] {
+    float: left;
+    width: 30%;
+    margin-left: 28px;
+    border: none;
+}
+
+button.pay {
+    float: left;
+    margin-top: 61px;
+    padding: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: #FC6B03;
+    margin-left: 193px;
+}
+
+input.cvc {
+    float: left;
+    margin-left: 134px;
 }
       </style>
 </head>
@@ -157,20 +182,22 @@ h2.pay-now {
             <img src="images\icons/Rectangle 39.jpg " alt="Rectangle">
             <img src="images\icons/Rectangle 40.png" alt="American">
          </div>
-      
-      <h3 class="card-Number">Card Number*</h2>
-        <h4 class="Card Number">Card Number</h4>
+           <form method="psot">
+      <h3 class="card-Number">Card Number*</h3>
+      <input type="text" name="cnum" placeholder="Card Number">
         <br>
-      <h3 class="Name-on-card">Name on card*</h2>
-         <h4 class="Name">Name on card</h4> 
+      <h3 class="Name-on-card">Name on card*</h3>
+          <input type="text" name="noc" placeholder="Name on card">
          <br>
-      <h3 class="Expiration Date">Expiration Date*</h2>
-         <h4 class="mm">MM/YY</h4>  
-       <h3 class="CVV">CVV*</h2>
-        <h4 class="cvv">CVV</h4>
+      <h3 class="Expiration Date">Expiration Date*</h3>
+         <input type="text" name="edate" placeholder="Expiration Date"> 
+       <h3 class="CVV">CVC*</h2>
+          <input type="text" name="cvc" placeholder="CVC" class="cvc"> 
         <br>
-        <h2 class="pay-now">Pay Now</h1>  
-        </div>  
+        <button class="pay">Pay Now</button>
+        
+        </form>
+           </div>  
 </body>
 
 </html>

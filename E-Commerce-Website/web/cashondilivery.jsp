@@ -96,6 +96,16 @@ h3.confirm.order {
     padding-top: 10px;
 }
 
+button.coder {
+    float: left;
+    margin-left: 168px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #FC6B03;
+    border: none;
+}
+
         </style>
 </head>
 
@@ -119,7 +129,7 @@ h3.confirm.order {
        
        <div class="pay-in-cash">
         <h4 class="paragraph">You can pay in cash to our Courier when<br>  You receive the goods atyour doorstep</h4>
-        <h3 class="confirm order">Confirm Order</h3>
+        <button class="coder">Confirm Order</button>
 
        </div>
     
