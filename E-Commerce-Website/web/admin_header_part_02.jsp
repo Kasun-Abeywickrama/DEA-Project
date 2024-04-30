@@ -29,7 +29,7 @@
 
         <div class="" style="width: 100%;">
             <div class="top-section container">
-                <div class="logo h-100">Furniture Shop</div>
+                <div class="logo h-100"><a href="landing-page.jsp" style="color: black;text-decoration:none">Furniture Shop</a></div>
                 <div class="acc h-100">
                     <i class='bx bxs-user-circle'></i>
                 </div>

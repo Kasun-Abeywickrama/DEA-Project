@@ -39,7 +39,7 @@
         
         
                 <div class="row" style="margin-top: 40px">
-                    <div class="col-lg-6"><img src="<%=img_name %>" width="550" height="400" alt=""/>
+                    <div class="col-lg-6"><img src="<%=img_name %>" width="550" height="400" alt="" style="margin-left: 120px"/>
                     </div>
 
                     <div class="col-lg-6">

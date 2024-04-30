@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
 </head>
 <body>
@@ -25,8 +26,29 @@
                         <div
                             class="col-md-4 d-flex align-items-center justify-content-end"
                             >
-                            <div class="me-4">Cart</div>
-                            <div class="me-3">Hi, Dewmini</div>
+                            <div class="me-4"><a href="checkout_page.jsp" style="color:black">Shopping Cart</a></div>
+                            <%
+                                HttpSession ses1 = request.getSession(false);
+                
+                                if(ses1 != null){
+                                    if(ses1.getAttribute("user_name") != null){
+                            %>
+                                        <div class="me-3">Hi, <%=ses1.getAttribute("user_name") %></div>
+                            <%
+                                    }
+                                    else{
+                            %>
+                                        <div class="me-3">Hi, User</div>
+                            <%
+                                    }
+                                }
+                                else{
+                            %>
+                                    <div class="me-3">Hi, User</div>
+                            <%
+                                }
+                            %>
+                                            
                             <div class="">
                                 <button class="btn btn-sm d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class='bx bx-menu fs-4'></i></button>
                             </div>
@@ -42,7 +64,7 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                            <a class="nav-link active" aria-current="page" href="landing-page.jsp">Home</a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -78,6 +100,23 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
+            <% 
+                HttpSession ses2 = request.getSession(false);
+                
+                if(ses2 != null){
+                    if(ses2.getAttribute("role") != null){
+                        if(Integer.parseInt((String)ses2.getAttribute("role")) == 1){
+            %> 
+                            <div class="mb-4">
+                                <form action="admin_dashboard_page.jsp" style="height: 50px">
+                                    <input type="submit" value="Admin Dashboard" class="w-100 h-100 offcanvas-buttons" />
+                                </form>
+                            </div>
+            <%                    
+                        }
+                    }
+                }
+            %>
             <div class="mb-4">
                 <form action="ReadUserServlet" style="height: 50px">
                     <input type="submit" value="My Account" class="w-100 h-100 offcanvas-buttons" />

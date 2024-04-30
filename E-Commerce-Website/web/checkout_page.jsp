@@ -26,7 +26,12 @@
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        document.body.innerHTML = xhr.responseText;
+                        
+                        tempContainer = document.createElement('div');
+                        tempContainer.innerHTML = xhr.responseText;
+            
+                        extractedSection = tempContainer.querySelector('#section').innerHTML;
+                        document.getElementById("section").innerHTML = extractedSection;
                     }
                 };
 
@@ -43,7 +48,7 @@
 
     <%@include  file="header_part_02.jsp" %>
         
-        <section>
+        <section style="margin-left: 100px" id="section">
             <div class="box">
                 <div class="d-p">
                     <button><i class="ri-add-circle-line"></i>&nbsp;Add New Delivery Address</button>
@@ -279,7 +284,8 @@
                         </div>
                     </div>
                 </div> 
-            </div>   
+            </div>
+            <br><br>
         </section>
     
     <%@include  file="footer.jsp" %>
