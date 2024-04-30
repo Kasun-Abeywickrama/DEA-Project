@@ -12,9 +12,11 @@
     
     
     <style>
-        body{
+       
+   body{
     background-color: #FAF9F6;
 }
+
 .container-row-1 {
     background-color: #FC6B03;
     width: 48px;
@@ -65,7 +67,7 @@ hr.hr2 {
     height: 49px;
     border-radius: 38px;
     margin-left: 890px;
-    margin-top: -67px;
+    margin-top: -61px;
 }
 h3.text3 {
     margin-left: 17px;
@@ -122,14 +124,38 @@ h3.text3 {
     padding-top: 8px;
     padding-bottom: 1px;
 }
+
+button.credit {
+    float: left;
+    margin-top: 55px;
+    margin-left: 56px;
+    padding: 17px;
+    border-radius: 12px;
+    background-color: #FC6B03;
+    border: none;
+    cursor: pointer;
+}
+
+button.cash {
+    float: left;
+    margin-top: 47px;
+    margin-left: 87px;
+    padding: 17px;
+    border-radius: 12px;
+    background-color: #e1e1e18a;
+    border: none;
+    cursor: pointer;
+}
     </style>
    
 </head>
 
 
 <body>
+    
+    
      <div class="main " >
-    <div class="container-method ">
+    <div class="">
         <div class="container-row-1 ">
         <h3 class="text1">1</h3>
         </div>
@@ -148,23 +174,33 @@ h3.text3 {
        
 
 <div class="container-fluid page-wrapper ">
-        <div class="container payment-method ">
-            <div class="container card">
-                <div class="container card-image"><img src="images/card.png" alt=""></div>
-                <div class="container card-name">Credit/Debit Card</div>
-            </div>
-        </div>
-            
-            <div class="container cash-on-dilivery">
-                <div class="container cash"></div>
-                <div class="container cash on dilivery-image"><img src="images/cash.png"alt=""></div>
-                <div class="container cash on dilivery-name">Cash on dilivery</div>
-                </div>
-            </div>
-        
        
+        <% if(request.getParameter("fname") != null && request.getParameter("address") != null && request.getParameter("tel") != null){ %>
+                
+            <form action="credit.jsp" method="post">
+                <input type="hidden" name="fname" value="<%=request.getParameter("fname") %>">
+                <input type="hidden" name="address" value="<%=request.getParameter("address") %>">
+                <input type="hidden" name="tel" value="<%=request.getParameter("tel") %>">
+                <div class="container card-name"><button class="credit" style="color:white; font-weight: bold">Credit/Debit Card</button></div>
+            </form> 
+      
+            
+            
+            <form action="cashondilivery.jsp" method="post">
+                <input type="hidden" name="fname" value="<%=request.getParameter("fname") %>">
+                <input type="hidden" name="address" value="<%=request.getParameter("address") %>">
+                <input type="hidden" name="tel" value="<%=request.getParameter("tel") %>">  
+                <div class="container cash on dilivery-name"><button class="cash" style="color:black; font-weight: bold">Cash on delivery</button></div>
+            </form>
+                
+        <% } %>
+               
+</div>
+        
+        
 
      </div>
+    
 </body>
 </html>
 
