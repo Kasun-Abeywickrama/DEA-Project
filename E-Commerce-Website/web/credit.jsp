@@ -47,6 +47,7 @@ h3.text2 {
     padding-top: 9px;
     font-size: 27px;
     color: white;
+    margin-top: 28px;
 }
 hr.hr2 {
     width: 138px;
@@ -62,7 +63,7 @@ hr.hr2 {
     height: 49px;
     border-radius: 38px;
     margin-left: 890px;
-    margin-top: -61px;
+   margin-top: -46px;
 }
 h3.text3 {
     margin-left: 17px;
@@ -80,6 +81,8 @@ h3.text3 {
 h3.card-Number {
     margin-left: 30px;
     font-family: serif;
+    font-size: 23px;
+    margin-top: 17px;
 }
 h4.Card.Number {
        margin-left: 30px;
@@ -87,9 +90,11 @@ h4.Card.Number {
 }
 h3.Name-on-card {
     float: left;
-    margin-top: 13px;
     margin-left: 30px;
     width: 100%;
+    font-size: 23px;
+    margin-top: 17px;
+    font-family: serif;
 }
 h4.Name {
     margin-left: 30px;
@@ -97,8 +102,10 @@ h4.Name {
     color: #c5c5c5c7;
 }
 h3.Expiration.Date {
-    margin-top: 71px;
-    margin-left: 30px;
+    float: left;
+    margin-left: -153px;
+    font-size: 23px;
+    margin-top: 36px;
     font-family: serif;
 }
 h4.mm {
@@ -107,8 +114,10 @@ h4.mm {
     color: #c5c5c5c7;
 }
 h3.CVV {
-    margin-left: 320px;
-    margin-top: -41px;
+    margin-left: 322px;
+    font-size: 23px;
+    margin-top: 68px;
+    font-family: serif;
 }
 h4.cvv {
     margin-left: 323px;
@@ -150,14 +159,25 @@ button.pay {
 
 input.cvc {
     float: left;
-    margin-left: 134px;
+    margin-left: 321px;
+}
+
+input.ex {
+    float: left;
+    margin-top: 71px;
+    margin-left: -158px;
+}
+
+.arrows2 {
+    margin-top: 1px;
 }
       </style>
 </head>
 
 <body>
 
-         
+          <%@ include file="header_part_01.jsp"%>
+<%@ include file="header_part_02.jsp"%>
     <div class="container-method">
         <div class="container-row-1">
         <h3 class="text1">1</h3>
@@ -190,7 +210,7 @@ input.cvc {
           <input type="text" name="noc" placeholder="Name on card">
          <br>
       <h3 class="Expiration Date">Expiration Date*</h3>
-         <input type="text" name="edate" placeholder="Expiration Date"> 
+         <input type="text" name="edate" placeholder="Expiration Date" class="ex"> 
        <h3 class="CVV">CVC*</h2>
           <input type="text" name="cvc" placeholder="CVC" class="cvc"> 
         <br>
@@ -208,6 +228,8 @@ input.cvc {
         
         
            </div>  
+        
+        <%@include file="footer.jsp" %>
 </body>
 
 </html>
