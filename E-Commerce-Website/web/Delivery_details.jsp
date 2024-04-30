@@ -26,7 +26,8 @@
       </script>
     </head>
     <body class="bg-[#FAF9F6]">
-      
+        
+        
         <br>
   <div class="form bg-white p-4 m-4 w-1/3 mx-auto border rounded-xl" id="2nd_form">
     <form action="SelectPaymentMethod.jsp" method="POST" >
@@ -123,7 +124,5 @@
         });
     });
 </script>
-
-
     </body>
 </html>
