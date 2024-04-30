@@ -75,6 +75,7 @@ h3.text3 {
     width: 542px;
     margin-top: 67px;
     margin-left: 405px;
+    height: 250px;
 }
 img {
     margin-left: 250px;
@@ -128,7 +129,7 @@ h4.Mobile.Number {
     width: 86px;
     height: 36px;
     margin-left: 227px;
-    margin-top: 212px;
+    margin-top: 30px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
