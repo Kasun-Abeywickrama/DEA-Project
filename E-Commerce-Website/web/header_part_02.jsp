@@ -73,7 +73,7 @@
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
 
-                                            <a class="nav-link active" aria-current="page" href="landing-page.jsp">Home</a>
+                                            <a id="nav-link-home" class="nav-link" aria-current="page" href="landing-page.jsp">Home</a>
 
                                         </li>
                                         <li class="nav-item dropdown">
@@ -85,13 +85,13 @@
                                             </ul>   
                                         </li>
                                         <li class="nav-item">
-                                            <a class= "nav-link" aria-current="page" href="contact_us.jsp">Contact us</a>
+                                            <a id="nav-link-contact-us" class= "nav-link" aria-current="page" href="contact_us.jsp">Contact us</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="about_us.jsp">About us</a>
+                                            <a id="nav-link-about-us" class="nav-link" aria-current="page" href="about_us.jsp">About us</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="store_location.jsp">Store location</a>
+                                            <a id="nav-link-store-location" class="nav-link" aria-current="page" href="store_location.jsp">Store location</a>
                                         </li>
                                     </ul>
                                 </div>
