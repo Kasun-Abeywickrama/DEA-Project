@@ -76,7 +76,7 @@
         <%
             if(request.getParameter("alert") != null){
         
-                String alert = (String)request.getParameter("alert");
+                String alert = request.getParameter("alert");
         %>        
                 <script>alert("<%=alert %>");</script>
         <%  
