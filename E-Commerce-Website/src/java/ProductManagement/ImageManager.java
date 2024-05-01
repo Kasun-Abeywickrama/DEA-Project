@@ -1,5 +1,6 @@
 package ProductManagement;
 
+import ResourcePaths.ResourcePaths;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,8 +16,10 @@ import javax.servlet.http.Part;
  */
 public class ImageManager {
 
-    private final String PRODUCT_IMAGES_PATH = "C:/Users/HP/Desktop/Git/Personal/DEA-Project/E-Commerce-Website/web/images/product_images/";
-
+    ResourcePaths p1 = new ResourcePaths();
+    private final String PRODUCT_IMAGES_PATH = p1.getProductImagePath();
+    
+    
     public boolean storeImage(int newId, Part imagePart) {
         // Save the image to the server
         String imagePath = PRODUCT_IMAGES_PATH + newId + ".png";
