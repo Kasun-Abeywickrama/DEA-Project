@@ -58,3 +58,16 @@
 .offcanvas-buttons:hover{
     background-color: #FC6B03;
 }
+
+.serch-resulr-btn{
+    width: 100%;
+    border: none;
+    padding: 8px 0;
+    text-align: left;
+    padding-left: 20px;
+    background-color: transparent;
+}
+
+.serch-resulr-btn:hover{
+    background-color: #FC6B03;
+}

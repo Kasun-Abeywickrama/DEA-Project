@@ -104,7 +104,7 @@
         mainCategories.forEach(function (mainCategory) {
             categoryRow.innerHTML += `
             <div class="col-md-3 px-2 mb-3">
-            <div class="cart-container mb-2" style="width: 100%; height: 300px; background-image: url('images/product_images/`+mainCategory.mainCategoryId+`.png'); background-size: cover; background-position: center;"></div>
+            <div class="cart-container mb-2" style="width: 100%; height: 300px; background-image: url('images/category_images/`+mainCategory.mainCategoryId+`.png'); background-size: cover; background-position: center;"></div>
             <a href="ReadProductsByCategoriesServlet?main_category_id=`+mainCategory.mainCategoryId+`&main_category_name=`+mainCategory.mainCategoryName+`" class="c-n-lable c-lable">`+mainCategory.mainCategoryName+` <i class='bx bxs-chevron-right'></i></a>
         </div>
         `;

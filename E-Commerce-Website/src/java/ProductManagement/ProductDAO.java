@@ -20,6 +20,7 @@ public class ProductDAO {
     private static final String ADD_PRODUCT_SQL = "INSERT INTO product (name, buying_price, selling_price, description, image, sub_category_id) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_PRODUCT_SQL = "UPDATE product SET name = ?, buying_price = ?, selling_price = ?, description = ?, image = ?, sub_category_id = ? WHERE product_id = ?";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM product WHERE product_id = ?";
+    private static final String GET_PRODUCT_BY_SEARCH_SQL = "SELECT product_id, name FROM Product WHERE name LIKE ?";
 
     public static List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
@@ -94,6 +95,40 @@ public class ProductDAO {
             }
         }
         return product;
+    }
+
+    public static List<Product> getProductBySearch(String searchTerm) {
+        List<Product> products = new ArrayList<>();
+
+        DBConnectionManager cob = new DBConnectionManager();
+        Connection connection = cob.getDBConnection();
+        PreparedStatement statement = null;
+
+        try {
+            statement = connection.prepareStatement(GET_PRODUCT_BY_SEARCH_SQL);
+            statement.setString(1, "%" + searchTerm + "%"); // Use wildcard with the search term
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int productId = resultSet.getInt("product_id");
+                String name = resultSet.getString("name");
+                products.add(new Product(productId, name));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error : " + e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    cob.closeDBConnection();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error : Connection closing error");
+            }
+        }
+        return products;
     }
 
     public static int addProduct(Product product) throws SQLException {
