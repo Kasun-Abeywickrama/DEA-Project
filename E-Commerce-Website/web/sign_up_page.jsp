@@ -23,7 +23,7 @@
         <!-- Displaying the message received from the servlet -->
         <%
             if(request.getParameter("message") != null){
-                String message = (String)request.getParameter("message");
+                String message = request.getParameter("message");
                 
                 %>
                 <script>alert("<%=message %>");</script>
