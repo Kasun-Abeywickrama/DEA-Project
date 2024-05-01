@@ -20,8 +20,16 @@
                     </div>
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-md-7">
-                            <input type="text" class="form-control search-input" placeholder="Search" />
+                        <div class="col-md-7 position-relative">
+                            <input type="text" class="form-control search-input" placeholder="Search" id="search-input"/>
+                            <div id="search-result-wrapper" class="position-absolute w-100" style="z-index: 200; display: none; background-color: #f6f3ec;">
+                                <table border="0" class="w-100">
+                                    <tbody id="search-result">
+                                    
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
                         <div
                             class="col-md-5 d-flex align-items-center justify-content-end pe-5"
