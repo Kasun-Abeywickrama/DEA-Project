@@ -39,7 +39,7 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                            <a class="nav-link active" aria-current="page" href="landing-page.jsp">Home</a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,13 +50,13 @@
                                             </ul>   
                                         </li>
                                         <li class="nav-item">
-                                            <a class= "nav-link" aria-current="page" href="#">Contact us</a>
+                                            <a class= "nav-link" aria-current="page" href="contact_us.jsp">Contact us</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">About us</a>
+                                            <a class="nav-link" aria-current="page" href="about_us.jsp">About us</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Store location</a>
+                                            <a class="nav-link" aria-current="page" href="store_location.jsp">Store location</a>
                                         </li>
                                     </ul>
                                 </div>
