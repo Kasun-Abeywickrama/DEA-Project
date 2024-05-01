@@ -20,11 +20,19 @@
                     </div>
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control search-input" placeholder="Search" />
+                        <div class="col-md-7 position-relative">
+                            <input type="text" class="form-control search-input" placeholder="Search" id="search-input"/>
+                            <div id="search-result-wrapper" class="position-absolute w-100" style="z-index: 200; display: none; background-color: #f6f3ec;">
+                                <table border="0" class="w-100">
+                                    <tbody id="search-result">
+                                    
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
                         <div
-                            class="col-md-4 d-flex align-items-center justify-content-end"
+                            class="col-md-5 d-flex align-items-center justify-content-end pe-5"
                             >
                             <div class="me-4"><a href="checkout_page.jsp" style="color:black">Shopping Cart</a></div>
                             <%
@@ -64,10 +72,12 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="landing-page.jsp">Home</a>
+
+                                            <a id="nav-link-home" class="nav-link" aria-current="page" href="landing-page.jsp">Home</a>
+
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a id="nav-link-categories" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Categories
                                             </a>
                                             <ul class="dropdown-menu">
@@ -75,13 +85,13 @@
                                             </ul>   
                                         </li>
                                         <li class="nav-item">
-                                            <a class= "nav-link" aria-current="page" href="#">Contact us</a>
+                                            <a id="nav-link-contact-us" class= "nav-link" aria-current="page" href="contact_us.jsp">Contact us</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">About us</a>
+                                            <a id="nav-link-about-us" class="nav-link" aria-current="page" href="about_us.jsp">About us</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Store location</a>
+                                            <a id="nav-link-store-location" class="nav-link" aria-current="page" href="store_location.jsp">Store location</a>
                                         </li>
                                     </ul>
                                 </div>

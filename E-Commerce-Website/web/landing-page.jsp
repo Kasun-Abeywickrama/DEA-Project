@@ -70,8 +70,8 @@
 
 <div class="row ">
 
-    <div class=" col-md-2 d-flex align-items-canter justify-content-center col-1">
-        <div class="text-box">
+    <div class=" col-md-2 d-flex align-items-center justify-content-center col-1">
+        <div class="text-box" style="height: fit-content">
             <p class="text-start fs-4 fw-bold">We Help You Make Modern Interior</p>
             <p class="text-start">We Help You Make Modern Interior We Help You Make Modern InteriorWe Help You Make Modern InteriorWe Help You Make Modern Interior</p>
         </div>
@@ -84,7 +84,7 @@
 </div>
 
 <div class="container mb-5">
-    <h2 class="text-center mt-5 pt-5 mb-4 fw-bold">Our Products</h2>
+    <h2 class="text-center mt-5 pt-5 mb-5 fw-bold">Our Products</h2>
     <div class="row mb-3 cat-row"> 
         <div class="col-md-3 px-2 mb-3">
             <img src="images/category_images/5.png" class="img-thumbnail" alt="...">
@@ -104,7 +104,7 @@
         mainCategories.forEach(function (mainCategory) {
             categoryRow.innerHTML += `
             <div class="col-md-3 px-2 mb-3">
-            <img src="images/category_images/`+mainCategory.mainCategoryId+`.png" class="img-thumbnail" alt="...">
+            <div class="cart-container mb-2" style="width: 100%; height: 300px; background-image: url('images/category_images/`+mainCategory.mainCategoryId+`.png'); background-size: cover; background-position: center;"></div>
             <a href="ReadProductsByCategoriesServlet?main_category_id=`+mainCategory.mainCategoryId+`&main_category_name=`+mainCategory.mainCategoryName+`" class="c-n-lable c-lable">`+mainCategory.mainCategoryName+` <i class='bx bxs-chevron-right'></i></a>
         </div>
         `;
@@ -127,5 +127,13 @@
 
     getMainCategoriesToCatPanel();
 </script>
+
+ <script>
+        var tabs = document.querySelectorAll('.nav-link');
+        tabs.forEach(function (tab) {
+            tab.classList.remove('active');
+        });
+        document.getElementById('nav-link-home').classList.add('active');
+ </script>
 
 <%@ include file="footer.jsp"%>

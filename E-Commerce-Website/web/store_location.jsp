@@ -17,6 +17,12 @@
             </div>
         </div>
 
-
+<script>
+    var tabs = document.querySelectorAll('.nav-link');
+    tabs.forEach(function (tab) {
+        tab.classList.remove('active');
+    });
+    document.getElementById('nav-link-store-location').classList.add('active');
+</script>
 <%@ include file="footer.jsp"%>
 
