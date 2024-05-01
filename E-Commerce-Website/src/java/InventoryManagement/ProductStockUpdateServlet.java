@@ -194,7 +194,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                         stmt.close();
                         dbcon.closeDBConnection();
                     
-                        response.sendRedirect("inventory_management_page.jsp?alert_message=Stock quantity updated successfuly");
+                        response.sendRedirect("inventory_management_page.jsp?alert_message=Stock quantity updated successfully");
                     }
                 }
                 else{
