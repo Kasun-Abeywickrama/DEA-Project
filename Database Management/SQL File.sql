@@ -13,6 +13,7 @@ first_name varchar(50),
 last_name varchar(50),
 phone_number varchar(20),
 address varchar(200),
+role boolean DEFAULT 0,
 PRIMARY KEY(user_id)
 );
 
@@ -134,77 +135,61 @@ FOREIGN KEY(review_id) REFERENCES Product_review(review_id)
 
 
 INSERT INTO User VALUES 
-(1,'kamal123','a5757ab46ba6bce31ebfef29894a435ce1fdc7c8bf03f6b83f3c85bc7931fa74','kamal@gmail.com','Kamal','Gunerathne','0765800001','Colombo, 12'),
-(2,'nimal456','a5757ab46ba6bce31ebfef29894a435ce1fdc7c8bf03f6b83f3c85bc7931fa74','nimal@gmail.com','Nimal','Gamage','0765800002','Pitipana road, Homagama'),
-(3,'johndoe','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','jogn@gmail.com','John','Doe','0765800003','Godagama, Homagama'),
-(4,'kathrina6789','f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b','kathi@gmail.com','Kathrina','Pierce','0765800004','Poruwadanda, Horana');
+(1,'admin','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','admin@gmail.com','Admin','Account','0765708890','Colombo, 12',1),
+(2,'nonadmin','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','nonadmin@gmail.com','NonAdmin','Account','0765708890','Pitipana road, Homagama',0);
+
 
 INSERT INTO Main_category VALUES 
 (1,'Living Room'),
 (2,'Dining Room'),
-(3,'Bed Room');
+(3,'Bedroom');
 
 INSERT INTO Sub_category VALUES 
-(1,'Sofas',1),
-(2,'Dining Tables',2),
-(3,'Dining Chairs',2),
-(4,'Beds',3),
-(5,'Living Room Chairs',1),
-(6,'Bed Room Cupboards',3),
-(7,'Living Room Tables',1);
-
-INSERT INTO Label VALUES 
-(1,'Color'),
-(2,'Material');
+(1,'Sofas & Couches',1),
+(2,'Coffee Tables',1),
+(3,'Dining Table Sets',2),
+(4,'Dining Chairs',2),
+(5,'Beds',3),
+(6,'Bedroom Cupboards',3);
 
 INSERT INTO Product VALUES 
-(1,'Leather Sofa',33000,43000,'Premium leather sofa','sofa_img.jpg',1),
-(2,'Wooden Dining Table',13000,23000,'Solid wood dining table','table_img.jpg',2),
-(3,'Queen Bed',50000,64000,'Sturdy queen-sized bed','bed.jpg',4),
-(4,'Dining Chair Set',8000,12000,'Set of 4 upholstered dining chairs','chair.png',3);
-
-INSERT INTO Product_Label VALUES 
-(1,1,'Brown'),
-(1,2,'Leather'),
-(2,1,'Brown'),
-(2,2,'Wood'),
-(3,1,'Dark Red'),
-(3,2,'Mahogani Wood'),
-(4,1,'Green'),
-(4,2,'Wood');
+(1,'ZEDGE LEATHER L-SOFA',171200,171200,'This high-quality L-shaped leather sofa is effortlessly smart. perfect for creating a luxurious living area. Its soft leather and button details make it both comfortable and on-trend. The leather version made with high-quality materials has more cuts and stitching than the fabric version. allowing for a different look depending on your choice of material.','sofa_img.jpg',1),
+(2,'DOUBLE DIVAN SOFA',224400,224400,'One sofa. lots of possibilities. Need extra beds or a comfy reading corner? No problem. Just choose the pieces you like combine them as you want and change when you feel like it. Its a great way to add comfy seating to a smaller space or complement a larger sofa in the room. The inside frame of the arm and backrest is cut out and covered with a soft cushion. This makes both the armrest and the backrest very soft and optimizes your comfort.','aa',1),
+(3,'Belvedere Coffee Table',69000,69000,'The contemporary work of the Belevedere coffee table is sturdy and stylish. Its fine structure and timeless design style add class to your living room.','bed.jpg',2),
+(4,'Dexter Coffee Table',48500,48500,'Unifying durability with functionality this hand-crafted coffee table resonates with an antique appeal lending an old-world charm to your living spaces.','chair.png',2),
+(5,'Pearl Dining Suite',75000,75000,'Pearl 5 piece dining suite crafted with treated wood for a solid output. Smooth finish of the beveled edge tabletop with sturdy legs brings out a satisfactory appeal. Sufficiently spaced fabric chairs with attractive wooden backrest patterns allows comfortable dining.','22.png',3),
+(6,'Nevada Dining Suite',188000,188000,'Create unique experiences in your family get-togethers with the precisely finished vast spaciousness of the Nevada 9 piece dining suite. Thick tabletop with bobbin patterned and tapered legs brings a satisfactory feel where the large fabric chairs with curvy backrests exhibits classiness.','1.png',3),
+(7,'Wellington Wooden Dining Chair',18000,18000,'Unique dining chair made out of treated wood that composites a classical touch. Smoothly connected back rest panels with a slight curve provides a comforting posture where the padded seat leads to softness.','dd',4),
+(8,'Nevada Wooden Dining Chair',15000,15000,'An exceptional chair design with stretched vertical slat back and bulky structure to bring a supreme feel. Sturdiness of treated wood with soft fabric upholstered seat allows comfortable seating.','ff',4),
+(9,'Ardly Bed',65000,65000,'Exceptionally simple and sophisticated. the Ardly bed along with the bedside cupboards can add a minimalistic sense of elegance to your bedroom.','gg',5),
+(10,'Athena Bed',110500,110500,'Contemporary design coupled with excellent craftsmanship. The Athena units compliment your bedroom with a touch of elegance & novelty.','kk',5),
+(11,'Regent 2 Door Wardrobe (KWRE 002)',50000,50000,'Tall and slender design with lockable swing doors. Comes with a hanger bar and a drawer and generously spaced shelves for a much organised arrangement. Scratch resistant melamine faced structure will ensure durability whereas large handles will encourage effortless operation.','gg',6),
+(12,'Beverly 2 Door Wardrobe KWB 002',74000,74000,'A product with a clean finish that brings neatness to your bedroom. Fine swing doors with chrome detailed handles and spacious shelves. Dedicated hanging compartment will preserve the freshness of your clothes whereas the drawer will accommodate your valuables.','gg',6);
 
 INSERT INTO Product_stock VALUES
-(1,'Nimal Senadeera','2024-04-08 15:30:00',40000,20,18,1),
-(2,'Kamal Siripala','2024-04-12 15:30:00',20000,10,10,2),
-(3,'Sahan Nilgama','2025-04-08 15:30:00',50000,5,5,1),
-(4,'Sahan Nilgama','2025-04-08 15:30:00',50000,10,10,4);
+(1,'Nimal Senadeera','2024-04-08 15:30:00',150000,6,5,1),
+(2,'Kamal Siripala','2024-04-09 15:30:00',200000,5,5,2),
+(3,'Sahan Nilgama','2024-04-11 15:30:00',50000,5,5,3),
+(4,'Sahan Nilgama','2024-04-12 15:30:00',40000,6,5,4),
+(5,'Kamal Siripala','2024-04-12 15:30:00',60000,5,5,5),
+(6,'Kamal Siripala','2024-04-13 15:30:00',150000,5,5,6),
+(7,'Nimal Senadeera','2024-04-14 15:30:00',10000,5,5,7),
+(8,'Nimal Senadeera','2024-04-15 15:30:00',10000,5,5,8),
+(9,'Sahan Nilgama','2024-04-16 15:30:00',40000,6,5,9),
+(10,'Sahan Nilgama','2024-04-17 15:30:00',90000,5,5,10),
+(11,'Kamal Siripala','2024-04-18 15:30:00',40000,6,5,11),
+(12,'Kamal Siripala','2024-04-20 15:30:00',50000,5,5,12);
 
+INSERT INTO Orders VALUES
+(1,'2024-04-20 15:30:00',171200,'Pending', 'Colombo 12', 'Nimal Gunerathne', '0777306578', 2),
+(2,'2024-04-25 15:30:00',115000,'Dispatched','Colombo 9', 'Boyd Dias', '0777107890', 2),
+(3,'2024-04-25 15:30:00',48500,'Delivered','Horana 10','Kamal Gunasignha', '0765798899',2);
 
-INSERT INTO Orders VALUES 
-(1,'2024-04-08 15:30:00',66000,'Pending','Pitipana road, Homagama','Kamal Gunerathne','0765800001',1),
-(2,'2024-04-12 07:30:00',35000,'Completed','Godagama road, Homagama','John Doe','0765800003',3),
-(3,'2024-05-12 09:30:00',55000,'Pending','Pitipana road, Homagama','Kathrina Pierece','0765800004',4),
-(4,'2024-06-12 09:30:00',36000,'Completed','Godagama road, Homagama','Kamal Gunerathne','0765800001',1);
-
-INSERT INTO Orders_Product VALUES 
-(1,43000,1,1,1),
-(2,23000,1,1,2),
-(3,23000,1,2,2),
-(4,12000,1,2,4),
-(5,43000,1,3,1),
-(6,12000,1,3,4),
-(7,12000,3,4,4);
-
-
-INSERT INTO Product_review VALUES
-(1,'This product is highly appreciated',1,1),
-(2,'This product is quite bad, not good',1,2),
-(3,'This product is highly appreciated',2,4);
-
-INSERT INTO Review_image VALUES
-(1,'image1.png',1),
-(2,'image2.jpeg',1),
-(3,'image3.png',3);
+INSERT INTO Orders_Product VALUES
+(1,171200,1,1,1),
+(2,65000,1,2,9),
+(3,50000,1,2,11),
+(4,48500,1,3,4);
 
 
 

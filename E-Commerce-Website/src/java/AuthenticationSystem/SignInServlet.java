@@ -68,6 +68,7 @@ public class SignInServlet extends HttpServlet {
                     response.sendRedirect("landing-page.jsp");
                 }
                 
+
             } else {
                 // Authentication failed
 //                response.getWriter().println("");

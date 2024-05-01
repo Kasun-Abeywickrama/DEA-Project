@@ -72,6 +72,8 @@
                 xhr.send("search_string="+searchString);
             };
         </script>
+        
+            <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Inventory Products </i></p>
                
                 <form id="search_form" onsubmit="searchProduct(event)">
                     <center>

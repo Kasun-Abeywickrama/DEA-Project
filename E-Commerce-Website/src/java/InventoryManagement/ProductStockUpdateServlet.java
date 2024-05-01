@@ -41,7 +41,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             LocalDateTime dt = LocalDateTime.now();
             
-            DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
+            DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             
             String newdt = dtformat.format(dt);
             
@@ -121,7 +121,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             LocalDateTime dt = LocalDateTime.now();
             
-            DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
+            DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             
             String newdt = dtformat.format(dt);
             
@@ -170,7 +170,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             LocalDateTime dt = LocalDateTime.now();
             
-            DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
+            DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             
             String newdt = dtformat.format(dt);
             
