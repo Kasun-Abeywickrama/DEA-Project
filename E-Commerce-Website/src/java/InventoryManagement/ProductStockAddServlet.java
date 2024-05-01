@@ -63,17 +63,15 @@ public class ProductStockAddServlet extends HttpServlet {
                 rs.close();
                 stmt.close();
                 dbcon.closeDBConnection();
-                        
-                request.setAttribute("alert_message", "Stock added successfully");
-                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);   
+                
+                response.sendRedirect("inventory_management_page.jsp?alert_message=Stock added successfully");
             }
             else{
                 rs.close();
                 stmt.close();
                 dbcon.closeDBConnection();
-                        
-                request.setAttribute("alert_message", "Product does not exist");
-                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                
+                response.sendRedirect("inventory_management_page.jsp?alert_message=Product does not exist");
             }  
         }
         catch(SQLException e){
