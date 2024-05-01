@@ -6,7 +6,14 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    String userName = "Plase sign in";
+    HttpSession session1 = request.getSession(false);
 
+    if (session1.getAttribute("user_name") != null) {
+        userName = (String) session1.getAttribute("user_name");
+    }
+%>
 </head>
 <body>
     <div class="container-fluid d-flex wrapper">
@@ -20,7 +27,7 @@
                     <li title="Dashboard"><a href="admin_dashboard_page.jsp"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></li>
                     <li title="Orders"><a href="orders_page.jsp"><i class='bx bx-list-check'></i><span>Orders</span></a></li>
                     <li title="Products"><a href="view_all_products_page.jsp"><i class='bx bxs-package'></i><span>Products</span></a></li>
-                    <li title="Inventory"><a href="inventory_management_page.jsp"><i class='bx bx-candles' ></i><span>Inventory</span></a></li>
+                    <li title="Inventory"><a hryef="inventory_management_page.jsp"><i class='bx bx-candles' ></i><span>Inventory</span></a></li>
                     <li title="Categories"><a href="category_management_page.jsp"><i class='bx bx-category'></i><span>Categories</span></a></li>
                     <li class="log-out-btn" title="Log out"><a href="#"><i class='bx bx-log-out'></i><span>Log out</span></a></li>
                 </ul>
@@ -29,9 +36,9 @@
 
         <div class="" style="width: 100%;">
             <div class="top-section container">
-                <div class="logo h-100"><a href="landing-page.jsp" style="color: black;text-decoration:none">Furniture Shop</a></div>
+                <div class="logo h-100"><a href="admin_dashboard_page.jsp" style="color: black;text-decoration:none">Furniture Shop</a></div>
                 <div class="acc h-100">
-                    <i class='bx bxs-user-circle'></i>
+                    Hi, <%=userName%>
                 </div>
             </div>
 
