@@ -79,6 +79,23 @@
             searchResultWrapper.style.display = "none";
         }
     });
+
+    document.addEventListener('click', function (event) {
+        var searchResultWrapper = document.getElementById('search-result-wrapper');
+        
+        // Check if the click occurred outside of searchResultWrapper
+        if (!searchResultWrapper.contains(event.target)) {
+            
+            document.getElementById('search-input').value = "";
+            
+            var searchResult = document.getElementById("search-result");
+            searchResult.innerHTML = "";
+            
+            var searchResultWrapper = document.getElementById("search-result-wrapper");
+            searchResultWrapper.style.display = "none";
+
+        }
+    });
 </script>
 
 </body>
