@@ -32,6 +32,12 @@ public class Product {
         this.image = image;
         this.subCategoryId = subCategoryId;
     }
+    
+    //constructor for productId and name only
+    public Product(int productId, String name) {
+        this.productId = productId;
+        this.name = name;
+    }
 
     public int getProductId() {
         return productId;
