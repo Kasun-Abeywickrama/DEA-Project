@@ -64,7 +64,9 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
-                                            <a id="nav-link-home" class="nav-link" aria-current="page" href="landing-page.jsp">Home</a>
+
+                                            <a class="nav-link active" aria-current="page" href="landing-page.jsp">Home</a>
+
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a id="nav-link-categories" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,14 +76,14 @@
                                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                             </ul>   
                                         </li>
-                                        <li id="nav-link-contactus" class="nav-item">
-                                            <a class= "nav-link" aria-current="page" href="#">Contact us</a>
+                                        <li class="nav-item">
+                                            <a class= "nav-link" aria-current="page" href="contact_us.jsp">Contact us</a>
                                         </li>
-                                        <li id="nav-link-about-us" class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">About us</a>
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="about_us.jsp">About us</a>
                                         </li>
-                                        <li id="" class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="#">Store location</a>
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="store_location.jsp">Store location</a>
                                         </li>
                                     </ul>
                                 </div>
