@@ -117,4 +117,5 @@
     });
     document.getElementById('nav-link-about-us').classList.add('active');
 </script>
+
 <%@ include file="footer.jsp"%>
