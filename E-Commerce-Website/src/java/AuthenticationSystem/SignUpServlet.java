@@ -47,12 +47,13 @@ public class SignUpServlet extends HttpServlet {
             //if the username is already taken, sending a message
             //Otherwise, storing the data and sending a message
             while(rs.next()){
-                        
+                       
+                rs.close();
+                stmt.close();
                 //Closing db connection
                 dbcon.closeDBConnection();
-
-                request.setAttribute("message", "The username already taken, Please select another username");
-                request.getRequestDispatcher("/sign_up_page.jsp").forward(request,response);
+                
+                response.sendRedirect("sign_up_page.jsp?message=The username already taken, Please select another username");
                 return;
             }
               
@@ -63,6 +64,8 @@ public class SignUpServlet extends HttpServlet {
             //Executing the sql query to store the data
             stmt.executeUpdate("INSERT INTO User(username, password) VALUES('"+username+"', '"+hashed_password+"');");
 
+            rs.close();
+            stmt.close();
             //Close database connection
             dbcon.closeDBConnection();
                     
