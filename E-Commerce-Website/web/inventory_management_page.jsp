@@ -40,7 +40,7 @@
         <%
             if(request.getParameter("alert_message") != null){
         
-                String alert_message = (String)request.getParameter("alert_message");
+                String alert_message = request.getParameter("alert_message");
         %>        
                 <script>alert("<%=alert_message %>");</script>
         <%  
