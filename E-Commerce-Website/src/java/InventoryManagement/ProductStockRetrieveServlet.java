@@ -91,8 +91,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
                     stmt.close();
                     dbcon.closeDBConnection();
 
-                    request.setAttribute("alert_message", "Product does not exist");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Product does not exist");
                 }
             }
             catch(SQLException e){
@@ -133,8 +132,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
                     stmt.close();
                     dbcon.closeDBConnection();
 
-                    request.setAttribute("alert_message", "Stock does not exist");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock does not exist");
                 }
             }
             catch(SQLException e){

@@ -96,7 +96,7 @@ public class ProductViewServlet extends HttpServlet {
 
             response.addCookie(ck);
 
-            response.sendRedirect("landing-page.jsp");    
+            response.sendRedirect("landing-page.jsp?alert=Product Successfully Added to the Cart");    
         }  
     }
 

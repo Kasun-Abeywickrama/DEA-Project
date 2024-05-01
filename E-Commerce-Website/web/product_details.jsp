@@ -4,10 +4,14 @@
     Author     : HP
 --%>
 
+<%@page import="ResourcePaths.ResourcePaths"%>
 <%@page import="ProductView.ProductViewDetails"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%
+    ResourcePaths p1 = new ResourcePaths();
+    String PRODUCT_IMAGES_PATH = p1.getRelativeProductImagePath();
+%>
 <%@include  file="header_part_01.jsp" %>
 
 <title>Product Details</title>
@@ -18,7 +22,7 @@
 <%  if (request.getAttribute("product_details") != null) {
 
         ProductViewDetails p = (ProductViewDetails) request.getAttribute("product_details");
-        String img_name = "images/product_images/" + p.getProductId() + ".png";
+        String img_name = PRODUCT_IMAGES_PATH + p.getProductId() + ".png";
 %>
 
 <script>

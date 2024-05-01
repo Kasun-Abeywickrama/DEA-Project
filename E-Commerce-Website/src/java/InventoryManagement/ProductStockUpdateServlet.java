@@ -73,17 +73,15 @@ public class ProductStockUpdateServlet extends HttpServlet {
                             stmt.close();
                             dbcon.closeDBConnection();
 
-                            request.setAttribute("alert_message", "Stock details updated successfully");
-                            request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
+                            response.sendRedirect("inventory_management_page.jsp?alert_message=Stock details updated successfully");
                         }
                         else{
                                 
                             rs2.close();
                             stmt.close();
                             dbcon.closeDBConnection();
-                                
-                            request.setAttribute("alert_message", "Unable to update the details of the stock, Already purchased in several orders");
-                            request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
+                            
+                            response.sendRedirect("inventory_management_page.jsp?alert_message=Unable to update the details of the stock, Already purchased in several orders");
                         }
                     }
                     else{
@@ -93,8 +91,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                         stmt.close();
                         dbcon.closeDBConnection();
 
-                        request.setAttribute("alert_message", "Stock details updated successfully");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
+                        response.sendRedirect("inventory_management_page.jsp?alert_message=Stock details updated successfully"); 
                     }     
                 }
                 else{
@@ -102,8 +99,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                     stmt.close();
                     dbcon.closeDBConnection();
                         
-                    request.setAttribute("alert_message", "Stock does not exist");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock does not exist"); 
                 }  
             }
             catch(SQLException e2){
@@ -143,16 +139,14 @@ public class ProductStockUpdateServlet extends HttpServlet {
                     stmt.close();
                     dbcon.closeDBConnection();
                         
-                    request.setAttribute("alert_message", "Stock quantity updated successfully");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response); 
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock quantity updated successfully"); 
                 }
                 else{
                     rs.close();
                     stmt.close();
                     dbcon.closeDBConnection();
 
-                    request.setAttribute("alert_message", "Stock does not exist");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock does not exist");
                 } 
             }
             catch(SQLException e){
@@ -191,8 +185,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                         stmt.close();
                         dbcon.closeDBConnection();
                                 
-                        request.setAttribute("alert_message", "Not enough quantity to remove");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                        response.sendRedirect("inventory_management_page.jsp?alert_message=Not enough quantity to remove");
                     }
                     else{
                         stmt.executeUpdate("UPDATE Product_stock SET supplied_quantity = supplied_quantity-"+remove_quantity+", available_quantity = available_quantity-"+remove_quantity+", date_time = '"+newdt+"' WHERE stock_id = "+stock_id+" ;");
@@ -201,8 +194,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                         stmt.close();
                         dbcon.closeDBConnection();
                     
-                        request.setAttribute("alert_message", "Stock quantity updated successfuly");
-                        request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                        response.sendRedirect("inventory_management_page.jsp?alert_message=Stock quantity updated successfully");
                     }
                 }
                 else{
@@ -210,8 +202,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                     stmt.close();
                     dbcon.closeDBConnection();
 
-                    request.setAttribute("alert_message", "Stock does not exist");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock does not exist");
                 }  
             }
             catch(SQLException e){

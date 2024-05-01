@@ -4,11 +4,15 @@
     Author     : dewmi
 --%>
 
+<%@page import="ResourcePaths.ResourcePaths"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="header_part_01.jsp"%>
 <%@ include file="header_part_02.jsp"%>
-
+<%
+    ResourcePaths p1 = new ResourcePaths();
+    String CATEGORY_IMAGES_PATH = p1.getRelativeCategoryImagePath();
+%>
 <style>
     .padding-0{
         padding: 0;
@@ -68,6 +72,17 @@
     
 </style>
 
+        <!-- Displaying the alert message -->
+        <%
+            if(request.getParameter("alert") != null){
+        
+                String alert = (String)request.getParameter("alert");
+        %>        
+                <script>alert("<%=alert %>");</script>
+        <%  
+            }
+        %>
+
 <div class="row ">
 
     <div class=" col-md-2 d-flex align-items-center justify-content-center col-1">
@@ -104,7 +119,7 @@
         mainCategories.forEach(function (mainCategory) {
             categoryRow.innerHTML += `
             <div class="col-md-3 px-2 mb-3">
-            <div class="cart-container mb-2" style="width: 100%; height: 300px; background-image: url('images/category_images/`+mainCategory.mainCategoryId+`.png'); background-size: cover; background-position: center;"></div>
+            <div class="cart-container mb-2" style="width: 100%; height: 300px; background-image: url('<%=CATEGORY_IMAGES_PATH%>`+mainCategory.mainCategoryId+`.png'); background-size: cover; background-position: center;"></div>
             <a href="ReadProductsByCategoriesServlet?main_category_id=`+mainCategory.mainCategoryId+`&main_category_name=`+mainCategory.mainCategoryName+`" class="c-n-lable c-lable">`+mainCategory.mainCategoryName+` <i class='bx bxs-chevron-right'></i></a>
         </div>
         `;
@@ -137,3 +152,4 @@
  </script>
 
 <%@ include file="footer.jsp"%>
+

@@ -38,9 +38,9 @@
         
         <!-- Displaying the alert message -->
         <%
-            if(request.getAttribute("alert_message") != null){
+            if(request.getParameter("alert_message") != null){
         
-                String alert_message = (String)request.getAttribute("alert_message");
+                String alert_message = (String)request.getParameter("alert_message");
         %>        
                 <script>alert("<%=alert_message %>");</script>
         <%  
