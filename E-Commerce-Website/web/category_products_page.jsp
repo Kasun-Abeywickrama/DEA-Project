@@ -4,6 +4,7 @@
     Author     : dewmi
 --%>
 
+<%@page import="ResourcePaths.ResourcePaths"%>
 <%@page import="ProductManagement.ReadProductsByCategoriesFunctions"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +13,9 @@
 <%
     String mainCategoryId = request.getParameter("main_category_id");
     String mainCategoryName = request.getParameter("main_category_name");
+    
+    ResourcePaths p1 = new ResourcePaths();
+    String PRODUCT_IMAGES_PATH = p1.getRelativeProductImagePath();
 %>
 
 <%@ include file="header_part_01.jsp"%>
@@ -56,7 +60,7 @@
                 String[] productDetails = product.split(", ");
         %>
         <div class="col-md-3 mb-5 ">
-            <div class="cart-container mb-2" style="width: 100%; height: 300px; background-image: url('images/product_images/<%= productDetails[0]%>.png'); background-size: cover; background-position: center;"></div>
+            <div class="cart-container mb-2" style="width: 100%; height: 300px; background-image: url('<%=PRODUCT_IMAGES_PATH + productDetails[0]%>.png'); background-size: cover; background-position: center;"></div>
             <h6><%= productDetails[1]%></h6>
             <h6><%= productDetails[4]%></h6>
             <h5>Rs. <%= productDetails[2]%></h5>
