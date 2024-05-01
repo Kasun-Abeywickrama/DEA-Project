@@ -15,12 +15,12 @@ import java.sql.Statement;
  */
 public class OrderDAO {
 
-    private static final String GET_ALL_ORDERS_SQL = "SELECT * FROM orders";
+    private static final String GET_ALL_ORDERS_SQL = "SELECT * FROM orders ORDER BY order_id DESC";
     private static final String GET_ORDER_BY_ID_SQL = "SELECT * FROM orders WHERE order_id = ?";
     private static final String ADD_ORDER_SQL = "INSERT INTO orders (date_time, total_price, status, shipping_address, receiver_name, receiver_phone_number, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_ORDER_SQL = "UPDATE orders SET date_time = ?, total_price = ?, status = ?, shipping_address = ?, receiver_name = ?, receiver_phone_Number = ?, user_id = ? WHERE order_id = ?";
     private static final String DELETE_ORDER_SQL = "DELETE FROM orders WHERE order_id = ?";
-    private static final String GET_ORDERS_BY_STATUS_SQL = "SELECT * FROM orders WHERE status = ?";
+    private static final String GET_ORDERS_BY_STATUS_SQL = "SELECT * FROM orders WHERE status = ? ORDER BY order_id DESC";
     private static final String UPDATE_ORDER_STATUS_SQL = "UPDATE orders SET status = ? WHERE order_id = ?";
 
     public static List<Order> getOrders() throws SQLException {
