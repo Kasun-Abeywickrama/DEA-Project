@@ -68,6 +68,17 @@
     
 </style>
 
+        <!-- Displaying the alert message -->
+        <%
+            if(request.getParameter("alert") != null){
+        
+                String alert = (String)request.getParameter("alert");
+        %>        
+                <script>alert("<%=alert %>");</script>
+        <%  
+            }
+        %>
+
 <div class="row ">
 
     <div class=" col-md-2 d-flex align-items-center justify-content-center col-1">
