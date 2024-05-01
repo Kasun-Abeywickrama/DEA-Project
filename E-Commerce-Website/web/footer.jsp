@@ -27,10 +27,10 @@
                     </div>
                 </div>
                 <div class="col-md li-info1">
-                    <div class="lin1"><a href="" style="text-decoration: none; color: black;" >Our products</a></div>
-                    <div class="lin1"><a href="" style="text-decoration: none; color: black;">Contact us</a></div>
-                    <div class="lin1"><a href="" style="text-decoration: none; color: black;">About us</a></div>
-                    <div class="lin1"><a href="" style="text-decoration: none;color: black;">Store location</a></div>
+                    <div class="lin1"><a href="landing-page.jsp" style="text-decoration: none; color: black;">Categories</a></div>
+                    <div class="lin1"><a href="contact_us.jsp" style="text-decoration: none; color: black;">Contact us</a></div>
+                    <div class="lin1"><a href="about_us.jsp" style="text-decoration: none; color: black;">About us</a></div>
+                    <div class="lin1"><a href="store_location.jsp" style="text-decoration: none; color: black;">Store location</a></div>
 
                 </div>
             </div>
