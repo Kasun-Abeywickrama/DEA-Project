@@ -36,6 +36,8 @@ public class ProductStock {
         availableQuantity = aq;
     }
     
+    
+    //Getters
     public int getProductId(){
         return productId;
     }
@@ -62,6 +64,36 @@ public class ProductStock {
     
     public int getAvailableQuantity(){
         return availableQuantity;
+    }
+    
+    
+    //Setters
+    public void setProductId(int pid){
+        productId = pid;
+    }
+    
+    public void setStockId(int sid){
+        stockId = sid;
+    }
+    
+    public void setSupplierName(String name){
+        supplierName = name;
+    }
+    
+    public void setDateTime(String dt){
+        dateTime = dt;
+    }
+    
+    public void setBuyingPrice(float bp){
+        buyingPrice = bp;
+    }
+    
+    public void setSuppliedQuantity(int q){
+        suppliedQuantity = q;
+    }
+    
+    public void setAvailableQuantity(int q){
+        availableQuantity = q;
     }
     
 }
