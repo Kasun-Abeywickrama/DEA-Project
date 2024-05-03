@@ -6,7 +6,14 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    String userName = "Plase sign in";
+    HttpSession session1 = request.getSession(false);
 
+    if (session1.getAttribute("user_name") != null) {
+        userName = (String) session1.getAttribute("user_name");
+    }
+%>
 </head>
 <body>
     <div class="container-fluid d-flex wrapper">
@@ -29,9 +36,9 @@
 
         <div class="" style="width: 100%;">
             <div class="top-section container">
-                <div class="logo h-100">Furniture Shop</div>
+                <div class="logo h-100"><a href="admin_dashboard_page.jsp" style="color: black;text-decoration:none">Furniture Shop</a></div>
                 <div class="acc h-100">
-                    <i class='bx bxs-user-circle'></i>
+                    Hi, <%=userName%>
                 </div>
             </div>
 

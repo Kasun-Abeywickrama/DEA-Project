@@ -22,8 +22,8 @@
         
         <!-- Displaying the message received from the servlet -->
         <%
-            if(request.getAttribute("message") != null){
-                String message = (String)request.getAttribute("message");
+            if(request.getParameter("message") != null){
+                String message = request.getParameter("message");
                 
                 %>
                 <script>alert("<%=message %>");</script>

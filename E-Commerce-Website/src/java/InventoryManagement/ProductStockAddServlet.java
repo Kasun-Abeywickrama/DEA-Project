@@ -39,45 +39,23 @@ public class ProductStockAddServlet extends HttpServlet {
         float buying_price = Float.parseFloat(request.getParameter("buying_price"));
         
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-            
-        LocalDateTime dt = LocalDateTime.now();
-            
-        DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
-            
-        String newdt = dtformat.format(dt);
-            
-        DBConnectionManager dbcon = new DBConnectionManager();
+ 
+        InventoryManagementModel model = new InventoryManagementModel();
                 
         try{
                     
-            Connection connection = dbcon.getDBConnection();
-                    
-            Statement stmt = connection.createStatement();
-                    
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Product WHERE product_id = "+product_id+";");
-                    
-            if(rs.next()){
-                        
-                stmt.executeUpdate("INSERT INTO Product_stock(supplier_name, date_time, buying_price, supplied_quantity, available_quantity, product_id) VALUES('"+supplier_name+"', '"+newdt+"', "+buying_price+", "+quantity+", "+quantity+", "+product_id+");");
-                        
-                rs.close();
-                stmt.close();
-                dbcon.closeDBConnection();
-                        
-                request.setAttribute("alert_message", "Stock added successfully");
-                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);   
+            String message = model.addProductStock(product_id, supplier_name, buying_price, quantity);
+            
+            if(message != null){
+                response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
             }
             else{
-                rs.close();
-                stmt.close();
-                dbcon.closeDBConnection();
-                        
-                request.setAttribute("alert_message", "Product does not exist");
-                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-            }  
+                response.sendRedirect("inventory_management_page.jsp?alert_message=Product Does Not Exist");
+            }
+            
         }
         catch(SQLException e){
-            response.getWriter().println(e);
+            response.sendRedirect("inventory_management_page.jsp?alert_message=Error Inserting Record");
         } 
     } 
     

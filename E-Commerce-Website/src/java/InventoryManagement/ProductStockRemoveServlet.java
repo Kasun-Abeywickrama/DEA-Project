@@ -32,53 +32,21 @@ public class ProductStockRemoveServlet extends HttpServlet {
         //Remove a stock    
         int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
-        DBConnectionManager dbcon = new DBConnectionManager();
+        InventoryManagementModel model = new InventoryManagementModel();
                 
         try{
                     
-            Connection connection = dbcon.getDBConnection();
-                    
-            Statement stmt = connection.createStatement();
-                    
-            ResultSet rs1 = stmt.executeQuery("SELECT * FROM Product_stock WHERE stock_id = "+stock_id+";");
-                    
-            if(rs1.next()){
-                        
-                rs1.close();
-                    
-                ResultSet rs2 = stmt.executeQuery("SELECT * FROM Orders_Product WHERE stock_id="+stock_id+";");
-                    
-                if(!(rs2.next())){
-                        
-                    rs2.close();
-                    stmt.executeUpdate("DELETE FROM Product_stock WHERE stock_id="+stock_id+";");
-                        
-                    stmt.close();
-                    dbcon.closeDBConnection();
-                        
-                    request.setAttribute("alert_message", "Stock removed successfully");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                }
-                else{
-                    rs2.close();
-                    stmt.close();
-                    dbcon.closeDBConnection();
-                        
-                    request.setAttribute("alert_message", "Unable to remove the stock, Already purchased in several orders");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-                } 
+            String message = model.removeProductStock(stock_id);
+            
+            if(message != null){
+                response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
             }
             else{
-                rs1.close();
-                stmt.close();
-                dbcon.closeDBConnection();
-                        
-                request.setAttribute("alert_message", "Stock does not exist");
-                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
-            }  
+                response.sendRedirect("inventory_management_page.jsp?alert_message=Stock Does Not Exist");
+            }
         }
         catch(SQLException e){
-            response.getWriter().println(e);
+            response.sendRedirect("inventory_management_page.jsp?alert_message=Error Deleting Record");
         }
     } 
     
