@@ -56,16 +56,14 @@ public class ProductStockRemoveServlet extends HttpServlet {
                     stmt.close();
                     dbcon.closeDBConnection();
                         
-                    request.setAttribute("alert_message", "Stock removed successfully");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock removed successfully");
                 }
                 else{
                     rs2.close();
                     stmt.close();
                     dbcon.closeDBConnection();
                         
-                    request.setAttribute("alert_message", "Unable to remove the stock, Already purchased in several orders");
-                    request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                    response.sendRedirect("inventory_management_page.jsp?alert_message=Unable to remove the stock, Already purchased in several orders");
                 } 
             }
             else{
@@ -73,8 +71,7 @@ public class ProductStockRemoveServlet extends HttpServlet {
                 stmt.close();
                 dbcon.closeDBConnection();
                         
-                request.setAttribute("alert_message", "Stock does not exist");
-                request.getRequestDispatcher("/inventory_management_page.jsp").forward(request,response);
+                response.sendRedirect("inventory_management_page.jsp?alert_message=Stock does not exist");
             }  
         }
         catch(SQLException e){

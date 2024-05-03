@@ -34,6 +34,8 @@
         </script>
     
     <%@include file="admin_header_part_02.jsp" %>
+    
+        <p style="color: #E97000;"><i>Dashboard &nbsp;>&nbsp; Admin Dashboard </i></p><br>
                 
             <div class="row">   
                 <div class="col-lg-6" id="col1">

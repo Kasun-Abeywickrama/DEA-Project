@@ -18,6 +18,8 @@
         <script src="js/javascript_validation.js"></script>
     
     <%@include file="admin_header_part_02.jsp" %>
+    
+        <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Update Product Stock </i></p>
                 
                 <%
                     if(request.getAttribute("stock_details") != null 

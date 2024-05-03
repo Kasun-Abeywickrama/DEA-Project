@@ -38,9 +38,9 @@
         
         <!-- Displaying the alert message -->
         <%
-            if(request.getAttribute("alert_message") != null){
+            if(request.getParameter("alert_message") != null){
         
-                String alert_message = (String)request.getAttribute("alert_message");
+                String alert_message = request.getParameter("alert_message");
         %>        
                 <script>alert("<%=alert_message %>");</script>
         <%  
@@ -72,6 +72,8 @@
                 xhr.send("search_string="+searchString);
             };
         </script>
+        
+            <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Inventory Products </i></p>
                
                 <form id="search_form" onsubmit="searchProduct(event)">
                     <center>

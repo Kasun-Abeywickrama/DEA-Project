@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+.btn.btn-warning.my-2.my-sm-0 {
+    color: white;
+    background-color: #FC6B03;
+    border: none;
+}
+
+#btn1, #btn2, #btn3, #btn4 {
+    height: 35px;
+    font-size: 15px;
+}

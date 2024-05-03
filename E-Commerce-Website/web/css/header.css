@@ -1,0 +1,73 @@
+.logo {
+    height: 80px;
+}
+
+.logo-active{
+    text-decoration: none;
+    color: #603400;
+
+
+}
+
+.logo > .sp1 {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 28px;
+    margin-bottom: -8px;
+    color: #603400;
+}
+.logo > .sp2 {
+    font-size: 18px;
+    color: #603400;
+}
+
+ 
+.top-bar {
+    background-color: #f6f3ec;
+}
+
+.form-control {
+    border-color: #967e61;
+}
+
+.form-control:focus {
+    border-color: #967e61;
+    box-shadow: 0 0 0 0.2rem rgba(233, 112, 0, 0.25);
+}
+
+.navbar-collapse{
+    margin-bottom: -40px;;
+}
+
+.nav-link{
+    padding: 6px 30px !important;
+}
+
+.active{
+    background-color: black;
+    color: white !important;
+    border-radius: 5px;
+}
+
+
+.offcanvas-buttons{
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+}
+
+.offcanvas-buttons:hover{
+    background-color: #FC6B03;
+}
+
+.serch-resulr-btn{
+    width: 100%;
+    border: none;
+    padding: 8px 0;
+    text-align: left;
+    padding-left: 20px;
+    background-color: transparent;
+}
+
+.serch-resulr-btn:hover{
+    background-color: #FC6B03;
+}
