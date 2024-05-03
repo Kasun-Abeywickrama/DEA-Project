@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ProductDAO {
 
-    private static final String GET_ALL_PRODUCTS_SQL = "SELECT * FROM product";
+    private static final String GET_ALL_PRODUCTS_SQL = "SELECT * FROM product ORDER BY product_id DESC";
     private static final String GET_PRODUCT_BY_ID_SQL = "SELECT * FROM product WHERE product_id = ?";
     private static final String ADD_PRODUCT_SQL = "INSERT INTO product (name, buying_price, selling_price, description, image, sub_category_id) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_PRODUCT_SQL = "UPDATE product SET name = ?, buying_price = ?, selling_price = ?, description = ?, image = ?, sub_category_id = ? WHERE product_id = ?";
