@@ -8,7 +8,10 @@
 <%
     String orderId = request.getParameter("order_id");
 %>
-<%@ include file="admin_header.jsp" %>
+
+<%@include file="admin_header_part_01.jsp" %>
+<%@include file="admin_header_part_02.jsp" %>
+
 <p style="color: #E97000;"><i>Orders &nbsp;>&nbsp; Order</i></p>  
 
 <div class="row">

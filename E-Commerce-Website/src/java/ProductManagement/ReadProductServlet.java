@@ -22,21 +22,19 @@ public class ReadProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String productId = request.getParameter("productId");
+        String productId = request.getParameter("product_id");
 
         try {
             if (productId == null) {
                 List<Product> products = ProductDAO.getProducts();
-                String productJson = new Gson().toJson(products);
-                response.setContentType("application/json");
-                response.getWriter().println(productJson);
+                request.setAttribute("products", products);
+                request.getRequestDispatcher("view_all_products_page.jsp").forward(request, response);
             } else {
                 int id = Integer.parseInt(productId);
                 Product product = ProductDAO.getProductById(id);
                 if (product != null) {
-                    String productJson = new Gson().toJson(product);
-                    response.setContentType("application/json");
-                    response.getWriter().println(productJson);
+                    request.setAttribute("product", product);
+                    request.getRequestDispatcher("view_product_page.jsp").forward(request, response);
                 } else {
                     response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }

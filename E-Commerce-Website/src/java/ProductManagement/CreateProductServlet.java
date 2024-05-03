@@ -46,9 +46,11 @@ public class CreateProductServlet extends HttpServlet {
             if (newId != 0) {
                 ImageManager imo = new ImageManager();
                 boolean status = imo.storeImage(newId, imagePart);
-                if (status) {
+                if (status){
                     response.setStatus(HttpServletResponse.SC_CREATED); // Created successfully
-                    response.sendRedirect("view_all_products_page.jsp");
+                    response.sendRedirect("ReadProductServlet");
+                }else{
+                    System.out.println("Image uploading error!");
                 }
             }
 

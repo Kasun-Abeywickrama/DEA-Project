@@ -6,7 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ include file="admin_header.jsp" %>
+<%@include file="admin_header_part_01.jsp" %>
+<%@include file="admin_header_part_02.jsp" %>
 
 <style>
     .nav-link{

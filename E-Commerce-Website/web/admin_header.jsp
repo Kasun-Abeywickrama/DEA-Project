@@ -25,7 +25,7 @@
                 <ul>
                     <li title="Dashboard"><a href="admin_dashboard_page.jsp"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></li>
                     <li title="Orders"><a href="orders_page.jsp"><i class='bx bx-list-check'></i><span>Orders</span></a></li>
-                    <li title="Products"><a href="view_all_products_page.jsp"><i class='bx bxs-package'></i><span>Products</span></a></li>
+                    <li title="Products"><a href="ReadProductServlet"><i class='bx bxs-package'></i><span>Products</span></a></li>
                     <li title="Inventory"><a href="inventory_management_page.jsp"><i class='bx bx-candles' ></i><span>Inventory</span></a></li>
                     <li title="Categories"><a href="category_management_page.jsp"><i class='bx bx-category'></i><span>Categories</span></a></li>
                     <li class="log-out-btn" title="Log out"><a href="#"><i class='bx bx-log-out'></i><span>Log out</span></a></li>
