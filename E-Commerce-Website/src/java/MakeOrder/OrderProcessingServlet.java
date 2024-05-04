@@ -48,11 +48,11 @@ public class OrderProcessingServlet extends HttpServlet {
                 
                 int user_id = Integer.parseInt((String)ses.getAttribute("user_id"));
                 
-                MakeOrderModel model = new MakeOrderModel();
+                MakeOrderOperation operation = new MakeOrderOperation();
         
                 try{
 
-                    int order_id = model.insertOrder(newdt, status, total_price, shipping_address, receiver_name, receiver_phone_number, user_id);
+                    int order_id = operation.insertOrder(newdt, status, total_price, shipping_address, receiver_name, receiver_phone_number, user_id);
 
                     int isSuccess = 1;
                     int isCartHasProducts = 0;
@@ -75,7 +75,7 @@ public class OrderProcessingServlet extends HttpServlet {
                                 int product_id = Integer.parseInt(parts[1]);
                                 int ordered_quantity = Integer.parseInt(i.getValue());
 
-                                ArrayList<String> ret = model.updateOrdersProductAndProductStock(product_id, ordered_quantity, order_id);
+                                ArrayList<String> ret = operation.updateOrdersProductAndProductStock(product_id, ordered_quantity, order_id);
                                 
                                 if(Integer.parseInt(ret.get(0)) == 1){
                                     //Success
@@ -92,7 +92,7 @@ public class OrderProcessingServlet extends HttpServlet {
 
                     if(isSuccess == 0 || isCartHasProducts == 0){
 
-                        model.orderNotSuccess(order_id);
+                        operation.orderNotSuccess(order_id);
                     }
                     else{
 
@@ -106,7 +106,7 @@ public class OrderProcessingServlet extends HttpServlet {
                             }
                         }
 
-                        model.orderSuccess(order_id, total_price);
+                        operation.orderSuccess(order_id, total_price);
 
                         response.sendRedirect("order.jsp");
                         return;

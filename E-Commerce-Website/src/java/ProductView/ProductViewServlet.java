@@ -27,11 +27,11 @@ public class ProductViewServlet extends HttpServlet {
             
             int product_id = Integer.parseInt(request.getParameter("product_id"));
         
-            ProductViewModel model = new ProductViewModel();
+            ProductViewOperation operation = new ProductViewOperation();
 
             try{
 
-                ProductViewDetails pvd = model.getProductDetailsByProductId(product_id);
+                ProductViewDetails pvd = operation.getProductDetailsByProductId(product_id);
                 
                 if(pvd != null){
                     

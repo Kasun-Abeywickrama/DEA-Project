@@ -32,12 +32,12 @@ public class ProductStockRetrieveServlet extends HttpServlet {
             
             int productId = Integer.parseInt(request.getParameter("product_id"));
             
-            InventoryManagementModel model = new InventoryManagementModel();
+            InventoryManagementOperation operation = new InventoryManagementOperation();
             
             try{
-                ArrayList<ProductStock> ps = model.getProductStockListByProductId(productId);
+                ArrayList<ProductStock> ps = operation.getProductStockListByProductId(productId);
                 
-                ProductDetails pd = model.getProductDetailsByProductId(productId);
+                ProductDetails pd = operation.getProductDetailsByProductId(productId);
                 
                 if(pd != null){
                     request.setAttribute("product_id", Integer.toString(pd.getProductId()));
@@ -64,15 +64,15 @@ public class ProductStockRetrieveServlet extends HttpServlet {
             
             int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
-            InventoryManagementModel model = new InventoryManagementModel();
+            InventoryManagementOperation operation = new InventoryManagementOperation();
 
             try{
 
-                ProductStock ps = model.getProductStockDetailsByStockId(stock_id);
+                ProductStock ps = operation.getProductStockDetailsByStockId(stock_id);
                 
                 if(ps != null){
                     
-                    ProductDetails pd = model.getProductDetailsByProductId(ps.getProductId());
+                    ProductDetails pd = operation.getProductDetailsByProductId(ps.getProductId());
                     
                     if(pd != null){
                         

@@ -28,10 +28,10 @@ public class ProductDetailsRetrieveServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        InventoryManagementModel model = new InventoryManagementModel();
+        InventoryManagementOperation operation = new InventoryManagementOperation();
         
         try{
-            ArrayList<ProductDetails> productDetailsList = model.getProductDetailsList();
+            ArrayList<ProductDetails> productDetailsList = operation.getProductDetailsList();
             
             request.setAttribute("product_details_list", productDetailsList);
             RequestDispatcher rd = request.getRequestDispatcher("/inventory_management_page.jsp");
@@ -50,10 +50,10 @@ public class ProductDetailsRetrieveServlet extends HttpServlet {
         
         String searchString = request.getParameter("search_string");
         
-        InventoryManagementModel model = new InventoryManagementModel();
+        InventoryManagementOperation operation = new InventoryManagementOperation();
             
         try{
-            ArrayList<ProductDetails> productDetailsList = model.getProductDetailsListForSearchBar(searchString);
+            ArrayList<ProductDetails> productDetailsList = operation.getProductDetailsListForSearchBar(searchString);
             
             request.setAttribute("product_details_list", productDetailsList);
             RequestDispatcher rd = request.getRequestDispatcher("/inventory_management_page.jsp");

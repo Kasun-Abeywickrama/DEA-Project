@@ -33,11 +33,11 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             float buying_price = Float.parseFloat(request.getParameter("buying_price"));
             
-            InventoryManagementModel model = new InventoryManagementModel();
+            InventoryManagementOperation operation = new InventoryManagementOperation();
                 
             try{
                     
-                String message = model.updateProductStockDetails(stock_id, supplier_name, buying_price);
+                String message = operation.updateProductStockDetails(stock_id, supplier_name, buying_price);
                 
                 if(message != null){
                     response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
@@ -61,11 +61,11 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
-            InventoryManagementModel model = new InventoryManagementModel();
+            InventoryManagementOperation operation = new InventoryManagementOperation();
                     
             try{
                         
-                String message = model.addProductStockQuantity(stock_id, add_quantity);
+                String message = operation.addProductStockQuantity(stock_id, add_quantity);
                 
                 if(message != null){
                     response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
@@ -88,11 +88,11 @@ public class ProductStockUpdateServlet extends HttpServlet {
             
             int stock_id = Integer.parseInt(request.getParameter("stock_id"));
            
-            InventoryManagementModel model = new InventoryManagementModel();
+            InventoryManagementOperation operation = new InventoryManagementOperation();
                     
             try{
                         
-                String message = model.reduceProductStockQuantity(stock_id, remove_quantity);
+                String message = operation.reduceProductStockQuantity(stock_id, remove_quantity);
                 
                 if(message != null){
                     response.sendRedirect("inventory_management_page.jsp?alert_message="+message);

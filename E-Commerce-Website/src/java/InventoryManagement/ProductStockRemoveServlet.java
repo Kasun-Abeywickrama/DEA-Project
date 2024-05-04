@@ -28,11 +28,11 @@ public class ProductStockRemoveServlet extends HttpServlet {
         //Remove a stock    
         int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
-        InventoryManagementModel model = new InventoryManagementModel();
+        InventoryManagementOperation operation = new InventoryManagementOperation();
                 
         try{
                     
-            String message = model.removeProductStock(stock_id);
+            String message = operation.removeProductStock(stock_id);
             
             if(message != null){
                 response.sendRedirect("inventory_management_page.jsp?alert_message="+message);

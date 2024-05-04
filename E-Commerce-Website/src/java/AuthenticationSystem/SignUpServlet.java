@@ -28,11 +28,11 @@ public class SignUpServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        AuthenticationSystemModel model = new AuthenticationSystemModel();
+        AuthenticationSystemOperation operation = new AuthenticationSystemOperation();
             
         try{
             
-            String message = model.signUp(username, password);
+            String message = operation.signUp(username, password);
             
             if(message != null){
                 if("Successfull".equals(message)){

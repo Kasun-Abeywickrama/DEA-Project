@@ -6,16 +6,18 @@
 package AdminDashboard;
 
 import DatabaseConnection.DBConnectionManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.sql.*;
 
 /**
  *
  * @author Sithuruwan
  */
-public class AdminDashboardModel {
-    
-    //This is the model class related to the admin dashboard
+public class AdminDashboardOperation {
     
     
     ////Low stock product list
@@ -239,5 +241,6 @@ public class AdminDashboardModel {
         
         return arrList;
     }
+    
     
 }

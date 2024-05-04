@@ -19,9 +19,7 @@ import java.util.ArrayList;
  *
  * @author Sithuruwan
  */
-public class InventoryManagementModel {
-    
-    //This is the model class related to the inventory management database handling
+public class InventoryManagementOperation {
     
     
     //Retrieve all the product details

@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package ProductView;
+
 import DatabaseConnection.DBConnectionManager;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author Sithuruwan
  */
-public class ProductViewModel {
-    
-    
-    //Model class for product view
+public class ProductViewOperation {
     
     
     //get product details by product id
@@ -65,5 +66,7 @@ public class ProductViewModel {
         
         return pvd;
     }
+    
+    
     
 }

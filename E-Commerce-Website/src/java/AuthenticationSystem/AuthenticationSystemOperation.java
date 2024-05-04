@@ -6,18 +6,18 @@
 package AuthenticationSystem;
 
 import DatabaseConnection.DBConnectionManager;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author Sithuruwan
  */
-public class AuthenticationSystemModel {
+public class AuthenticationSystemOperation {
     
-    //This is the model for user authentication
-    
-    
-    
+   
     //User sign up
     public String signUp(String username, String password) throws SQLException {
         

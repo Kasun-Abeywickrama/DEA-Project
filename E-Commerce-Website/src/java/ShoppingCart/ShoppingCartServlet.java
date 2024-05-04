@@ -26,7 +26,7 @@ public class ShoppingCartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ShoppingCartModel model = new ShoppingCartModel();
+        ShoppingCartOperation operation = new ShoppingCartOperation();
         
         try{
             
@@ -51,7 +51,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
                         int quantity = Integer.parseInt(i.getValue());
 
-                        ShoppingCartDetails scd = model.getProductDetailsByProductId(product_id, quantity);
+                        ShoppingCartDetails scd = operation.getProductDetailsByProductId(product_id, quantity);
                         
                         if(scd != null){
                             sharray.add(scd);
