@@ -3,6 +3,7 @@ package OrderManagement;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,32 +35,26 @@ public class ReadOrderServlet extends HttpServlet {
             } else if (orderId != null && orderStatus == null && orderProductsDetails == null) {
                 int id = Integer.parseInt(orderId);
                 Order order = OrderDAO.getOrderById(id);
+                request.setAttribute("order", order);
+
                 if (order != null) {
-                    String OrderJson = new Gson().toJson(order);
-
-                    // Add new customer name to JsonObject
                     AdditionalFunctions adf = new AdditionalFunctions();
-                    String updatedOrderJson = adf.addCustomerNameToJsonObject(OrderJson);
-
-                    response.setContentType("application/json");
-                    response.getWriter().println(updatedOrderJson);
+                    String userName = adf.getUsernameById(order.getUserId());
+                    request.setAttribute("userName", userName);
                 } else {
                     response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
+
+                ArrayList<OrderProductsDetails> orderProducts = OrderDAO.getOrderProductsDetails(id);
+                request.setAttribute("productsList", orderProducts);
+                request.getRequestDispatcher("order_page.jsp").forward(request, response);
+
             } else if (orderId == null && orderStatus != null && orderProductsDetails == null) {
                 List<Order> orders = OrderDAO.getOrdersByStatus(orderStatus);
                 String ordersJson = new Gson().toJson(orders);
                 response.setContentType("application/json");
                 response.getWriter().println(ordersJson);
-            } else if (orderId != null && orderStatus == null && orderProductsDetails != null) {
-
-                AdditionalFunctions adf = new AdditionalFunctions();
-                String orderProductDetailsJSONString = adf.getOrderProductsDetails(orderId);
-                
-                response.setContentType("application/json");
-                response.getWriter().println(orderProductDetailsJSONString);
-
-            } else {
+            }else {
                 response.getWriter().println("Invalid query parameter format!");
             }
         } catch (NumberFormatException e) {

@@ -45,6 +45,17 @@
                 alert("Cart is Empty or Product stock unavailabaility");
             }
         </script>
+        
+        <!-- Displaying the alert message -->
+        <%
+            if(request.getParameter("alert_message") != null){
+        
+                String alert_message = request.getParameter("alert_message");
+        %>        
+                <script>alert("<%=alert_message %>");</script>
+        <%  
+            }
+        %>
 
     <%@include  file="header_part_02.jsp" %>
         
@@ -226,8 +237,11 @@
                                                 <td height="84"><strong>Total</strong></td>
                                                 <td align="right">
                                                     <blockquote>
-                                                        <%  if(request.getAttribute("sub_total") != null) { %>
-                                                                <p><strong>Rs. <%=request.getAttribute("sub_total") %></strong></p>
+                                                        <%  if(request.getAttribute("sub_total") != null) { 
+                                                                float tot = Float.parseFloat((String)request.getAttribute("sub_total"))+12000.0f;
+                                                        
+                                                        %>
+                                                                <p><strong>Rs. <%=tot %></strong></p>
                                                         <%
                                                             }
                                                             else{

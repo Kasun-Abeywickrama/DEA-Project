@@ -302,4 +302,49 @@ public class OrderDAO {
         return state;
     }
 
+    public static ArrayList<OrderProductsDetails> getOrderProductsDetails(int orderId) {
+
+        final String SQL = "SELECT  op.orders_product_id, op.selling_price, op.quantity, p.name AS product_name FROM  Orders_Product op INNER JOIN Product_stock ps ON op.stock_id = ps.stock_id INNER JOIN Product p ON ps.product_id = p.product_id WHERE op.order_id = ?";
+        DBConnectionManager cob = new DBConnectionManager();
+        Connection connection = cob.getDBConnection();
+        PreparedStatement statement = null;
+        ArrayList<OrderProductsDetails> productsList = new ArrayList<>();
+
+        try {
+            statement = connection.prepareStatement(SQL);
+            statement.setInt(1, orderId);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                // Create a ProductDetails object
+                OrderProductsDetails productDetails = new OrderProductsDetails(
+                        resultSet.getInt("orders_product_id"),
+                        resultSet.getDouble("selling_price"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getString("product_name")
+                );
+
+                // Add productDetails to productsList
+                productsList.add(productDetails);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error getting order product details: " + e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    cob.closeDBConnection();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing connection: " + e);
+            }
+        }
+
+        return productsList;
+
+    }
+
 }
