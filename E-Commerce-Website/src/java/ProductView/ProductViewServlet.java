@@ -5,9 +5,7 @@
  */
 package ProductView;
 
-import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,42 +27,26 @@ public class ProductViewServlet extends HttpServlet {
             
             int product_id = Integer.parseInt(request.getParameter("product_id"));
         
-            DBConnectionManager dbcon = new DBConnectionManager();
+            ProductViewModel model = new ProductViewModel();
 
             try{
 
-                Connection con = dbcon.getDBConnection();
-
-                Statement stmt1 = con.createStatement();
-                Statement stmt2 = con.createStatement();
-
-                ResultSet rs = stmt1.executeQuery("SELECT Product.*, Sub_category.name FROM Product,Sub_category WHERE Product.sub_category_id = Sub_category.sub_category_id AND product_id="+product_id+";");
-
-                if(rs.next()){
-
-                    ResultSet qrs = stmt2.executeQuery("SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id="+product_id+";");
-
-                    qrs.next();
-
-                    ProductViewDetails p = new ProductViewDetails(product_id, rs.getString("Product.name"), rs.getString("Product.description"), rs.getString("Sub_category.name"), rs.getFloat("Product.selling_price"), qrs.getInt("total_available_quantity"));
-
-                    request.setAttribute("product_details", p);
-                    qrs.close();
+                ProductViewDetails pvd = model.getProductDetailsByProductId(product_id);
+                
+                if(pvd != null){
+                    
+                    request.setAttribute("product_details", pvd);
+                    request.getRequestDispatcher("/product_details.jsp").forward(request, response);
                 }
                 else{
-                    request.setAttribute("error", "Product Does Not Exist");
-                }
-                rs.close();
-                stmt1.close();
-                stmt2.close();
-                dbcon.closeDBConnection();
-
-                request.getRequestDispatcher("/product_details.jsp").forward(request, response);
+                    response.sendRedirect("landing-page.jsp?alert=Product Does Not Exist");
+                }    
             }
             catch(SQLException e){
                 response.getWriter().println(e);
             }    
         }
+        
         
         
         if("add_to_cart".equals(request.getParameter("submit"))){

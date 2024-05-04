@@ -226,8 +226,11 @@
                                                 <td height="84"><strong>Total</strong></td>
                                                 <td align="right">
                                                     <blockquote>
-                                                        <%  if(request.getAttribute("sub_total") != null) { %>
-                                                                <p><strong>Rs. <%=request.getAttribute("sub_total") %></strong></p>
+                                                        <%  if(request.getAttribute("sub_total") != null) { 
+                                                                float tot = Float.parseFloat((String)request.getAttribute("sub_total"))+12000.0f;
+                                                        
+                                                        %>
+                                                                <p><strong>Rs. <%=tot %></strong></p>
                                                         <%
                                                             }
                                                             else{
