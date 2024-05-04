@@ -31,7 +31,7 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String retrieveProductListQuery = "SELECT product.product_id, product.name ,sub_category.name, main_category.name FROM product, sub_category, main_category WHERE product.sub_category_id = sub_category.sub_category_id and sub_category.main_category_id = main_category.main_category_id ORDER BY product.product_id;";
+        String retrieveProductListQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id ORDER BY Product.product_id;";
         String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id= ? ;";
         
         try{   
@@ -48,7 +48,7 @@ public class InventoryManagementModel {
 
             while(rs1.next()){
                     
-                int productId = rs1.getInt("product_id");
+                int productId = rs1.getInt("Product.product_id");
                 
                 //Setting the parameter in the prepared statement
                 pstmt.setInt(1, productId);
@@ -57,9 +57,9 @@ public class InventoryManagementModel {
                     
                 rs2.next();
                     
-                String productName = rs1.getString("product.name");
-                String subCategory = rs1.getString("sub_category.name");
-                String mainCategory = rs1.getString("main_category.name");
+                String productName = rs1.getString("Product.name");
+                String subCategory = rs1.getString("Sub_category.name");
+                String mainCategory = rs1.getString("Main_category.name");
                 int totalAvailableQuantity = rs2.getInt("total_available_quantity");
                 
                 ProductDetails pd = new ProductDetails(productId, productName, subCategory, mainCategory, totalAvailableQuantity);
@@ -90,7 +90,7 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String retrieveProductListQuery = "SELECT product.product_id, product.name ,sub_category.name, main_category.name FROM product, sub_category, main_category WHERE product.sub_category_id = sub_category.sub_category_id and sub_category.main_category_id = main_category.main_category_id and product.name LIKE ? ORDER BY product.product_id;";
+        String retrieveProductListQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id and Product.name LIKE ? ORDER BY Product.product_id;";
         String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id = ? ;";
             
         try{  
@@ -107,7 +107,7 @@ public class InventoryManagementModel {
 
             while(rs1.next()){
                     
-                int productId = rs1.getInt("product_id");
+                int productId = rs1.getInt("Product.product_id");
                     
                 //Execute the SQL query to get the total stock of the searched product
                 pstmt2.setInt(1, productId);
@@ -115,9 +115,9 @@ public class InventoryManagementModel {
                     
                 rs2.next();
                     
-                String productName = rs1.getString("product.name");
-                String subCategory = rs1.getString("sub_category.name");
-                String mainCategory = rs1.getString("main_category.name");
+                String productName = rs1.getString("Product.name");
+                String subCategory = rs1.getString("Sub_category.name");
+                String mainCategory = rs1.getString("Main_category.name");
                 int totalAvailableQuantity = rs2.getInt("total_available_quantity");
                 
                 ProductDetails pd = new ProductDetails(productId, productName, subCategory, mainCategory, totalAvailableQuantity);
@@ -148,7 +148,7 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String productDetailsQuery = "SELECT product.product_id, product.name ,sub_category.name, main_category.name FROM product, sub_category, main_category WHERE product.sub_category_id = sub_category.sub_category_id and sub_category.main_category_id = main_category.main_category_id AND product_id = ?";
+        String productDetailsQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id AND Product.product_id = ?";
         String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id = ? ;";
         
         try{
@@ -169,9 +169,9 @@ public class InventoryManagementModel {
                 
                 rs2.next();
                 
-                String productName = rs1.getString("product.name");
-                String subCategory = rs1.getString("sub_category.name");
-                String mainCategory = rs1.getString("main_category.name");
+                String productName = rs1.getString("Product.name");
+                String subCategory = rs1.getString("Sub_category.name");
+                String mainCategory = rs1.getString("Main_category.name");
                 int totalAvailableQuantity = rs2.getInt("total_available_quantity");
                 
                 pd = new ProductDetails(productId, productName, subCategory, mainCategory, totalAvailableQuantity); 
