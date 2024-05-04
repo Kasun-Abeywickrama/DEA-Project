@@ -45,6 +45,17 @@
                 alert("Cart is Empty or Product stock unavailabaility");
             }
         </script>
+        
+        <!-- Displaying the alert message -->
+        <%
+            if(request.getParameter("alert_message") != null){
+        
+                String alert_message = request.getParameter("alert_message");
+        %>        
+                <script>alert("<%=alert_message %>");</script>
+        <%  
+            }
+        %>
 
     <%@include  file="header_part_02.jsp" %>
         
