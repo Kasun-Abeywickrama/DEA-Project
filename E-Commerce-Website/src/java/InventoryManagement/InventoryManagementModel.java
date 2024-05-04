@@ -25,7 +25,7 @@ public class InventoryManagementModel {
     
     
     //Retrieve all the product details
-    public ArrayList<ProductDetails> getAllProductDetails() throws SQLException{
+    public ArrayList<ProductDetails> getProductDetailsList() throws SQLException{
         
         ArrayList<ProductDetails> productDetailsList = new ArrayList<>();
         
@@ -84,7 +84,7 @@ public class InventoryManagementModel {
     
     
     //Retrieve all the product details for the search bar
-    public ArrayList<ProductDetails> getAllProductDetailsForSearchBar(String searchInput) throws SQLException{
+    public ArrayList<ProductDetails> getProductDetailsListForSearchBar(String searchInput) throws SQLException{
         
         ArrayList<ProductDetails> productDetailsList = new ArrayList<>();
         
@@ -194,7 +194,7 @@ public class InventoryManagementModel {
     
     
     //Retrive stock list of a product
-    public ArrayList<ProductStock> getStockListByProductId(int productId) throws SQLException {
+    public ArrayList<ProductStock> getProductStockListByProductId(int productId) throws SQLException {
         
         ArrayList<ProductStock> productStockList = new ArrayList<>();
         
@@ -243,7 +243,7 @@ public class InventoryManagementModel {
     
     
     //Retrieve stock details by stock id
-    public ProductStock getProductStockDetailsById(int stockId) throws SQLException{
+    public ProductStock getProductStockDetailsByStockId(int stockId) throws SQLException{
         
         ProductStock ps = null;
         
@@ -330,7 +330,7 @@ public class InventoryManagementModel {
     
     
     //Update Stock Details
-    public String updateStockDetails(int stockId, String supplierName, float buyingPrice) throws SQLException {
+    public String updateProductStockDetails(int stockId, String supplierName, float buyingPrice) throws SQLException {
         
         String message = null;
         
@@ -412,7 +412,7 @@ public class InventoryManagementModel {
     
     
     //Add Stock Quantity
-    public String addStockQuantity(int stockId, int addQuantity) throws SQLException {
+    public String addProductStockQuantity(int stockId, int addQuantity) throws SQLException {
         
         String message = null;
         
@@ -456,7 +456,7 @@ public class InventoryManagementModel {
     
     
     //Reduce Stock Quantity
-    public String reduceStockQuantity(int stockId, int reduceQuantity) throws SQLException {
+    public String reduceProductStockQuantity(int stockId, int reduceQuantity) throws SQLException {
         
         String message = null;
         

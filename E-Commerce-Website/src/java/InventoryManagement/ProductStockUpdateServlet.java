@@ -5,19 +5,13 @@
  */
 package InventoryManagement;
 
-import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -43,7 +37,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                 
             try{
                     
-                String message = model.updateStockDetails(stock_id, supplier_name, buying_price);
+                String message = model.updateProductStockDetails(stock_id, supplier_name, buying_price);
                 
                 if(message != null){
                     response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
@@ -71,7 +65,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                     
             try{
                         
-                String message = model.addStockQuantity(stock_id, add_quantity);
+                String message = model.addProductStockQuantity(stock_id, add_quantity);
                 
                 if(message != null){
                     response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
@@ -98,7 +92,7 @@ public class ProductStockUpdateServlet extends HttpServlet {
                     
             try{
                         
-                String message = model.reduceStockQuantity(stock_id, remove_quantity);
+                String message = model.reduceProductStockQuantity(stock_id, remove_quantity);
                 
                 if(message != null){
                     response.sendRedirect("inventory_management_page.jsp?alert_message="+message);

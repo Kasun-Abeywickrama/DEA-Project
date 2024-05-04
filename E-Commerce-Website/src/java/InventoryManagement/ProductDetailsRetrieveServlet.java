@@ -31,7 +31,7 @@ public class ProductDetailsRetrieveServlet extends HttpServlet {
         InventoryManagementModel model = new InventoryManagementModel();
         
         try{
-            ArrayList<ProductDetails> productDetailsList = model.getAllProductDetails();
+            ArrayList<ProductDetails> productDetailsList = model.getProductDetailsList();
             
             request.setAttribute("product_details_list", productDetailsList);
             RequestDispatcher rd = request.getRequestDispatcher("/inventory_management_page.jsp");
@@ -53,7 +53,7 @@ public class ProductDetailsRetrieveServlet extends HttpServlet {
         InventoryManagementModel model = new InventoryManagementModel();
             
         try{
-            ArrayList<ProductDetails> productDetailsList = model.getAllProductDetailsForSearchBar(searchString);
+            ArrayList<ProductDetails> productDetailsList = model.getProductDetailsListForSearchBar(searchString);
             
             request.setAttribute("product_details_list", productDetailsList);
             RequestDispatcher rd = request.getRequestDispatcher("/inventory_management_page.jsp");

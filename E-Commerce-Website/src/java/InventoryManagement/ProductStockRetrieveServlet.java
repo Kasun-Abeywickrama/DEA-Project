@@ -5,12 +5,8 @@
  */
 package InventoryManagement;
 
-import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,7 +35,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
             InventoryManagementModel model = new InventoryManagementModel();
             
             try{
-                ArrayList<ProductStock> ps = model.getStockListByProductId(productId);
+                ArrayList<ProductStock> ps = model.getProductStockListByProductId(productId);
                 
                 ProductDetails pd = model.getProductDetailsByProductId(productId);
                 
@@ -72,7 +68,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
 
             try{
 
-                ProductStock ps = model.getProductStockDetailsById(stock_id);
+                ProductStock ps = model.getProductStockDetailsByStockId(stock_id);
                 
                 if(ps != null){
                     
