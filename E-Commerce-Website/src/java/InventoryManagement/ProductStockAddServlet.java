@@ -34,11 +34,11 @@ public class ProductStockAddServlet extends HttpServlet {
         
         int quantity = Integer.parseInt(request.getParameter("quantity"));
  
-        InventoryManagementModel model = new InventoryManagementModel();
+        InventoryManagementOperation operation = new InventoryManagementOperation();
                 
         try{
                     
-            String message = model.addProductStock(product_id, supplier_name, buying_price, quantity);
+            String message = operation.addProductStock(product_id, supplier_name, buying_price, quantity);
             
             if(message != null){
                 response.sendRedirect("inventory_management_page.jsp?alert_message="+message);

@@ -26,27 +26,27 @@ public class AdminDashboardDataRetrieveServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         
-        AdminDashboardModel model = new AdminDashboardModel();
+        AdminDashboardOperation operation = new AdminDashboardOperation();
         
         try{
             
             ////Low stock product list
             //Getting the low stock product list to an arraylist of the AdminDashboardProductDetails class
-            ArrayList<AdminDashboardProductDetails> low_stock_product_list = model.getLowStockProductList();
+            ArrayList<AdminDashboardProductDetails> low_stock_product_list = operation.getLowStockProductList();
             
 
             ////Status Order list
             //Getting the status order list to an arraylist of the AdminDashboardOrderDetails class
-            ArrayList<AdminDashboardOrderDetails> status_order_list = model.getStatusOrderList();
+            ArrayList<AdminDashboardOrderDetails> status_order_list = operation.getStatusOrderList();
             
             
             ////Monthly top ordered product list
             //Getting the top sold products of the month to an arraylist of the AdminDashboardProductDetails class
-            ArrayList<AdminDashboardProductDetails>  month_top_ordered_product_list = model.getMonthlyTopOrderedProducts();
+            ArrayList<AdminDashboardProductDetails>  month_top_ordered_product_list = operation.getMonthlyTopOrderedProducts();
             
             
             ///Total orders of the month and the delivered orders of the month
-            ArrayList<String> arrList = model.getTotalOrdersAndDeliveredOrdersOfTheMonth();
+            ArrayList<String> arrList = operation.getTotalOrdersAndDeliveredOrdersOfTheMonth();
             
             request.setAttribute("month_total_orders", arrList.get(0));
             request.setAttribute("month_delivered_orders", arrList.get(1));

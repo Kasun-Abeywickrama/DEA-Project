@@ -12,12 +12,9 @@ import java.sql.*;
  *
  * @author Sithuruwan
  */
-public class AuthenticationSystemModel {
+public class AuthenticationSystemOperation {
     
-    //This is the model for user authentication
-    
-    
-    
+   
     //User sign up
     public String signUp(String username, String password) throws SQLException {
         

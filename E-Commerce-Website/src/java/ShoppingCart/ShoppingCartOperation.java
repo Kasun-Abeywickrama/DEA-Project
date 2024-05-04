@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ProductView;
+package ShoppingCart;
+
 import DatabaseConnection.DBConnectionManager;
 import java.sql.*;
 
@@ -11,23 +12,21 @@ import java.sql.*;
  *
  * @author Sithuruwan
  */
-public class ProductViewModel {
+public class ShoppingCartOperation {
     
     
-    //Model class for product view
-    
-    
-    //get product details by product id
-    public ProductViewDetails getProductDetailsByProductId(int productId) throws SQLException {
+    //Get product details by product id
+    public ShoppingCartDetails getProductDetailsByProductId(int productId, int quantity) throws SQLException {
         
-        ProductViewDetails pvd = null;
+        ShoppingCartDetails scd = null;
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String retrieveProductDetailsQuery = "SELECT Product.*, Sub_category.name FROM Product,Sub_category WHERE Product.sub_category_id = Sub_category.sub_category_id AND product_id = ?;";
+        String retrieveProductDetailsQuery = "SELECT Product.name, Product.selling_price, Sub_category.name FROM Product, Sub_category WHERE Product.sub_category_id = Sub_category.sub_category_id AND product_id = ?;";
         String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id = ?;";
         
         try{
+            
             Connection connection = dbcon.getDBConnection();
             
             PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductDetailsQuery);
@@ -39,17 +38,17 @@ public class ProductViewModel {
             ResultSet rs1 = pstmt1.executeQuery();
             
             if(rs1.next()){
+                
                 ResultSet rs2 = pstmt2.executeQuery();
                 
                 rs2.next();
                 
                 String productName = rs1.getString("Product.name");
-                String description = rs1.getString("Product.description");
+                float sellingPrice = rs1.getFloat("product.selling_price");
                 String subCategory = rs1.getString("Sub_category.name");
-                float sellingPrice = rs1.getFloat("Product.selling_price");
                 int totalAvailableQuantity = rs2.getInt("total_available_quantity");
                 
-                pvd = new ProductViewDetails(productId, productName, description, subCategory, sellingPrice, totalAvailableQuantity);
+                scd = new ShoppingCartDetails(productId, productName, sellingPrice, subCategory, quantity, totalAvailableQuantity);
                 rs2.close();
             }
             rs1.close();
@@ -63,7 +62,8 @@ public class ProductViewModel {
             throw e;
         }
         
-        return pvd;
+        return scd;
     }
+    
     
 }

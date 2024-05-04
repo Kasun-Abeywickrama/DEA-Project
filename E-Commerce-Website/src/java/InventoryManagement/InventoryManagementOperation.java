@@ -6,11 +6,7 @@
 package InventoryManagement;
 
 import DatabaseConnection.DBConnectionManager;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,9 +15,7 @@ import java.util.ArrayList;
  *
  * @author Sithuruwan
  */
-public class InventoryManagementModel {
-    
-    //This is the model class related to the inventory management database handling
+public class InventoryManagementOperation {
     
     
     //Retrieve all the product details

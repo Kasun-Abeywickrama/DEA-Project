@@ -13,9 +13,7 @@ import java.util.ArrayList;
  *
  * @author Sithuruwan
  */
-public class MakeOrderModel {
-    
-    //Make Order Model
+public class MakeOrderOperation {
     
     
     //Insert Order
@@ -244,5 +242,6 @@ public class MakeOrderModel {
             throw e;
         } 
     }
+    
     
 }
