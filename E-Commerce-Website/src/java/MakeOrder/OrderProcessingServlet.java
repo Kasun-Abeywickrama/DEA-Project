@@ -75,7 +75,7 @@ public class OrderProcessingServlet extends HttpServlet {
                                 int product_id = Integer.parseInt(parts[1]);
                                 int ordered_quantity = Integer.parseInt(i.getValue());
 
-                                ArrayList<String> ret = model.orderProduct(product_id, ordered_quantity, order_id);
+                                ArrayList<String> ret = model.updateOrdersProductAndProductStock(product_id, ordered_quantity, order_id);
                                 
                                 if(Integer.parseInt(ret.get(0)) == 1){
                                     //Success

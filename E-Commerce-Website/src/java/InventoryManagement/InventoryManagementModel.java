@@ -31,7 +31,7 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String retrieveProductListQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id ORDER BY Product.product_id;";
+        String retrieveProductDetailsListQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id ORDER BY Product.product_id;";
         String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id= ? ;";
         
         try{   
@@ -44,7 +44,7 @@ public class InventoryManagementModel {
             PreparedStatement pstmt = connection.prepareStatement(retrieveTotalAvailableQuantityQuery);
                 
             //Execute the SQL query to retrieve the product list
-            ResultSet rs1 = stmt.executeQuery(retrieveProductListQuery);
+            ResultSet rs1 = stmt.executeQuery(retrieveProductDetailsListQuery);
 
             while(rs1.next()){
                     
@@ -90,14 +90,14 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String retrieveProductListQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id and Product.name LIKE ? ORDER BY Product.product_id;";
+        String retrieveProductDetailsListForSearchBarQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id and Product.name LIKE ? ORDER BY Product.product_id;";
         String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id = ? ;";
             
         try{  
             //Connect to the database
             Connection connection = dbcon.getDBConnection();
                 
-            PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductListQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductDetailsListForSearchBarQuery);
             pstmt1.setString(1, searchInput+"%");
                 
             PreparedStatement pstmt2 = connection.prepareStatement(retrieveTotalAvailableQuantityQuery);
@@ -148,14 +148,14 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String productDetailsQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id AND Product.product_id = ?";
+        String retrieveProductDetailsQuery = "SELECT Product.product_id, Product.name ,Sub_category.name, Main_category.name FROM Product, Sub_category, Main_category WHERE Product.sub_category_id = Sub_category.sub_category_id and Sub_category.main_category_id = Main_category.main_category_id AND Product.product_id = ?";
         String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id = ? ;";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt1 = connection.prepareStatement(productDetailsQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductDetailsQuery);
             pstmt1.setInt(1, productId);
             
             PreparedStatement pstmt2 = connection.prepareStatement(retrieveTotalAvailableQuantityQuery);
@@ -200,7 +200,7 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String productStockListQuery = "SELECT * FROM Product_stock WHERE product_id = ? ORDER BY stock_id DESC;";
+        String retrieveProductStockListQuery = "SELECT * FROM Product_stock WHERE product_id = ? ORDER BY stock_id DESC;";
 
         try{
 
@@ -208,7 +208,7 @@ public class InventoryManagementModel {
             Connection connection = dbcon.getDBConnection();
 
             //Create a statement
-            PreparedStatement pstmt = connection.prepareStatement(productStockListQuery);
+            PreparedStatement pstmt = connection.prepareStatement(retrieveProductStockListQuery);
             pstmt.setInt(1, productId);
 
             //Execute the SQL query to retrieve the product stock list
@@ -249,12 +249,12 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new  DBConnectionManager();
         
-        String stockQuery = "SELECT * FROM Product_stock WHERE stock_id = ?;";
+        String retrieveProductStockDetailsQuery = "SELECT * FROM Product_stock WHERE stock_id = ?;";
         
         try{
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt = connection.prepareStatement(stockQuery);
+            PreparedStatement pstmt = connection.prepareStatement(retrieveProductStockDetailsQuery);
             pstmt.setInt(1, stockId);
             
             ResultSet rs = pstmt.executeQuery();
@@ -296,13 +296,13 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String insertQuery = "INSERT INTO Product_stock(supplier_name, date_time, buying_price, supplied_quantity, available_quantity, product_id) VALUES(?, ?, ?, ?, ?, ?);";
+        String insertProductStockQuery = "INSERT INTO Product_stock(supplier_name, date_time, buying_price, supplied_quantity, available_quantity, product_id) VALUES(?, ?, ?, ?, ?, ?);";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
                     
-            PreparedStatement pstmt = connection.prepareStatement(insertQuery);
+            PreparedStatement pstmt = connection.prepareStatement(insertProductStockQuery);
             pstmt.setString(1, supplierName);
             pstmt.setString(2, dateTime);
             pstmt.setFloat(3, buyingPrice);
@@ -340,21 +340,21 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String retrieveStockDetailsQuery = "SELECT * FROM Product_stock WHERE stock_id = ?";
-        String checkIfOrdersPlacedQuery = "SELECT * FROM Orders_Product WHERE stock_id = ?;";
-        String updateQuery = "UPDATE Product_stock SET supplier_name = ?, buying_price = ?, date_time= ? WHERE stock_id = ?;";
+        String retrieveProductStockDetailsQuery = "SELECT * FROM Product_stock WHERE stock_id = ?";
+        String retrieveOrdersProductListQuery = "SELECT * FROM Orders_Product WHERE stock_id = ?;";
+        String updateProductDetailsQuery = "UPDATE Product_stock SET supplier_name = ?, buying_price = ?, date_time= ? WHERE stock_id = ?;";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt1 = connection.prepareStatement(retrieveStockDetailsQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductStockDetailsQuery);
             pstmt1.setInt(1, stockId);
             
-            PreparedStatement pstmt2 = connection.prepareStatement(checkIfOrdersPlacedQuery);
+            PreparedStatement pstmt2 = connection.prepareStatement(retrieveOrdersProductListQuery);
             pstmt2.setInt(1, stockId);
             
-            PreparedStatement pstmt3 = connection.prepareStatement(updateQuery);
+            PreparedStatement pstmt3 = connection.prepareStatement(updateProductDetailsQuery);
             pstmt3.setString(1, supplierName);
             pstmt3.setFloat(2, buyingPrice);
             pstmt3.setString(3, dateTime);
@@ -422,13 +422,13 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String updateQuery = "UPDATE Product_stock SET supplied_quantity = supplied_quantity + ?, available_quantity = available_quantity + ?, date_time = ? WHERE stock_id = ? ;";
+        String addProductStockQuantityQuery = "UPDATE Product_stock SET supplied_quantity = supplied_quantity + ?, available_quantity = available_quantity + ?, date_time = ? WHERE stock_id = ? ;";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt = connection.prepareStatement(updateQuery);
+            PreparedStatement pstmt = connection.prepareStatement(addProductStockQuantityQuery);
             pstmt.setInt(1, addQuantity);
             pstmt.setInt(2, addQuantity);
             pstmt.setString(3, dateTime);
@@ -466,17 +466,17 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String checkQuantityQuery = "SELECT * FROM Product_stock WHERE stock_id = ? ;";
-        String updateQuery = "UPDATE Product_stock SET supplied_quantity = supplied_quantity - ?, available_quantity = available_quantity - ?, date_time = ? WHERE stock_id = ? ;";
+        String retrieveProductStockDetailsQuery = "SELECT * FROM Product_stock WHERE stock_id = ? ;";
+        String reduceProductStockQuantityQuery = "UPDATE Product_stock SET supplied_quantity = supplied_quantity - ?, available_quantity = available_quantity - ?, date_time = ? WHERE stock_id = ? ;";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt1 = connection.prepareStatement(checkQuantityQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductStockDetailsQuery);
             pstmt1.setInt(1, stockId);
             
-            PreparedStatement pstmt2 = connection.prepareStatement(updateQuery);
+            PreparedStatement pstmt2 = connection.prepareStatement(reduceProductStockQuantityQuery);
             pstmt2.setInt(1, reduceQuantity);
             pstmt2.setInt(2, reduceQuantity);
             pstmt2.setString(3, dateTime);
@@ -524,17 +524,17 @@ public class InventoryManagementModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String checkDeleteQuery = "SELECT * FROM Orders_Product WHERE stock_id = ?;";
-        String deleteQuery = "DELETE FROM Product_stock WHERE stock_id = ?";
+        String retrieveOrdersProductListQuery = "SELECT * FROM Orders_Product WHERE stock_id = ?;";
+        String deleteProductStockQuery = "DELETE FROM Product_stock WHERE stock_id = ?";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt1 = connection.prepareStatement(checkDeleteQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveOrdersProductListQuery);
             pstmt1.setInt(1, stock_id);
             
-            PreparedStatement pstmt2 = connection.prepareStatement(deleteQuery);
+            PreparedStatement pstmt2 = connection.prepareStatement(deleteProductStockQuery);
             pstmt2.setInt(1, stock_id);
             
             ResultSet rs = pstmt1.executeQuery();
