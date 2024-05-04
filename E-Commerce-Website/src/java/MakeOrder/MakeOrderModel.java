@@ -25,13 +25,13 @@ public class MakeOrderModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String updateQuery = "INSERT INTO Orders (date_time, status, total_price, shipping_address, receiver_name, receiver_phone_number, user_id) VALUES( ?, ?, ?, ?, ?, ?, ?);";
+        String insertOrderQuery = "INSERT INTO Orders (date_time, status, total_price, shipping_address, receiver_name, receiver_phone_number, user_id) VALUES( ?, ?, ?, ?, ?, ?, ?);";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt = connection.prepareStatement(updateQuery, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstmt = connection.prepareStatement(insertOrderQuery, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, dateTime);
             pstmt.setString(2, status);
             pstmt.setFloat(3, totalPrice);
@@ -62,7 +62,7 @@ public class MakeOrderModel {
     
     
     //update Orders_Product and Product_stock with a ordered product
-    public ArrayList<String> orderProduct(int productId, int orderedQuantity, int orderId) throws SQLException {
+    public ArrayList<String> updateOrdersProductAndProductStock(int productId, int orderedQuantity, int orderId) throws SQLException {
         
         ArrayList<String> ret = new ArrayList<>();
         ret.add("1");
@@ -73,9 +73,9 @@ public class MakeOrderModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String getProductQuery = "SELECT * FROM Product WHERE product_id = ?;";
-        String getAllStocksQuery = "SELECT * FROM Product_stock WHERE product_id = ? AND available_quantity > 0 ORDER BY date_time;";
-        String getStockQuery = "SELECT * FROM Product_stock WHERE stock_id= ? ;";
+        String retrieveProductDetailsQuery = "SELECT * FROM Product WHERE product_id = ?;";
+        String retrieveProductStockListQuery = "SELECT * FROM Product_stock WHERE product_id = ? AND available_quantity > 0 ORDER BY date_time;";
+        String retrieveProductStockDetailsQuery = "SELECT * FROM Product_stock WHERE stock_id= ? ;";
         String updateProductStockQuery = "UPDATE Product_stock SET available_quantity = available_quantity - ? WHERE stock_id = ?;";
         String insertOrdersProductQuery = "INSERT INTO Orders_Product (selling_price, quantity, order_id, stock_id) VALUES ( ?, ?, ?, ?);";
         
@@ -83,13 +83,13 @@ public class MakeOrderModel {
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt1 = connection.prepareStatement(getProductQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductDetailsQuery);
             pstmt1.setInt(1, productId);
             
-            PreparedStatement pstmt2 = connection.prepareStatement(getAllStocksQuery);
+            PreparedStatement pstmt2 = connection.prepareStatement(retrieveProductStockListQuery);
             pstmt2.setInt(1, productId);
             
-            PreparedStatement pstmt3 = connection.prepareStatement(getStockQuery);
+            PreparedStatement pstmt3 = connection.prepareStatement(retrieveProductStockDetailsQuery);
             
             PreparedStatement pstmt4 = connection.prepareStatement(updateProductStockQuery);
             
@@ -174,23 +174,23 @@ public class MakeOrderModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String ordersProductQuery = "SELECT * FROM Orders_Product WHERE order_id = ?;";
+        String retrieveOrdersProductListQuery = "SELECT * FROM Orders_Product WHERE order_id = ?;";
         String updateProductStockQuery = "UPDATE Product_stock SET available_quantity = available_quantity + ? WHERE stock_id = ?;";
-        String deleteAllOrdersProduct = "DELETE FROM Orders_Product WHERE order_id = ? ;";
-        String deleteOrder = "DELETE FROM Orders WHERE order_id = ? ;";
+        String deleteAllOrdersProductQuery = "DELETE FROM Orders_Product WHERE order_id = ? ;";
+        String deleteOrderQuery = "DELETE FROM Orders WHERE order_id = ? ;";
         
         try{
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt1 = connection.prepareStatement(ordersProductQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveOrdersProductListQuery);
             pstmt1.setInt(1, orderId);
             
             PreparedStatement pstmt2 = connection.prepareStatement(updateProductStockQuery);
             
-            PreparedStatement pstmt3 = connection.prepareStatement(deleteAllOrdersProduct);
+            PreparedStatement pstmt3 = connection.prepareStatement(deleteAllOrdersProductQuery);
             pstmt3.setInt(1, orderId);
             
-            PreparedStatement pstmt4 = connection.prepareStatement(deleteOrder);
+            PreparedStatement pstmt4 = connection.prepareStatement(deleteOrderQuery);
             pstmt4.setInt(1, orderId);
             
             ResultSet rs = pstmt1.executeQuery();
@@ -225,12 +225,12 @@ public class MakeOrderModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String updateQuery = "UPDATE Orders SET total_price = ? WHERE order_id = ?;";
+        String updateOrderQuery = "UPDATE Orders SET total_price = ? WHERE order_id = ?;";
         
         try{
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt = connection.prepareStatement(updateQuery);
+            PreparedStatement pstmt = connection.prepareStatement(updateOrderQuery);
             pstmt.setFloat(1, totalPrice);
             pstmt.setInt(2, orderId);
             

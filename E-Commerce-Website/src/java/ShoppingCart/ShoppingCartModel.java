@@ -24,17 +24,17 @@ public class ShoppingCartModel {
         
         DBConnectionManager dbcon = new DBConnectionManager();
         
-        String productQuery = "SELECT Product.name, Product.selling_price, Sub_category.name FROM Product, Sub_category WHERE Product.sub_category_id = Sub_category.sub_category_id AND product_id = ?;";
-        String totalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id = ?;";
+        String retrieveProductDetailsQuery = "SELECT Product.name, Product.selling_price, Sub_category.name FROM Product, Sub_category WHERE Product.sub_category_id = Sub_category.sub_category_id AND product_id = ?;";
+        String retrieveTotalAvailableQuantityQuery = "SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id = ?;";
         
         try{
             
             Connection connection = dbcon.getDBConnection();
             
-            PreparedStatement pstmt1 = connection.prepareStatement(productQuery);
+            PreparedStatement pstmt1 = connection.prepareStatement(retrieveProductDetailsQuery);
             pstmt1.setInt(1, productId);
             
-            PreparedStatement pstmt2 = connection.prepareStatement(totalAvailableQuantityQuery);
+            PreparedStatement pstmt2 = connection.prepareStatement(retrieveTotalAvailableQuantityQuery);
             pstmt2.setInt(1, productId);
             
             ResultSet rs1 = pstmt1.executeQuery();
