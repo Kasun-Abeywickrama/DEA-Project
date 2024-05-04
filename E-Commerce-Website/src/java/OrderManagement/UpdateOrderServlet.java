@@ -31,7 +31,7 @@ public class UpdateOrderServlet extends HttpServlet {
         try {
            boolean status = OrderDAO.updateOrderStatus(orderStatus, orderId);
            if(status){
-               response.sendRedirect("order_page.jsp?order_id="+orderId);
+               response.sendRedirect("ReadOrderServlet?orderId="+orderId);
            }
         } catch (SQLException ex) {
             Logger.getLogger(ReadOrderServlet.class.getName()).log(Level.SEVERE, null, ex);

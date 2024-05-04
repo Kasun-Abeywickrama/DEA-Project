@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="ResourcePaths.ResourcePaths"%>
+<%@page import="ProductManagement.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
@@ -12,25 +14,27 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="DatabaseConnection.DBConnectionManager"%>
 
-<%
-    String productId = request.getParameter("product_id");
-    int subCategoryId = Integer.parseInt(request.getParameter("sub_category_id"));
-%>
 
-<%@ include file="admin_header.jsp" %>
+<%@include file="admin_header_part_01.jsp" %>
+<%@include file="admin_header_part_02.jsp" %>
+<%    if (request.getAttribute("product") != null) {
+        Product product = (Product) request.getAttribute("product");
+%>
 <div style="display: flex; align-items: center; justify-content: space-between;" class="mb-3 mt-2">
     <p style="color: #E97000;"><i>Products &nbsp;>&nbsp; Edit & Delete Product</i></p> 
-    <form action="DeleteProductServlet?product_id=<%= productId%>" method="POST" onsubmit="return deleteProductConfirmation()">          
+    <form action="DeleteProductServlet?product_id=<%=product.getProductId()%>" method="POST" onsubmit="return deleteProductConfirmation()">          
         <input type="submit" value="Delete Product" class="btn btn-primary btn-sm"/>
     </form>
 </div>
-    <form id="myForm" name="productForm" action="UpdateProductServlet?product_id=<%= productId%>"  method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+<form id="myForm" name="productForm" action="UpdateProductServlet?product_id=<%=product.getProductId()%>"  method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 
     <div class="row">
         <div class="col-md">
             <div class="form-group mb-4">
                 <%
-                    String imagePath = "images/product_images/" + productId + ".png";
+                    ResourcePaths rs = new ResourcePaths();
+                    String imagePath = rs.getRelativeProductImagePath() + product.getProductId() + ".png";
                     String timestamp = String.valueOf(System.currentTimeMillis());
                     String imageUrl = imagePath + "?timestamp=" + timestamp;
                 %>                    
@@ -39,32 +43,32 @@
 
             <div class="form-group mb-4">
                 <label for="name" class="mb-2">Product name</label>
-                <input type="text" class="form-control" name="name" id="name">    
+                <input type="text" class="form-control" name="name" id="name" value="<%=product.getName()%>">    
             </div>
             <div class="form-group mb-4">
                 <label for="buyingPrice" class="mb-2">Buying Price</label>
-                <input type="text" class="form-control" name="buying_price" id="buyingPrice">
+                <input type="text" class="form-control" name="buying_price" id="buyingPrice" value="<%=product.getSellingPrice()%>">
             </div>
             <div class="form-group mb-4">
                 <label for="sellingPrice" class="mb-2">Selling Price</label>
-                <input type="text" class="form-control" name="selling_price" id="sellingPrice">
+                <input type="text" class="form-control" name="selling_price" id="sellingPrice" value="<%=product.getBuyingPrice()%>">
             </div>
         </div>
 
         <div class="col-md">    
             <div class="form-group mb-4">
                 <label for="description" class="mb-2">Description</label>
-                <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                <textarea name="description" class="form-control" id="description" rows="3"><%=product.getDescription()%></textarea>
             </div>
             <div class="form-group mb-4">
                 <label for="image" class="mb-2">Image</label>
                 <input type="file" name="image" accept="image/png" class="form-control" id="image" onchange="previewImage(event)">   
             </div>
-            
+
             <div class="form-group mb-4" style="display: none;" id="imagePreviewWrapper">
                 <img id="imagePreview" src="#" class="img-thumbnail rounded mx-auto d-block w-25"  alt="Image Preview">
             </div>
-            
+
 
             <div class="form-group mb-4">
                 <label for="exampleFormControlSelect2">Example multiple select</label>
@@ -81,7 +85,7 @@
                             while (resultSet.next()) {
                                 int subCategoryIdNew = resultSet.getInt("sub_category_id");
                                 String subCategory = resultSet.getString("name");
-                                if (subCategoryId == subCategoryIdNew) {
+                                if (product.getSubCategoryId() == subCategoryIdNew) {
                     %>
                     <option value="<%= subCategoryIdNew%>" selected><%= subCategory%></option>
                     <%
@@ -89,21 +93,22 @@
                     %>
                     <option value="<%= subCategoryIdNew%>"><%= subCategory%></option>
                     <%
+                                    }
                                 }
-                            }
 
-                        } catch (SQLException e) {
-                            System.out.println("Error : " + e);
-                        } finally {
-                            try {
-                                if (statement != null) {
-                                    statement.close();
-                                }
-                                if (connection != null) {
-                                    dbc.closeDBConnection();
-                                }
                             } catch (SQLException e) {
-                                System.out.println("Error : Connection closing error");
+                                System.out.println("Error : " + e);
+                            } finally {
+                                try {
+                                    if (statement != null) {
+                                        statement.close();
+                                    }
+                                    if (connection != null) {
+                                        dbc.closeDBConnection();
+                                    }
+                                } catch (SQLException e) {
+                                    System.out.println("Error : Connection closing error");
+                                }
                             }
                         }
                     %>
@@ -116,40 +121,20 @@
 
 <script>
     function previewImage(event) {
-        const input = event.target;
-            if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-            const imagePreview = document.getElementById('imagePreview');
-            const imagePreviewWrapepr = document.getElementById('imagePreviewWrapper');
-            imagePreview.src = e.target.result;
-            imagePreviewWrapepr.style.display = 'block';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+    const input = event.target;
+    if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+    const imagePreview = document.getElementById('imagePreview');
+    const imagePreviewWrapepr = document.getElementById('imagePreviewWrapper');
+    imagePreview.src = e.target.result;
+    imagePreviewWrapepr.style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+    }
     }
 </script>
 
-<script>
-    function getData(productId) {
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "ReadProductServlet?productId=" + encodeURIComponent(productId), true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-    var responseData = JSON.parse(xhr.responseText);
-    document.getElementById("name").value = responseData.name;
-    document.getElementById("buyingPrice").value = responseData.buyingPrice;
-    document.getElementById("sellingPrice").value = responseData.sellingPrice;
-    document.getElementById("description").value = responseData.description;
-    document.getElementById("image").value = responseData.image;
-    }
-    };
-    xhr.send();
-    }
-
-    getData(<%= productId%>);</script>
 <script>
     function deleteProductConfirmation() {
     var result = confirm("Are you sure you want to delete this product?");

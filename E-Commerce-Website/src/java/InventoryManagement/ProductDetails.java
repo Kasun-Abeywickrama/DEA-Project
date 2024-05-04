@@ -30,6 +30,8 @@ public class ProductDetails {
         totalAvailableQuantity = totAvailableQuantity;
     }
     
+    
+    //Getters
     public int getProductId(){
         return productId;
     }
@@ -48,6 +50,28 @@ public class ProductDetails {
     
     public int getTotalAvailableQuantity(){
         return totalAvailableQuantity;
+    }
+    
+    
+    //Setters
+    public void setProductId(int id){
+        productId = id;
+    }
+    
+    public void setProductName(String name){
+        productName = name;
+    }
+    
+    public void setProductSubCategory(String sub){
+        productSubCategory = sub;
+    }
+    
+    public void setProductMainCategory(String main){
+        productMainCategory = main;
+    }
+    
+    public void setTotalAvailableQuantity(int tot){
+        totalAvailableQuantity = tot;
     }
     
 }
