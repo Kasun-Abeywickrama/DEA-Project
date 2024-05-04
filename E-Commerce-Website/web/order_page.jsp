@@ -4,9 +4,22 @@
     Author     : HP
 --%>
 
+<%@page import="OrderManagement.OrderProductsDetails"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="OrderManagement.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String orderId = request.getParameter("order_id");
+    if (request.getAttribute("order") != null) {
+        Order order = (Order) request.getAttribute("order");
+        String cusName = (String) request.getAttribute("userName");
+        String orderId = String.valueOf(order.getOrderId());
+        String dateTime = order.getDateTime();
+        double totalPrice = order.getTotalPrice();
+        String orderShippingAddress = order.getShippingAddress();
+        String receiverName = order.getReceiverName();
+        String receiverPhoneNumber = order.getReceiverPhoneNumber();
+        String orderStatus = order.getStatus();
+
 %>
 
 <%@include file="admin_header_part_01.jsp" %>
@@ -17,7 +30,7 @@
 <div class="row">
     <div class="col-md d-flex align-items-center justify-content-center">
         <div style="width: 80px; height: 80px; border: 1px solid gray; border-radius: 8px">
-            <p id="orderId" style="margin: 0; text-align: center; line-height: 72px; font-size: 60px; font-weight: 600;"></p>
+            <p id="orderId" style="margin: 0; text-align: center; line-height: 72px; font-size: 60px; font-weight: 600;"><%=orderId%></p>
         </div>
     </div>
     <div class="col-md d-flex align-items-center">
@@ -39,27 +52,27 @@
         <tbody>
             <tr>
                 <td>Date Time</td>
-                <td id="dateTime"></td> 
+                <td id="dateTime"><%=dateTime%></td> 
             </tr>
             <tr>
                 <td>Total Price</td>
-                <td id="totalPrice"></td>
+                <td id="totalPrice"><%=totalPrice%></td>
             </tr>
             <tr>
                 <td>Shipping Address</td>
-                <td id="shippingAddress"></td>
+                <td id="shippingAddress"><%=orderShippingAddress%></td>
             </tr>
             <tr>
                 <td>Receiver Name</td>
-                <td id="receiverName"></td>
+                <td id="receiverName"><%=receiverName%></td>
             </tr>
             <tr>
                 <td>Phone Number</td>
-                <td id="phoneNumber"></td>
+                <td id="phoneNumber"><%=receiverPhoneNumber%></td>
             </tr>
             <tr>
                 <td>Customer name</td>
-                <td id="customerName"></td>
+                <td id="customerName"><%=cusName%></td>
             </tr>
         </tbody>
     </table>
@@ -74,104 +87,46 @@
         <td>Selling Price</td>
         </thead>
         <tbody id="tbody">
+            <%
+                ArrayList<OrderProductsDetails> productsList = (ArrayList<OrderProductsDetails>) request.getAttribute("productsList");
+                if (productsList != null) {
+                    for (OrderProductsDetails product : productsList) {
+            %>
+            <tr>
+                <td><%= product.getProductName()%></td>
+                <td><%= product.getQuantity()%></td>
+                <td><%= product.getSellingPrice()%></td>
+            </tr>
+            <%
+                }
+            } else {
+            %>
+            <tr>
+                <td colspan="4">No products found</td>
+            </tr>
         </tbody>
     </table>
 </div>
 
+<%
+    }
+%>
 <script>
-    function getOrderDetails(orderId) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "ReadOrderServlet?orderId=" + encodeURIComponent(orderId), true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var responseData = JSON.parse(xhr.responseText);
-                document.getElementById("orderId").innerText = responseData.orderId;
-                document.getElementById("dateTime").innerText = responseData.dateTime;
-                document.getElementById("totalPrice").innerText = responseData.totalPrice;
-                document.getElementById("shippingAddress").innerText = responseData.shippingAddress;
-                document.getElementById("receiverName").innerText = responseData.receiverName;
-                document.getElementById("phoneNumber").innerText = responseData.receiverPhoneNumber;
-                document.getElementById("customerName").innerText = responseData.customerName;
+    //Set current status
+    var options = document.querySelectorAll('.status');
+    options.forEach(function (option) {
+        option.removeAttribute('selected');
+    });
 
-
-                //Set current status
-                var options = document.querySelectorAll('.status');
-                options.forEach(function (option) {
-                    option.removeAttribute('selected');
-                });
-
-                var selectedOption = document.getElementById(responseData.status);
-                selectedOption.setAttribute('selected', '');
-                getOrderProductsDetails(<%= orderId%>);
-            }
-        };
-        xhr.send();
-    }
-
-
-    getOrderDetails(<%= orderId%>);
+    var selectedOption = document.getElementById("<%=orderStatus%>");
+    selectedOption.setAttribute('selected', '');
 </script>
-
-
-<script>
-    function displayOrderProductsDetails(orderProducts) {
-        var tbody = document.getElementById("tbody");
-
-        tbody.innerHTML = "";
-
-        orderProducts.forEach(function (orderProduct) {
-            var row = document.createElement("tr");
-
-            var nameCell = document.createElement("td");
-            nameCell.textContent = orderProduct.product_name;
-            row.appendChild(nameCell);
-
-            var qtyCell = document.createElement("td");
-            qtyCell.textContent = orderProduct.quantity;
-            row.appendChild(qtyCell);
-
-            var PriceCell = document.createElement("td");
-            PriceCell.textContent = orderProduct.selling_price;
-            row.appendChild(PriceCell);
-
-            tbody.appendChild(row);
-        });
-    }
-
-    function getOrderProductsDetails(orderId) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "ReadOrderServlet?orderProductsDetails=true&orderId=" + encodeURIComponent(orderId), true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var responseData = JSON.parse(xhr.responseText);
-//                console.log(responseData);
-                displayOrderProductsDetails(responseData);
-            }else{
-            }
-        };
-        xhr.send();
-    }
-
-    
-</script>
-
-
-
-
-
-
-
-
-
-
 <script>
     function submitOrderStatusForm() {
         document.getElementById("updateOrderStatusForm").submit();
     }
 </script>
-
+<% }%>
 
 <%@ include file="admin_footer.jsp" %>
 

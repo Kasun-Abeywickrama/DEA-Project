@@ -104,7 +104,7 @@
 
             var actionCell = document.createElement("td");
             var viewLink = document.createElement("a");
-            viewLink.href = "order_page.jsp?order_id=" + order.orderId;
+            viewLink.href = "ReadOrderServlet?orderId=" + order.orderId;
             viewLink.textContent = "View";
             actionCell.appendChild(viewLink);
             row.appendChild(actionCell);
