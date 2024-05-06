@@ -57,10 +57,9 @@
                                 <tr>
                                     <td colspan="2">
                                         <center>
-                                            <form action="stock_add_page.jsp" method="POST">
+                                            <form action="ProductDetailsRetrieveServlet" method="POST">
                                                 <input type="hidden" name="product_id" value="<%=product_id %>">
-                                                <input type="hidden" name="product_name" value="<%=product_name %>">
-                                                <button type="submit" class="btn btn-primary btn-sm" id="btn1" value="add_stock" name="submit">Add Stock</button>
+                                                <button type="submit" class="btn btn-primary btn-sm" id="btn1" value="product_details_for_stock_add" name="submit">Add Stock</button>
                                             </form>
                                         </center>
                                     </td>
@@ -114,7 +113,7 @@
                                                 <form action="ProductStockRetrieveServlet" method="POST">
                                                     <input type="hidden" name="product_id" value="<%=i.getProductId() %>">
                                                     <input type="hidden" name="stock_id" value="<%=i.getStockId() %>">
-                                                    <button type="submit" class="btn btn-primary btn-sm" id="btn2" value="stock_details" name="submit">Update</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" id="btn2" value="stock_update_details" name="submit">Update</button>
                                                 </form>
                                             </td>
                                             <td id="remove_button_td">

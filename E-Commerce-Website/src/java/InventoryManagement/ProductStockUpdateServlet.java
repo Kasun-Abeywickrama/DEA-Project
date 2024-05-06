@@ -40,15 +40,15 @@ public class ProductStockUpdateServlet extends HttpServlet {
                 String message = operation.updateProductStockDetails(stock_id, supplier_name, buying_price);
                 
                 if(message != null){
-                    response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message="+message);
                 }
                 else{
-                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock Does Not Exist");
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Stock Does Not Exist");
                 }
                 
             }
             catch(SQLException e){
-                response.sendRedirect("inventory_management_page.jsp?alert_message=Error Updating Stock Details");
+                response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Error Updating Stock Details");
             }    
         }
         
@@ -68,14 +68,14 @@ public class ProductStockUpdateServlet extends HttpServlet {
                 String message = operation.addProductStockQuantity(stock_id, add_quantity);
                 
                 if(message != null){
-                    response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message="+message);
                 } 
                 else{
-                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock Does Not Exist");
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Stock Does Not Exist");
                 }
             }
             catch(SQLException e){
-                response.sendRedirect("inventory_management_page.jsp?alert_message=Error Updating Stock Quantity");
+                response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Error Updating Stock Quantity");
             }   
         }
         
@@ -95,15 +95,15 @@ public class ProductStockUpdateServlet extends HttpServlet {
                 String message = operation.reduceProductStockQuantity(stock_id, remove_quantity);
                 
                 if(message != null){
-                    response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message="+message);
                 }
                 else{
-                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock Does Not Exist");
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Stock Does Not Exist");
                 }
    
             }
             catch(SQLException e){
-                response.sendRedirect("inventory_management_page.jsp?alert_message=Error Updating Stock Quantity");
+                response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Error Updating Stock Quantity");
             }   
         }
         
