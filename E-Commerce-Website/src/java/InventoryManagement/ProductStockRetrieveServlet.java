@@ -49,7 +49,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
                     rd.forward(request, response);
                 }
                 else{
-                    response.sendRedirect("inventory_management_page.jsp?alert_message=Product Does Not Exist");
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Product Does Not Exist");
                 }
             }
             catch(SQLException e){
@@ -60,7 +60,7 @@ public class ProductStockRetrieveServlet extends HttpServlet {
         
         
         //Sending the details of a single stock to the JSP page
-        if("stock_details".equals(request.getParameter("submit"))){
+        if("stock_update_details".equals(request.getParameter("submit"))){
             
             int stock_id = Integer.parseInt(request.getParameter("stock_id"));
             
@@ -83,11 +83,11 @@ public class ProductStockRetrieveServlet extends HttpServlet {
                         rd.forward(request, response);
                     }
                     else{
-                        response.sendRedirect("inventory_management_page.jsp?alert_message=Product Does Not Exist");
+                        response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Product Does Not Exist");
                     }  
                 }
                 else{
-                    response.sendRedirect("inventory_management_page.jsp?alert_message=Stock Does Not Exist");
+                    response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Stock Does Not Exist");
                 }    
             }
             catch(SQLException e){

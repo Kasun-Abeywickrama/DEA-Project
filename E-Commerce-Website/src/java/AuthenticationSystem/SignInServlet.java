@@ -63,7 +63,7 @@ public class SignInServlet extends HttpServlet {
 
 
                 if(resultSet.getString("role").equals("1")){
-                    response.sendRedirect("admin_dashboard_page.jsp");
+                    response.sendRedirect("AdminDashboardDataRetrieveServlet");
                 }else{
                     response.sendRedirect("landing-page.jsp");
                 }

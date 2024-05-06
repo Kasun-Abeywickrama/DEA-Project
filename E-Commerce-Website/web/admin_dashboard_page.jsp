@@ -15,23 +15,6 @@
         <title>Admin Dashboard</title>
         
 	<link href="css/admin_dashboard_page.css" rel="stylesheet" type="text/css">
-        
-        <script>
-            window.onload = function(){
-                
-                var xhr = new XMLHttpRequest();
-              
-                xhr.open("GET", "AdminDashboardDataRetrieveServlet", true);
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        document.body.innerHTML = xhr.responseText;
-                    }
-                };
-                
-                xhr.send();
-            };
-        </script>
     
     <%@include file="admin_header_part_02.jsp" %>
     

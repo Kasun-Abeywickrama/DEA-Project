@@ -118,7 +118,7 @@
                         if(Integer.parseInt((String)ses2.getAttribute("role")) == 1){
             %> 
                             <div class="mb-4">
-                                <form action="admin_dashboard_page.jsp" style="height: 50px">
+                                <form action="AdminDashboardDataRetrieveServlet" style="height: 50px">
                                     <input type="submit" value="Admin Dashboard" class="w-100 h-100 offcanvas-buttons" />
                                 </form>
                             </div>
