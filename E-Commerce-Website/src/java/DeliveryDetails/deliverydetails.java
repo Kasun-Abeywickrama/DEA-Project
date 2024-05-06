@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HomePage;
+package DeliveryDetails;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,14 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author Geshan Sampath
  */
-@WebServlet(name = "Home", urlPatterns = {"/Home"})
-public class Home extends HttpServlet {
+@WebServlet(name = "deliverydetails", urlPatterns = {"/deliverydetails"})
+public class deliverydetails extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,16 +31,17 @@ public class Home extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+          
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Home</title>");            
+            out.println("<title>Servlet deliverydetails</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Home at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet deliverydetails at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,18 +59,6 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false); // Do not create a new session if it doesn't exist
-        if (session != null && session.getAttribute("authenticated") != null && (boolean) session.getAttribute("authenticated")) {
-            // User is authenticated
-            // Proceed with the servlet's logic
-            response.getWriter().println("Welcome, " + session.getAttribute("user_name") + "! You are authenticated.");
-        } else {
-            // User is not authenticated
-            response.getWriter().println("Access denied. Please log in.");
-            // You can redirect to the login page or perform other actions here
-        }
-        
         processRequest(request, response);
     }
 
@@ -85,7 +73,14 @@ public class Home extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String fullName = request.getParameter("fname");
+        String province = request.getParameter("province");
+        String city = request.getParameter("city");
+        String area = request.getParameter("area");
+        String address = request.getParameter("address");
+        String mobileNumber = request.getParameter("tel");
+
+
     }
 
     /**

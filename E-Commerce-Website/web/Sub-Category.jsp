@@ -8,6 +8,13 @@
     <%@include file="admin_header_part_02.jsp" %>    
             
             <!-- SUB CATEGORY -->
+        <% if(request.getParameter("getSubCategoryID") != null) { %>
+            <p style="color: #E97000;"><i>Categories &nbsp;>&nbsp; Edit Sub Category</i></p>
+        <% } %>
+                        
+        <% if(request.getParameter("getSubCategoryID") == null) { %>
+            <p style="color: #E97000;"><i>Categories &nbsp;>&nbsp; Add New Sub Category</i></p>
+        <% } %>
             
         <%
             if(request.getParameter("main_category_id")!=null && request.getParameter("name")!=null && request.getParameter("getSubCategoryID")!=null ){

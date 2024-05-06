@@ -53,8 +53,7 @@ public class UpdateProductServlet extends HttpServlet {
             boolean status = ProductDAO.updateProduct(product);
             if (status) {
                 response.setStatus(HttpServletResponse.SC_OK);
-                response.sendRedirect("view_all_products_page.jsp");
-
+                response.sendRedirect("ReadProductServlet");
             } else {
                 response.getWriter().println("Product deletion unsuccessfull");
             }

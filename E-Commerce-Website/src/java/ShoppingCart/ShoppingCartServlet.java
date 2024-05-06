@@ -5,7 +5,6 @@
  */
 package ShoppingCart;
 
-import DatabaseConnection.DBConnectionManager;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,14 +26,9 @@ public class ShoppingCartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        DBConnectionManager dbcon = new DBConnectionManager();
+        ShoppingCartOperation operation = new ShoppingCartOperation();
         
         try{
-            Connection con = dbcon.getDBConnection();
-            
-            Statement stmt1 = con.createStatement();
-            
-            Statement stmt2 = con.createStatement();
             
             //Creating the array list to store the data that must be send to the frontend
             ArrayList<ShoppingCartDetails> sharray = new ArrayList<>();
@@ -57,34 +51,15 @@ public class ShoppingCartServlet extends HttpServlet {
 
                         int quantity = Integer.parseInt(i.getValue());
 
-                        //Getting the product name and the selling price
-                        ResultSet rs1 = stmt1.executeQuery("SELECT Product.name, Product.selling_price, Sub_category.name FROM Product, Sub_category WHERE Product.sub_category_id = Sub_category.sub_category_id AND product_id="+product_id+";");
-
-                        if(rs1.next()){
-
-                            //Getting the stock quantity of the product
-                            ResultSet rs2 = stmt2.executeQuery("SELECT SUM(available_quantity) AS total_available_quantity FROM Product_stock WHERE product_id="+product_id+";");
-
-                            rs2.next();
-
-                            //Creating the object of the class
-                            ShoppingCartDetails sh = new ShoppingCartDetails(product_id, rs1.getString("Product.name"), rs1.getFloat("Product.selling_price"), rs1.getString("Sub_category.name"), quantity, rs2.getInt("total_available_quantity"));
-
-                            //Adding the object to the arraylist
-                            sharray.add(sh);
-
-                            sub_total = sub_total + (rs1.getFloat("Product.selling_price")*quantity);
-
-                            rs2.close();
+                        ShoppingCartDetails scd = operation.getProductDetailsByProductId(product_id, quantity);
+                        
+                        if(scd != null){
+                            sharray.add(scd);
+                            sub_total += (scd.getSellingPrice()*quantity);
                         }
-                        rs1.close();  
                     }
                 }
             }
-                
-            stmt1.close();
-            stmt2.close();
-            dbcon.closeDBConnection();
             
             sharray.sort((ShoppingCartDetails a, ShoppingCartDetails b) -> a.getProductId() - b.getProductId());
             
@@ -97,6 +72,9 @@ public class ShoppingCartServlet extends HttpServlet {
             response.getWriter().println(e);
         }
     }
+    
+    
+    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -130,7 +108,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            request.getRequestDispatcher("/checkout_page.jsp").forward(request, response);
+            response.sendRedirect("checkout_page.jsp");
         }
         
         
@@ -166,7 +144,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            request.getRequestDispatcher("/checkout_page.jsp").forward(request, response);   
+            response.sendRedirect("checkout_page.jsp");
         }
         
         
@@ -194,7 +172,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            request.getRequestDispatcher("/checkout_page.jsp").forward(request, response); 
+            response.sendRedirect("checkout_page.jsp");
         }
         
     }
