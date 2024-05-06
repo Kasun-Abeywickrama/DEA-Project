@@ -108,7 +108,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            response.sendRedirect("checkout_page.jsp");
+            response.sendRedirect("ShoppingCartServlet");
         }
         
         
@@ -144,7 +144,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            response.sendRedirect("checkout_page.jsp");
+            response.sendRedirect("ShoppingCartServlet");
         }
         
         
@@ -172,7 +172,7 @@ public class ShoppingCartServlet extends HttpServlet {
                 
             }
             
-            response.sendRedirect("checkout_page.jsp");
+            response.sendRedirect("ShoppingCartServlet");
         }
         
     }

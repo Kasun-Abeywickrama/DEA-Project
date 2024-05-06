@@ -113,7 +113,7 @@ public class OrderProcessingServlet extends HttpServlet {
                     }
                 }
                 catch(SQLException e){
-                    response.sendRedirect("checkout_page.jsp?alert_message=Order Not Successfull");
+                    response.sendRedirect("ShoppingCartServlet?alert_message=Order Not Successfull");
                 } 
             }
             else{
@@ -126,7 +126,7 @@ public class OrderProcessingServlet extends HttpServlet {
             return;
         }
         
-        response.sendRedirect("checkout_page.jsp?alert_message=Order Not Successfull");
+        response.sendRedirect("ShoppingCartServlet?alert_message=Order Not Successfull");
     }
 
 }

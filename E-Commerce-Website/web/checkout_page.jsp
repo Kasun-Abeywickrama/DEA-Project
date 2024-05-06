@@ -16,28 +16,6 @@
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="css/checkout_page.css">
-
-        <script>
-            window.onload = function(){
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open("GET", "ShoppingCartServlet", true);
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        
-                        tempContainer = document.createElement('div');
-                        tempContainer.innerHTML = xhr.responseText;
-            
-                        extractedSection = tempContainer.querySelector('#section').innerHTML;
-                        document.getElementById("section").innerHTML = extractedSection;
-                    }
-                };
-
-                xhr.send();
-            };
-        </script>
         
         <script>
             function cartAlert(event){
