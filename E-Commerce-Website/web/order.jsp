@@ -167,7 +167,7 @@ h2.okk {
        <div class="order-successful-1">
         <img src="images\icons/confirm 1.png" alt="confirm">
         <h3 class="order-successful">Order Successful</h3><br>
-        <form action="checkout_page.jsp">
+        <form action="ShoppingCartServlet">
             <button class="ok" style="color: white; font-weight: bold">OK</button>
         </form>
        </div>

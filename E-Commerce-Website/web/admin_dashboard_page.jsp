@@ -160,7 +160,7 @@
                                         }  
                     %>
                                     </table>
-                                    <form action="inventory_management_page.jsp" method="POST">
+                                    <form action="ProductDetailsRetrieveServlet" method="GET">
                                     <button type="submit" class="btn btn-primary btn-sm" id="btn1" value="submit" name="submit">Manage</button>
                                     </form>
                                 </center>
