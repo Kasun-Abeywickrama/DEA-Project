@@ -41,15 +41,15 @@ public class ProductStockAddServlet extends HttpServlet {
             String message = operation.addProductStock(product_id, supplier_name, buying_price, quantity);
             
             if(message != null){
-                response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
+                response.sendRedirect("ProductDetailsRetrieveServlet?alert_message="+message);
             }
             else{
-                response.sendRedirect("inventory_management_page.jsp?alert_message=Product Does Not Exist");
+                response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Product Does Not Exist");
             }
             
         }
         catch(SQLException e){
-            response.sendRedirect("inventory_management_page.jsp?alert_message=Error Inserting Record");
+            response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Error Inserting Record");
         } 
     } 
     

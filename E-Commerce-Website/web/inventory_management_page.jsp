@@ -15,25 +15,6 @@
         
 	<link href="css/inventory_management_page.css" rel="stylesheet" type="text/css">
         
-        <!-- Sending a GET request when the page is loading -->
-        <!-- Updating the body of the document according to the response -->
-        <script>
-            window.onload = function(){
-                
-                var xhr = new XMLHttpRequest();
-              
-                xhr.open("GET", "ProductDetailsRetrieveServlet", true);
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        document.body.innerHTML = xhr.responseText;
-                    }
-                };
-                
-                xhr.send();
-            };
-        </script>
-    
     <%@include file="admin_header_part_02.jsp" %>
         
         <!-- Displaying the alert message -->
@@ -47,44 +28,18 @@
             }
         %>
         
-        <!-- Function to be executed when something searched -->
-        <script>
-            
-            function searchProduct(event) {
- 
-                event.preventDefault();
-                
-                var searchString = document.getElementById("search_input").value;
-                
-                var xhr = new XMLHttpRequest();
-                
-                xhr.open("POST", "ProductDetailsRetrieveServlet");
-                
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-              
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        document.body.innerHTML = xhr.responseText;
-                        document.getElementById("search_input").value = searchString;
-                    }
-                };
-                
-                xhr.send("search_string="+searchString);
-            };
-        </script>
-        
             <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Inventory Products </i></p>
                
-                <form id="search_form" onsubmit="searchProduct(event)">
+                <form action="ProductDetailsRetrieveServlet" method="post">
                     <center>
                         <table class="search_table">
                             <tr>
                                 <td>
-                                    <input class="form-control mr-sm-2" type="search" id="search_input" placeholder="Search Product" aria-label="Search">
+                                    <input class="form-control mr-sm-2" type="search" name="search_string" placeholder="Search Product" aria-label="Search">
                                 </td>
                                 <td>&nbsp;</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm" id="btn1" type="submit">Search</button>
+                                    <button class="btn btn-primary btn-sm" name="submit" value="product_list_for_search_bar" type="submit">Search</button>
                                 </td>
                             </tr>
                         </table>

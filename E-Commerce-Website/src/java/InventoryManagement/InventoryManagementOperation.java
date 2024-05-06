@@ -373,7 +373,7 @@ public class InventoryManagementOperation {
                         }
                     }
                     else{     
-                        message = "Unable to update the details of the stock, Already purchased in several orders";
+                        message = "Unable to update the buying price of the stock, Already purchased in several orders";
                     }
                 }
                 else{
