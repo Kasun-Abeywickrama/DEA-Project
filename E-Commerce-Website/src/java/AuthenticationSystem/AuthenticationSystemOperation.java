@@ -41,8 +41,8 @@ public class AuthenticationSystemOperation {
             }
             else{
                 //Hashing the password
-                authentication_functions hp = new authentication_functions();
-                String hashed_password = hp.hash_password(password);
+                AuthenticationFunctions authFunctions = new AuthenticationFunctions();
+                String hashed_password = authFunctions.hash_password(password);
                 
                 pstmt2.setString(1, username);
                 pstmt2.setString(2, hashed_password);
