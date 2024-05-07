@@ -20,10 +20,10 @@
     
         <p style="color: #E97000;"><i>Inventory &nbsp;>&nbsp; Add New Product Stock </i></p>
                 
-            <%  if(request.getParameter("product_id") != null && request.getParameter("product_name") != null){
+            <%  if(request.getAttribute("product_id") != null && request.getAttribute("product_name") != null){
                     
-                    String product_id = request.getParameter("product_id");
-                    String product_name = request.getParameter("product_name");
+                    String product_id = (String)request.getAttribute("product_id");
+                    String product_name = (String)request.getAttribute("product_name");
             %>
                 
                     <center>

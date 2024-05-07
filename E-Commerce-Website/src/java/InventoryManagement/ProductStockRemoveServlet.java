@@ -35,14 +35,14 @@ public class ProductStockRemoveServlet extends HttpServlet {
             String message = operation.removeProductStock(stock_id);
             
             if(message != null){
-                response.sendRedirect("inventory_management_page.jsp?alert_message="+message);
+                response.sendRedirect("ProductDetailsRetrieveServlet?alert_message="+message);
             }
             else{
-                response.sendRedirect("inventory_management_page.jsp?alert_message=Stock Does Not Exist");
+                response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Stock Does Not Exist");
             }
         }
         catch(SQLException e){
-            response.sendRedirect("inventory_management_page.jsp?alert_message=Error Deleting Record");
+            response.sendRedirect("ProductDetailsRetrieveServlet?alert_message=Error Deleting Record");
         }
     } 
     
