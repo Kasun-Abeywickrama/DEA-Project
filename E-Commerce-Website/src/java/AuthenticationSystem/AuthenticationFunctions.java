@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package AuthenticationSystem;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
  * @author Sithuruwan
  */
-public class authentication_functions {
+public class AuthenticationFunctions {
     
     //Generate the hashed password
     //The Apache common codecs library is used to hash the password
