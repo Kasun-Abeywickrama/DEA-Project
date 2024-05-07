@@ -93,6 +93,8 @@ public class OrderProcessingServlet extends HttpServlet {
                     if(isSuccess == 0 || isCartHasProducts == 0){
 
                         operation.orderNotSuccess(order_id);
+                        
+                        response.sendRedirect("ShoppingCartServlet?alert_message=Order Not Successfull");
                     }
                     else{
 
@@ -109,7 +111,6 @@ public class OrderProcessingServlet extends HttpServlet {
                         operation.orderSuccess(order_id, total_price);
 
                         response.sendRedirect("order.jsp");
-                        return;
                     }
                 }
                 catch(SQLException e){
@@ -118,15 +119,11 @@ public class OrderProcessingServlet extends HttpServlet {
             }
             else{
                 response.sendRedirect("sign_in_page.jsp");
-                return;
             }
         }
         else{
             response.sendRedirect("sign_in_page.jsp");
-            return;
         }
-        
-        response.sendRedirect("ShoppingCartServlet?alert_message=Order Not Successfull");
     }
 
 }
