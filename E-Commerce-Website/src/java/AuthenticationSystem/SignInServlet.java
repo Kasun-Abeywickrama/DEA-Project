@@ -37,7 +37,7 @@ public class SignInServlet extends HttpServlet {
         try {
 
             // Hashing the password for comparison
-            authentication_functions authFunctions = new authentication_functions();
+            AuthenticationFunctions authFunctions = new AuthenticationFunctions();
             String hashedPassword = authFunctions.hash_password(password);
 
             // Creating a SQL query to check user credentials
