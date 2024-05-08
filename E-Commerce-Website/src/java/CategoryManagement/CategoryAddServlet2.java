@@ -31,32 +31,26 @@ public class CategoryAddServlet2 extends HttpServlet {
     	int main_category_id=  Integer.parseInt(request.getParameter("main_category_id"));
         String name = request.getParameter("name");
 
-        DBConnectionManager dbcon = new DBConnectionManager();
-
-        // Sub Category Add
-        try (Connection connection = dbcon.getDBConnection()) {
+     CategoryManegmnetDao operation  = new CategoryManegmnetDao ();
+         
+         
+        
+        try{
+                    
+            String message = operation.addSCategory(name,main_category_id);
             
-            Statement stmt = connection.createStatement();
-
-            int rowsAffected = stmt.executeUpdate("INSERT INTO sub_category (name, main_category_id) VALUES ('" + name + "', " + main_category_id + ");");
-
-            if (rowsAffected > 0) {
-               
-                request.setAttribute("alert_message", "Sub Category added successfully");
-                request.getRequestDispatcher("/category_management_page.jsp").forward(request, response); 
-            } 
-            else {
-                
-                request.setAttribute("alert_message", "Unable to add the sub category");
-                request.getRequestDispatcher("/category_management_page.jsp").forward(request, response); 
+            if(message != null){
+                response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message="+message);
             }
-
-        } 
-        catch (SQLException e) {
+            else{
+                response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message=Product Does Not Exist");
+            }
+            
+        }
+        catch(SQLException e){
+            response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message=Error Inserting Record");
             response.getWriter().println(e);
         } 
-        finally {
-           dbcon.closeDBConnection();
-        }
     }
+    
 }

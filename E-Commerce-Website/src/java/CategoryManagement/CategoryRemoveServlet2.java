@@ -19,30 +19,27 @@ public class CategoryRemoveServlet2 extends HttpServlet {
         
         int subCategoryId = Integer.parseInt(request.getParameter("getSubCategoryID"));
 
-        DBConnectionManager dbcon = new DBConnectionManager();
-
-        try {
-            Connection connection = dbcon.getDBConnection();
-            Statement stmt = connection.createStatement();
-
-            int rowsAffected = stmt.executeUpdate("DELETE FROM sub_category WHERE sub_category_id=" + subCategoryId);
-
-            if (rowsAffected > 0) {
-                request.setAttribute("alert_message", "Sub Category removed successfully");
-            } else {
-                request.setAttribute("alert_message", "Unable to remove the sub category, Already associated with several products");
+        CategoryManegmnetDao operation = new CategoryManegmnetDao();
+        
+        try{
+                    
+            String message = operation.removeSCategory(subCategoryId);
+            
+            if(message != null){
+                response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message="+message);
             }
-
-            stmt.close();
-            dbcon.closeDBConnection();
-
-            request.getRequestDispatcher("/category_management_page.jsp").forward(request, response);
-
-        } catch (SQLException e) {
-            dbcon.closeDBConnection();
-            request.setAttribute("alert_message", "Unable to remove the sub category, Already associated with several products");
-            request.getRequestDispatcher("/category_management_page.jsp").forward(request, response);
-           
+            else{
+                response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message=Category Does Not Exist");
+            }
+        }
+        catch(SQLException e){
+            response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message=Error Deleting Category");
         }
     }
-}
+    }
+    
+    
+   
+        
+       
+      
