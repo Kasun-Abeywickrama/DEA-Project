@@ -26,47 +26,26 @@ public class CategoryUpdateServlet2 extends HttpServlet {
 
     	String S_name = request.getParameter("name");
     	  
-        DBConnectionManager dbcon = new DBConnectionManager();
-                
-        try{
-                    
-            Connection connection = dbcon.getDBConnection();
-
-            String sql = "UPDATE sub_category SET name = ?, main_category_id = ? WHERE sub_category_id = ?";
-
-            PreparedStatement statement = connection.prepareStatement(sql);
-                
-            statement.setString(1, S_name);
-            statement.setInt(2,mainCategoryId  );
-                
-            statement.setInt(3,subCategoryId  );
-               
-            int rowsUpdated = statement.executeUpdate();
-            if (rowsUpdated > 0) {
-                response.getWriter().print("An existing Sub Category was updated successfully!");
-                    
-                request.setAttribute("alert_message", "Sub Category details updated successfully");
-                request.getRequestDispatcher("/category_management_page.jsp").forward(request,response);
-               
-                statement.close();
-                connection.close();
-                dbcon.closeDBConnection();
-               
-            }
-            else{
-                                
-                statement.close();
-                connection.close();
-                dbcon.closeDBConnection();
-                                
-                request.setAttribute("alert_message", "Unable to update the sub category details");
-                request.getRequestDispatcher("/category_management_page.jsp").forward(request,response); 
-                            	 
-            }
+       
     
+    
+    // if("update_details".equals(request.getParameter("submit"))){
+    CategoryManegmnetDao operation = new CategoryManegmnetDao();
+    
+    try{
+            
+        String message = operation.updateSCategory(subCategoryId,mainCategoryId, S_name );
+        
+        if(message != null){
+            response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message="+message);
         }
-        catch(SQLException e2){
-            response.getWriter().println(e2);
-        }     
-    }  
+        else{
+            response.sendRedirect("cMainCategoryDetailsRetrieveServlet?alert_message=Category Does Not Exist");
+        }
+        
+    }
+    catch(SQLException e){
+        response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message=Error Updating Sub Category Details");
+    }    
+}
 }

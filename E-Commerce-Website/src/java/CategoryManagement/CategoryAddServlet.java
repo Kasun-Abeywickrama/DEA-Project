@@ -27,37 +27,28 @@ public class CategoryAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+     
+    
+     CategoryManegmnetDao operation  = new CategoryManegmnetDao ();
+     
+     String M_name = request.getParameter("name");
+    
+    try{
+                
+        String message = operation.addMCategory(M_name);
         
-        String name = request.getParameter("name");
-
-        DBConnectionManager dbcon = new DBConnectionManager();
-
-        // Main Category Add
-        try (Connection connection = dbcon.getDBConnection()) {
-            
-            Statement stmt = connection.createStatement();
-  
-            int rowsAffected = stmt.executeUpdate("INSERT INTO main_category (name) VALUES ('" + name + "');");
-
-            if (rowsAffected > 0) {
-                
-                request.setAttribute("alert_message", "Main Category added successfully");
-                request.getRequestDispatcher("/category_management_page.jsp").forward(request, response);
-                
-            } else {
-                
-                request.setAttribute("alert_message", "Unable to add main category");
-                request.getRequestDispatcher("/category_management_page.jsp").forward(request, response);
-                
-            }
-
-        } 
-        catch (SQLException e) {
-            response.getWriter().println(e);
-        } 
-        finally {
-            dbcon.closeDBConnection(); 
-        }   
+        if(message != null){
+            response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message="+message);
+        }
+        else{
+            response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message=Product Does Not Exist");
+        }
+        
     }
+    catch(SQLException e){
+        response.sendRedirect("MainCategoryDetailsRetrieveServlet?alert_message=Error Inserting Record");
+        response.getWriter().println(e);
+    } 
+}
 }
 

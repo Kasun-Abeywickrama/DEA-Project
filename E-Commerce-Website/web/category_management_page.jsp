@@ -10,24 +10,7 @@
         
 	<link href="css/category_management_page.css" rel="stylesheet" type="text/css">
         
-        <!-- Sending a GET request when the page is loading -->
-        <!-- Updating the body of the document according to the response -->
-        <script>
-            window.onload = function(){
-                
-                var xhr = new XMLHttpRequest();
-              
-                xhr.open("GET", "MainCategoryDetailsRetrieveServlet", true);
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        document.body.innerHTML = xhr.responseText;
-                    }
-                };
-                
-                xhr.send();
-            };
-        </script>
+       
         
     <%@include file="admin_header_part_02.jsp" %>
     
@@ -35,9 +18,9 @@
         
         <!-- Displaying the alert message -->
         <%
-            if(request.getAttribute("alert_message") != null){
+            if(request.getParameter("alert_message") != null){
         
-                String alert_message = (String)request.getAttribute("alert_message");
+                String alert_message = request.getParameter("alert_message");
         %>        
                 <script>alert("<%=alert_message %>");</script>
         <%  
