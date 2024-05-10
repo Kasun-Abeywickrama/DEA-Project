@@ -30,7 +30,7 @@
                     <li title="Inventory"><a href="ProductDetailsRetrieveServlet"><i class='bx bx-candles' ></i><span>Inventory</span></a></li>
                     <li title="Categories"><a href="MainCategoryDetailsRetrieveServlet"><i class='bx bx-category'></i><span>Categories</span></a></li>
                     <form action="LogoutServlet" method="POST">
-                        <button type="submit" class="log-out-button" style="background-color: transparent; border: none; padding: 0;">                        
+                        <button type="submit" class="log-out-button" style="background-color: transparent; border: none; padding: 0; width: 100%;">                        
                             <li class="log-out-btn" title="Log out"><a href="#"><i class='bx bx-log-out'></i><span>Log out</span></a></li>
                         </button>
                     </form>
