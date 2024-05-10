@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="header_part_01.jsp"%>
+<title>Home</title>
 <%@ include file="header_part_02.jsp"%>
 <%
     ResourcePaths p1 = new ResourcePaths();

@@ -10,6 +10,7 @@
 
 <% User user = (User) request.getAttribute("user");%>
 <%@ include file="header_part_01.jsp"%>
+<title>My Account</title>
 <%@ include file="header_part_02.jsp"%>
 
 <style>
