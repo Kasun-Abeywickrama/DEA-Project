@@ -76,7 +76,7 @@ public class SecurityFilterForAdminPanel implements Filter {
 
         if (lastIndexOfSlash != -1) {
             String resource = uri.substring(lastIndexOfSlash + 1);
-            System.out.println(resource);
+//            System.out.println(resource);
             boolean isAdminRegisteredResource = false;
             for (String registeredResource : adminResourceRegister) {
                 if (registeredResource.equals(resource)) {
