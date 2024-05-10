@@ -6,6 +6,7 @@
 
 
 <%@ include file="header_part_01.jsp"%>
+<title>About us</title>
 <%@ include file="header_part_02.jsp"%>
 
 <style>

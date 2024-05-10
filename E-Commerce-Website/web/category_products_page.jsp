@@ -36,6 +36,7 @@
     }
 
 </style>
+<title>Category Products</title>
 <%@ include file="header_part_02.jsp"%>
 
 <div class="container">

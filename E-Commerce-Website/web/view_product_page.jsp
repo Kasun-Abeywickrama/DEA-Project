@@ -16,6 +16,7 @@
 
 
 <%@include file="admin_header_part_01.jsp" %>
+<title>Product Details</title>
 <%@include file="admin_header_part_02.jsp" %>
 <%    if (request.getAttribute("product") != null) {
         Product product = (Product) request.getAttribute("product");

@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="admin_header_part_01.jsp" %>
+<title>Orders</title>
 <%@include file="admin_header_part_02.jsp" %>
 
 <style>

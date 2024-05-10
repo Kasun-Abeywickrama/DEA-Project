@@ -23,6 +23,7 @@
 %>
 
 <%@include file="admin_header_part_01.jsp" %>
+<title>Order Details</title>
 <%@include file="admin_header_part_02.jsp" %>
 
 <p style="color: #E97000;"><i>Orders &nbsp;>&nbsp; Order</i></p>  

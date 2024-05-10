@@ -5,6 +5,7 @@
 --%>
 
 <%@ include file="header_part_01.jsp"%>
+<title>Store Location</title>
 <%@ include file="header_part_02.jsp"%>
 
 <div class="container-fluid map-wrapper">
