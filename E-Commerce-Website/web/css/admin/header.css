@@ -65,7 +65,7 @@
     list-style: none;
     margin-bottom: 10px;
     cursor: pointer;
-    
+
 } 
 
 .offcanvas-body > ul > li > a{
@@ -85,7 +85,31 @@
     transition: all 0.3s ease;
 } 
 
+.offcanvas-body > ul > form > button > li > a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #E97000;
+    padding: 7px 0;
+    height: 100%;
+    transition: all 0.3s ease;
+} 
+
+.offcanvas-body > ul > form > button > li > a:hover{
+    color: #0D182F;
+    background-color: #E97000;
+    margin-left: -4px;
+    transition: all 0.3s ease;
+} 
+
+
+
 .offcanvas-body > ul > li > a > i{
+    margin: 0 15px;
+    font-size: 30px;
+} 
+
+.offcanvas-body > ul > form > button > li > a > i{
     margin: 0 15px;
     font-size: 30px;
 } 
@@ -98,6 +122,9 @@
     margin-top: auto;
 }
 
+.offcanvas-body > ul > form{
+    margin-top: auto;
+}
 
 .top-section{
     height: 60px;

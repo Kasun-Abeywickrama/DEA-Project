@@ -15,6 +15,7 @@
 <%@page import="java.sql.SQLException"%>
 
 <%@include file="admin_header_part_01.jsp" %>
+<title>All Product</title>
 <%@include file="admin_header_part_02.jsp" %>
 
 <div style="display: flex; align-items: center; justify-content: space-between;" class="mb-3 mt-2">
